@@ -1,10 +1,18 @@
 import React from 'react';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 import Input from './input';
+// import { addCard } from './actions';
 // import { required } from './validation';
 //import css file
 
 export class CardSearch extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			cardList: {}
+		};
+	}
+
 	onSubmit(values) {
 		console.log(values);
 		console.log(values.name);
@@ -31,7 +39,19 @@ export class CardSearch extends React.Component {
 				}
 				return res.json();
 			})
-			.then(res => console.log(res))
+			.then(res => {
+				this.setState({
+					cardList: res.cards.map(card => {
+						return {
+							name: card.name,
+							'casting cost': card.manaCost,
+							color: card.colors,
+							type: card.type
+						};
+					})
+				});
+				console.log(this.state.cardList);
+			})
 			.catch(err => {
 				const { reason, message, location } = err;
 				if (reason === 'ValidationError') {
