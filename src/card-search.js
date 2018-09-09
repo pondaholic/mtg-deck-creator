@@ -1,16 +1,14 @@
 import React from 'react';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 import Input from './input';
+import CardList from './card-list';
 // import { addCard } from './actions';
 // import { required } from './validation';
 //import css file
 
 export class CardSearch extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			cardList: {}
-		};
+	addCard(card) {
+		this.props.dispatch(addCard(card));
 	}
 
 	onSubmit(values) {
