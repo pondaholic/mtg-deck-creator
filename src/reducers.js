@@ -1,18 +1,14 @@
 import { FETCH_CARDS_SUCCESS } from './actions';
 
 const initialState = {
-	cardList: {}
+	cardList: []
 };
 
 export default (state = initialState, action) => {
+	console.log(action.cards);
 	if (action.type === FETCH_CARDS_SUCCESS) {
 		return Object.assign({}, state, {
-			cardList: {
-				name: action.card.name,
-				'casting cost': action.card.manaCost,
-				color: action.colors,
-				type: action.card.type
-			}
+			cardList: action.cards
 		});
 	}
 	return state;
