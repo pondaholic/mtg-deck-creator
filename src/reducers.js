@@ -1,13 +1,19 @@
-import { ADD_CARD } from './actions';
+import { FETCH_CARDS_SUCCESS } from './actions';
 
 const initialState = {
 	cardList: {}
 };
 
-export const cardReducer = (state = initialState, action) => {
-	if (action.type === ADD_CARD) {
+export default (state = initialState, action) => {
+	if (action.type === FETCH_CARDS_SUCCESS) {
 		return Object.assign({}, state, {
-			cardList: action.card
+			cardList: {
+				name: action.card.name,
+				'casting cost': action.card.manaCost,
+				color: action.colors,
+				type: action.card.type
+			}
 		});
 	}
+	return state;
 };

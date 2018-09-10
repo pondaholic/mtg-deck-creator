@@ -1,12 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-export default function CardList(props) {
+function CardList(props) {
 	return (
 		<div className="card-list">
-			<label htmlFor="cards">Cards</label>
-			<ul>
-				<li></li>
-			</ul>
+			Cards:
+			<ul>{props.cards}</ul>
 		</div>
 	);
 }
+
+function mapStateToProps(state) {
+	return { cardList: state.cards };
+}
+
+const ConnectedCards = connect(mapStateToProps)(CardList);
+
+export default ConnectedCards;
