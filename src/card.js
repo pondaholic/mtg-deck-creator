@@ -1,13 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-function EachCard(props) {
-	let newCard = props.cardList.map(card => (
-		<li key={card.id} value={card}>
-			<b>{card.name}</b>
-			{card.manaCost}
-			<i>{card.type}</i>
-			{card.text}
-		</li>
-	));
+function createCard(cardArray) {
+	//this will pull out all the information and return html for each "card"
+	//this will check that cards with matching names are not created twice or that cards with text: "undefined" are not created
 }

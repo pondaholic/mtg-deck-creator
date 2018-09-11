@@ -1,21 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
+// import EachCard from './card';
 
 function CardList(props) {
-	// console.log(props.cardList);
-	// console.log(typeof props.cardList);
-	let newCard = props.cardList.map(card => (
-		<li key={card.id} value={card}>
+	console.log(props.cardList);
+	// console.log(EachCard(props.cardList));
+
+	//*successfully returns each "card": need to module out to another component
+	let eachCard = props.cardList.map(card => (
+		<li className="card" key={card.id} value={card}>
 			<b>{card.name}</b>
 			{card.manaCost}
 			<i>{card.type}</i>
 			{card.text}
+			<button>Add to Deck</button>
 		</li>
 	));
 	return (
 		<div className="card-list">
 			Cards:
-			<ul>{newCard}</ul>
+			<ul>{eachCard}</ul>
 		</div>
 	);
 }
