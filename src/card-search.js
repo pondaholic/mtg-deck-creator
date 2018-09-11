@@ -37,7 +37,9 @@ export class CardSearch extends React.Component {
 						name: card.name,
 						'casting cost': card.manaCost,
 						color: card.colors,
-						type: card.type
+						type: card.type,
+						id: card.id,
+						text: card.text
 					};
 				});
 				console.log(newRes);

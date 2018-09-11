@@ -2,11 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 function CardList(props) {
-	console.log(props.cardList);
-	console.log(typeof props.cardList);
+	// console.log(props.cardList);
+	// console.log(typeof props.cardList);
 	let newCard = props.cardList.map(card => (
-		<li key={card.name} value={card}>
-			Card
+		<li key={card.id} value={card}>
+			<b>{card.name}</b>
+			{card.manaCost}
+			<i>{card.type}</i>
+			{card.text}
 		</li>
 	));
 	return (
@@ -18,8 +21,8 @@ function CardList(props) {
 }
 
 function mapStateToProps(state) {
-	console.log(state.cards.cardList);
-	console.log(state);
+	// console.log(state.cards.cardList);
+	// console.log(state);
 	return { cardList: state.cards.cardList };
 }
 
