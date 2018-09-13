@@ -1,10 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-function createCard(props) {
+export default function CreateCard(props) {
 	//this will pull out all the information and return html for each "card"
 	//this will check that cards with matching names are not created twice or that cards with text: "undefined" are not created
-	props.cardList.map(card => (
+	const cards = props.cardList.map(card => (
 		<li className="card" key={card.id} value={card}>
 			<b>{card.name}</b>
 			{card.manaCost}
@@ -15,17 +14,9 @@ function createCard(props) {
 			</button>
 		</li>
 	));
+	return (
+		<div>
+			<ul>{cards}</ul>
+		</div>
+	);
 }
-
-function mapStateToProps(state) {
-	console.log(state.cards.cardsInDeck);
-	// console.log(state);
-	return {
-		cardList: state.cards.cardList,
-		cardsInDeck: state.cards.cardsInDeck
-	};
-}
-
-const ConnectedCards = connect(mapStateToProps)(createCard);
-
-export default ConnectedCards;
