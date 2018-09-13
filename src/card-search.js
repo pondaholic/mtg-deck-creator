@@ -3,8 +3,6 @@ import { reduxForm, Field, SubmissionError } from 'redux-form';
 import Input from './input';
 import { fetchCardSuccess } from './actions';
 import CardList from './card-list';
-// import { Route, Router } from 'react-router-dom';
-// import Deck from './deck';
 
 import './component-css/card-search.css';
 
@@ -68,8 +66,7 @@ export class CardSearch extends React.Component {
 
 	render() {
 		return (
-			// <Router>
-			<div>
+			<div className="search-form">
 				<form
 					onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
 				>
@@ -87,9 +84,7 @@ export class CardSearch extends React.Component {
 					<button type="submit">Submit</button>
 				</form>
 				<CardList />
-				{/* <Route exact path="/deck" component={Deck} /> */}
 			</div>
-			// </Router>
 		);
 	}
 }

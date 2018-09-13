@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import CreateCard from './cards';
-import { addCardToDeck, showDeck } from './actions';
+import CreateCard from './card';
+import { addCardToDeck } from './actions';
 
 export class CardList extends React.Component {
 	//listener when clicking button for each card
@@ -12,22 +12,7 @@ export class CardList extends React.Component {
 		this.props.dispatch(addCardToDeck(key));
 	}
 
-	handleDeck() {
-		this.props.dispatch(showDeck());
-	}
-	//*successfully returns each "card": need to module out to another component
 	render() {
-		let eachCard = this.props.cardList.map(card => (
-			<li className="card" key={card.id} value={card}>
-				<b>{card.name}</b>
-				{card.manaCost}
-				<i>{card.type}</i>
-				{card.text}
-				<button value={card.id} onClick={event => this.handleClick(event)}>
-					Add to Deck
-				</button>
-			</li>
-		));
 		return (
 			<div className="card-list">
 				<a href="deck">
@@ -36,8 +21,11 @@ export class CardList extends React.Component {
 				</a>
 				<ul>
 					Cards:
-					{eachCard}
-					{/* <CreateCard /> */}
+					{/* {eachCard} */}
+					<CreateCard
+						cardList={this.props.cardList}
+						handleClick={event => this.handleClick(event)}
+					/>
 				</ul>
 			</div>
 		);

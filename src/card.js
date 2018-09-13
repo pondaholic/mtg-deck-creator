@@ -9,7 +9,7 @@ export default function CreateCard(props) {
 			{card.manaCost}
 			<i>{card.type}</i>
 			{card.text}
-			<button value={card.id} onClick={this.handleClick}>
+			<button value={card.id} onClick={event => props.handleClick(event)}>
 				Add to Deck
 			</button>
 		</li>
