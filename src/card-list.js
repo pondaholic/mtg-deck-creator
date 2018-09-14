@@ -20,12 +20,11 @@ export class CardList extends React.Component {
 		console.log(event);
 		let saveDeck = JSON.stringify(this.props.cardsInDeck);
 		console.log(saveDeck);
-		return fetch('https://localhost:8080/api/cards', {
+		return fetch('http://localhost:8080/api/cards', {
 			method: 'POST',
 			body: JSON.stringify({
 				mtg_cards_id: saveDeck,
-				unique_url: toString(Math.random()),
-				decks_id: 1
+				unique_url: toString(Math.random())
 			}),
 			headers: {
 				'Content-Type': 'application/json'

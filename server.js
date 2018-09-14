@@ -24,26 +24,30 @@ app.use(express.json());
 app.get('/api/cards', function(req, res, next) {
 	knex('cards')
 		.select('mtg_cards_id', 'unique_url')
-		.from('cards')
+		// .from('cards')
 		.then(results => {
 			res.json(results);
 		})
 		.catch(err => next(err));
 });
 app.post('/api/cards', function(req, res, next) {
-	const { mtg_cards_id, unique_url, decks_id } = req.body;
+	const { mtg_cards_id, unique_url } = req.body;
+	// console.info(req.body);
 	const newCard = {
 		mtg_cards_id: mtg_cards_id,
 		unique_url: unique_url,
-		decks_id: decks_id
+		decks_id: 1
 	};
-	// if (!newCard.mtg_cards_id) {
-	// 	const err = new Error('Please add a card');
-	// 	err.status = 400;
-	// 	return next(err);
-	// }
+	console.info(newCard);
+	if (!newCard.mtg_cards_id) {
+		const err = new Error('Please add a card');
+		err.status = 400;
+		return next(err);
+	}
 	knex('cards')
 		.insert(newCard)
+		.into('cards')
+		.returning(['unique_url'])
 		.then(card => {
 			res.json(card);
 		})

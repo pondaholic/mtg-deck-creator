@@ -2,7 +2,6 @@ module.exports = {
 	development: {
 		client: 'pg',
 		connection: {
-			host: process.env.DATABASE_URL || 'postgres://localhost/mtg-app',
 			user: 'dev',
 			database: 'mtg-app'
 		},
