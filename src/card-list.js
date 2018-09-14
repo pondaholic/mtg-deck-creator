@@ -43,10 +43,10 @@ export class CardList extends React.Component {
 						message: res.statusText
 					});
 				}
-				return;
+				return res.json();
 			})
-			.then(() => console.log('Something was posted'))
-			.then(err => {
+			.then(data => console.log('Something was posted', data))
+			.catch(err => {
 				const { reason, message, location } = err;
 				if (reason === 'ValidationError') {
 					return Promise.reject(
