@@ -1,7 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
+const knex = require('./knex');
 
-const { PORT } = require('./config');
+const { PORT, CLIENT_ORIGIN } = require('./config');
 
 // Create an Express application
 const app = express();
@@ -12,12 +14,43 @@ app.use(morgan('dev'));
 // Create a static webserver
 app.use(express.static('public'));
 
+//CORS support
+app.use(cors({ origin: CLIENT_ORIGIN }));
+
 // Parse request body
 app.use(express.json());
 
 //create route handler
-app.get('/cards', function(req, res) {});
-app.post('/cards', function(req, res) {});
+app.get('/api/cards', function(req, res, next) {
+	knex('cards')
+		.select('mtg_cards_id', 'unique_url')
+		.from('cards')
+		.then(results => {
+			res.json(results);
+		})
+		.catch(err => next(err));
+});
+app.post('/api/cards', function(req, res, next) {
+	const { mtg_cards_id, unique_url, decks_id } = req.body;
+	const newCard = {
+		mtg_cards_id: mtg_cards_id,
+		unique_url: unique_url,
+		decks_id: decks_id
+	};
+	// if (!newCard.mtg_cards_id) {
+	// 	const err = new Error('Please add a card');
+	// 	err.status = 400;
+	// 	return next(err);
+	// }
+	knex('cards')
+		.insert(newCard)
+		.then(card => {
+			res.json(card);
+		})
+		.catch(err => {
+			next(err);
+		});
+});
 
 // Custom 404 Not Found route handler
 app.use((req, res, next) => {

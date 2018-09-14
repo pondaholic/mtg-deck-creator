@@ -1,9 +1,13 @@
 module.exports = {
 	development: {
 		client: 'pg',
-		connection: process.env.DATABASE_URL || 'postgres://localhost/mtg-app',
+		connection: {
+			host: process.env.DATABASE_URL || 'postgres://localhost/mtg-app',
+			user: 'dev',
+			database: 'mtg-app'
+		},
 		debug: true, // http://knexjs.org/#Installation-debug
-		pool: { min: 1, max: 2 }
+		pool: { min: 2, max: 10 }
 	},
 	production: {
 		client: 'pg',

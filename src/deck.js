@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { SubmissionError } from 'redux-form';
 
 //component to show cards added to Deck
-export default function Save() {
+export class Save extends React.Component {
+	onClick(event) {
 		console.log(this.props.cardsInDeck);
 		let saveDeck = this.props.cardsInDeck.map(id => JSON.stringify(id));
 		return fetch('https://localhost:8080/cards', {
@@ -45,6 +46,7 @@ export default function Save() {
 				);
 			});
 	}
+}
 
 function mapStateToProps(state) {
 	console.log(state.cards.cardsInDeck);
@@ -55,7 +57,7 @@ function mapStateToProps(state) {
 	};
 }
 
-const ConnectedCards = connect(mapStateToProps)(Deck);
+const ConnectedCards = connect(mapStateToProps)(Save);
 
 export default ConnectedCards;
 

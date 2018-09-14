@@ -14,8 +14,3 @@ export const SAVE_DECK = 'SAVE_DECK';
 export const saveDeck = () => ({
 	type: SAVE_DECK
 });
-
-export const SHOW_DECK = 'SHOW_DECK';
-export const showDeck = () => ({
-	type: SHOW_DECK
-});
