@@ -41,7 +41,8 @@ export class CardSearch extends React.Component {
 						color: card.colors,
 						type: card.type,
 						id: card.id,
-						text: card.text
+						text: card.text,
+						image: card.imageUrl
 					};
 				});
 				console.log(newRes);

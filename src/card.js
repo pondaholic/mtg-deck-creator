@@ -9,6 +9,7 @@ export default function CreateCard(props) {
 			{card.manaCost}
 			<i>{card.type}</i>
 			{card.text}
+			{card.imageUrl}
 			<button value={card.id} onClick={event => props.handleClick(event)}>
 				Add to Deck
 			</button>

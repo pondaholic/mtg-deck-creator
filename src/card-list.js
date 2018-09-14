@@ -1,13 +1,38 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import CreateCard from './card';
-import { addCardToDeck } from './actions';
+import ShowDeck from './deck';
+import { addCardToDeck, showDeck } from './actions';
 import { SubmissionError } from 'redux-form';
 // import { Router, Route, Link } from 'react-router-dom';
 // import Save from './deck';
 
 export class CardList extends React.Component {
-	//listener when clicking button for each card
+	//render results
+	renderResults() {
+		if (this.props.showCardList === true) {
+			return (
+				<CreateCard
+					cardList={this.props.cardList}
+					handleClick={event => this.handleClick(event)}
+				/>
+			);
+		}
+		if (this.props.showDeck === true) {
+			return (
+				<ShowDeck
+					cardList={this.props.cardList}
+					cardsInDeck={this.props.cardsInDeck}
+				/>
+			);
+		}
+	}
+
+	handleDeck(event) {
+		console.log(event);
+		this.props.dispatch(showDeck());
+	}
+
 	handleClick(event) {
 		console.log(event.target.value);
 		let key = event.target.value;
@@ -65,12 +90,15 @@ export class CardList extends React.Component {
 
 	render() {
 		return (
-			// <Router>
 			<div className="card-list">
-				<a href="#">
+				<button
+					className="show-deck"
+					event={this.props.cardsInDeck}
+					onClick={event => this.handleDeck(event)}
+				>
 					Deck(
 					{this.props.cardsInDeck.length})
-				</a>
+				</button>
 				<button
 					className="save-deck"
 					event={this.props.cardsInDeck}
@@ -80,14 +108,13 @@ export class CardList extends React.Component {
 				</button>
 				<ul>
 					Cards:
-					<CreateCard
+					{this.renderResults()}
+					{/* <CreateCard
 						cardList={this.props.cardList}
 						handleClick={event => this.handleClick(event)}
-					/>
-					{/* <Route exact path="/deck" component={Save} /> */}
+					/> */}
 				</ul>
 			</div>
-			// </Router>
 		);
 	}
 }
@@ -97,7 +124,9 @@ function mapStateToProps(state) {
 	// console.log(state);
 	return {
 		cardList: state.cards.cardList,
-		cardsInDeck: state.cards.cardsInDeck
+		showCardList: state.cards.showCardList,
+		cardsInDeck: state.cards.cardsInDeck,
+		showDeck: state.cards.showDeck
 	};
 }
 
