@@ -1,5 +1,6 @@
 .CardSearch {
 	text-align: center;
+	flex-direction: row;
 }
 
 form {

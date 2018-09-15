@@ -3,7 +3,6 @@ import { reduxForm, Field, SubmissionError } from 'redux-form';
 import Input from './input';
 import { fetchCardSuccess } from './actions';
 import CardList from './card-list';
-
 import './component-css/card-search.css';
 
 export class CardSearch extends React.Component {
@@ -37,7 +36,7 @@ export class CardSearch extends React.Component {
 				let newRes = res.cards.map(card => {
 					return {
 						name: card.name,
-						'casting cost': card.manaCost,
+						castingcost: card.manaCost,
 						color: card.colors,
 						type: card.type,
 						id: card.id,

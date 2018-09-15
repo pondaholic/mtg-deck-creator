@@ -1,10 +1,17 @@
-import { FETCH_CARDS_SUCCESS, ADD_CARD_TO_DECK, SHOW_DECK } from './actions';
+import {
+	FETCH_CARDS_SUCCESS,
+	ADD_CARD_TO_DECK,
+	SHOW_DECK,
+	SAVE_DECK
+} from './actions';
 
 const initialState = {
 	cardList: [],
 	showCardList: false,
 	cardsInDeck: [],
-	showDeck: false
+	showDeck: false,
+	saveDeck: false,
+	uniqueUrl: ''
 };
 
 export default (state = initialState, action) => {
@@ -27,6 +34,13 @@ export default (state = initialState, action) => {
 		return Object.assign({}, state, {
 			showDeck: true,
 			showCardList: false
+		});
+	}
+	if (action.type === SAVE_DECK) {
+		console.log(action.uniqueUrl);
+		return Object.assign({}, state, {
+			saveDeck: true,
+			uniqueUrl: action.uniqueUrl
 		});
 	}
 	return state;

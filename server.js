@@ -49,7 +49,7 @@ app.post('/api/cards', function(req, res, next) {
 		.into('cards')
 		.returning(['unique_url'])
 		.then(card => {
-			res.json(card);
+			res.json(card[0]);
 		})
 		.catch(err => {
 			next(err);

@@ -14,3 +14,9 @@ export const SHOW_DECK = 'SHOW_DECK';
 export const showDeck = () => ({
 	type: SHOW_DECK
 });
+
+export const SAVE_DECK = 'SAVE_DECK';
+export const saveDeck = uniqueUrl => ({
+	type: SAVE_DECK,
+	uniqueUrl
+});

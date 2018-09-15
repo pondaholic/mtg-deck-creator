@@ -2,8 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import CreateCard from './card';
 import ShowDeck from './deck';
-import { addCardToDeck, showDeck } from './actions';
+import { addCardToDeck, showDeck, saveDeck } from './actions';
 import { SubmissionError } from 'redux-form';
+
+import './component-css/card-list.css';
+
 // import { Router, Route, Link } from 'react-router-dom';
 // import Save from './deck';
 
@@ -26,6 +29,9 @@ export class CardList extends React.Component {
 				/>
 			);
 		}
+		if (this.props.saveDeck === true) {
+			return <ul>{this.props.uniqueUrl}</ul>;
+		}
 	}
 
 	handleDeck(event) {
@@ -40,16 +46,18 @@ export class CardList extends React.Component {
 		this.props.dispatch(addCardToDeck(key));
 	}
 
-	handleSave(event) {
+	handleSave(value) {
 		console.log('trying to post');
-		console.log(event);
-		let saveDeck = JSON.stringify(this.props.cardsInDeck);
-		console.log(saveDeck);
+		console.log(value);
+		let saveToDeck = JSON.stringify(this.props.cardsInDeck);
+		console.log(saveToDeck);
 		return fetch('http://localhost:8080/api/cards', {
 			method: 'POST',
 			body: JSON.stringify({
-				mtg_cards_id: saveDeck,
-				unique_url: toString(Math.random())
+				mtg_cards_id: saveToDeck,
+				unique_url: Math.random()
+					.toString(30)
+					.substring(2, 5)
 			}),
 			headers: {
 				'Content-Type': 'application/json'
@@ -70,7 +78,11 @@ export class CardList extends React.Component {
 				}
 				return res.json();
 			})
-			.then(data => console.log('Something was posted', data))
+			.then(data => {
+				// let stringData = data.unique_url;
+				console.log('Something was posted', data);
+				this.props.dispatch(saveDeck(data));
+			})
 			.catch(err => {
 				const { reason, message, location } = err;
 				if (reason === 'ValidationError') {
@@ -101,18 +113,14 @@ export class CardList extends React.Component {
 				</button>
 				<button
 					className="save-deck"
-					event={this.props.cardsInDeck}
-					onClick={event => this.handleSave(event)}
+					value={this.props.cardsInDeck}
+					onClick={value => this.handleSave(value)}
 				>
 					Save
 				</button>
 				<ul>
 					Cards:
 					{this.renderResults()}
-					{/* <CreateCard
-						cardList={this.props.cardList}
-						handleClick={event => this.handleClick(event)}
-					/> */}
 				</ul>
 			</div>
 		);
@@ -120,13 +128,15 @@ export class CardList extends React.Component {
 }
 
 function mapStateToProps(state) {
-	console.log(state.cards.cardsInDeck);
+	// console.log(state.cards.cardsInDeck);
 	// console.log(state);
 	return {
 		cardList: state.cards.cardList,
 		showCardList: state.cards.showCardList,
 		cardsInDeck: state.cards.cardsInDeck,
-		showDeck: state.cards.showDeck
+		showDeck: state.cards.showDeck,
+		saveDeck: state.cards.saveDeck,
+		uniqueUrl: state.cards.uniqueUrl
 	};
 }
 

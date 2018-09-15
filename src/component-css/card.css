@@ -1,0 +1,27 @@
+CreateCard .main {
+	display: flex;
+	flex-direction: row;
+}
+
+.wrap {
+	min-width: 0px;
+	width: 1000px;
+	margin: auto;
+	padding: 10px;
+	display: inline-block;
+}
+
+.card {
+	box-shadow: 0 4px 8px 0 gray;
+	width: 300px;
+	text-align: center;
+	padding: 5px;
+}
+
+button {
+	margin: 5px;
+}
+
+p {
+	text-align: left;
+}
