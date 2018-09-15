@@ -1,5 +1,10 @@
 // import searchMagic from './api-requests/fetch';
 
+export const FETCH_CARDS_FROM_API = 'FETCH_CARDS_FROM_API';
+export const fethCardsFromApi = () => ({
+	type: FETCH_CARDS_FROM_API
+});
+
 export const FETCH_CARDS_SUCCESS = 'FETCH_CARDS_SUCCESS';
 export const fetchCardSuccess = cards => ({
 	type: FETCH_CARDS_SUCCESS,
@@ -30,6 +35,7 @@ export const saveDeck = uniqueUrl => ({
 });
 
 export const searchCards = values => dispatch => {
+	dispatch(fethCardsFromApi());
 	const BASE_URL = 'https://api.magicthegathering.io/v1/cards';
 	let searchTerm;
 	let key;
