@@ -7,6 +7,7 @@ import {
 
 const initialState = {
 	cardList: [],
+	error: '',
 	showCardList: false,
 	cardsInDeck: [],
 	showDeck: false,
@@ -21,6 +22,15 @@ export default (state = initialState, action) => {
 			cardList: action.cards,
 			showCardList: true
 		});
+	}
+	if (action.type === FETCH_CARDS_SUCCESS) {
+		return (
+			Object.assign({}),
+			state,
+			{
+				error: action.error
+			}
+		);
 	}
 
 	if (action.type === ADD_CARD_TO_DECK) {

@@ -5,7 +5,6 @@ export default function CreateCard(props) {
 	//this will pull out all the information and return html for each "card"
 	//this will check that cards with matching names are not created twice or that cards with text: "undefined" are not created
 
-	// const mana = props.cardList.card.manaCost.map(mana => <p>mana</p>);
 	const cards = props.cardList.map(card => (
 		<div className="wrap" key={card.id} value={card}>
 			<div className="card">
@@ -20,5 +19,10 @@ export default function CreateCard(props) {
 			</button>
 		</div>
 	));
-	return <div className="main">{cards}</div>;
+	return (
+		<div className="cardList-returned">
+			<h3>Cards:</h3>
+			{cards}
+		</div>
+	);
 }

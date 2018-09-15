@@ -14,8 +14,6 @@ export default function ShowDeck(props) {
 	);
 }
 
-//save button will add information to backend
-
 /* 'POST',
 	{username(users): anonymous,
 	 name(decks): randomly generated,

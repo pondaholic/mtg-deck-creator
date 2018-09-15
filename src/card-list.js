@@ -2,13 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import CreateCard from './card';
 import ShowDeck from './deck';
-import { addCardToDeck, showDeck, saveDeck } from './actions';
-import { SubmissionError } from 'redux-form';
+import { saveDeck, fetchCardError, showDeck, addCardToDeck } from './actions';
 
 import './component-css/card-list.css';
-
-// import { Router, Route, Link } from 'react-router-dom';
-// import Save from './deck';
 
 export class CardList extends React.Component {
 	//render results
@@ -79,30 +75,15 @@ export class CardList extends React.Component {
 				return res.json();
 			})
 			.then(data => {
-				// let stringData = data.unique_url;
 				console.log('Something was posted', data);
 				this.props.dispatch(saveDeck(data));
 			})
-			.catch(err => {
-				const { reason, message, location } = err;
-				if (reason === 'ValidationError') {
-					return Promise.reject(
-						new SubmissionError({
-							[location]: message
-						})
-					);
-				}
-				return Promise.reject(
-					new SubmissionError({
-						_error: 'Error submitting message'
-					})
-				);
-			});
+			.catch(err => this.props.dispatch(fetchCardError(err)));
 	}
 
 	render() {
 		return (
-			<div className="card-list">
+			<div className="card-list-buttons">
 				<button
 					className="show-deck"
 					event={this.props.cardsInDeck}
@@ -118,18 +99,13 @@ export class CardList extends React.Component {
 				>
 					Save
 				</button>
-				<ul>
-					Cards:
-					{this.renderResults()}
-				</ul>
+				<div className="results">{this.renderResults()}</div>
 			</div>
 		);
 	}
 }
 
 function mapStateToProps(state) {
-	// console.log(state.cards.cardsInDeck);
-	// console.log(state);
 	return {
 		cardList: state.cards.cardList,
 		showCardList: state.cards.showCardList,
