@@ -77,11 +77,16 @@ export class CardList extends React.Component {
 					</button>
 				</div>
 				<div className="return-list">
-					<CreateCard
-						cardList={this.props.cardList}
-						handleClick={event => this.handleClick(event)}
+					<Route
+						exact
+						path="/"
+						component={() => (
+							<CreateCard
+								cardList={this.props.cardList}
+								handleClick={event => this.handleClick(event)}
+							/>
+						)}
 					/>
-					{/* <ShowDeck cardsindeck={this.props.cardsInDeck} /> */}
 				</div>
 			</div>
 		);
