@@ -1,7 +1,8 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
 import Input from './input';
-import { fetchCardSuccess, fetchCardError } from './actions';
+import { fetchCards } from './actions';
 import CardList from './card-list';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './component-css/card-search.css';
@@ -9,7 +10,6 @@ import './component-css/card-search.css';
 export class CardSearch extends React.Component {
 	onSubmit(values) {
 		// when user inputs search parameters into the form, the value in that input will be used to perform a GET request from the MTG API
-		const BASE_URL = `https://api.magicthegathering.io/v1/cards`;
 		let searchTerm;
 		let key;
 		for (key in values) {
@@ -17,43 +17,8 @@ export class CardSearch extends React.Component {
 				searchTerm = encodeURIComponent(`%${values[key]}%`);
 			}
 		}
-
 		//using fetch request that will then only take the Name, Mana Cost, Color, Type, unique card ID, and text from the success
-		return fetch(`${BASE_URL}/?${key}=${searchTerm}`, {
-			method: 'GET',
-			headers: { 'Content-Type': 'application/json' }
-		})
-			.then(res => {
-				if (!res.ok) {
-					if (
-						res.headers.has('content-type') &&
-						res.headers.get('content-type').startsWith('application/json')
-					) {
-						console.log(res.json());
-						return res.json().then(err => Promise.reject(err));
-					}
-					return Promise.reject({
-						code: res.status,
-						message: res.statusText
-					});
-				}
-				return res.json();
-			})
-			.then(res => {
-				let newRes = res.cards.map(card => {
-					return {
-						name: card.name,
-						castingcost: card.manaCost,
-						color: card.colors,
-						type: card.type,
-						id: card.id,
-						text: card.text
-					};
-				});
-				console.log(newRes);
-				this.props.dispatch(fetchCardSuccess(newRes));
-			})
-			.catch(error => this.props.dispatch(fetchCardError(error)));
+		this.props.dispatch(fetchCards(key, searchTerm));
 	}
 
 	render() {
@@ -82,6 +47,8 @@ export class CardSearch extends React.Component {
 		);
 	}
 }
+
+CardSearch = connect()(CardSearch);
 
 export default reduxForm({
 	form: 'search'
