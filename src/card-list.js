@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import CreateCard from './card';
 import ShowDeck from './deck';
-import { saveDeck, fetchCardError, addCardToDeck } from './actions';
+import UniqueUrl from './unique-url';
+import { saveDeckSuccess, fetchCardError, addCardToDeck } from './actions';
 import { Link, Route } from 'react-router-dom';
 
 import './component-css/card-list.css';
@@ -48,7 +49,7 @@ export class CardList extends React.Component {
 			})
 			.then(data => {
 				console.log('Something was posted', data);
-				this.props.dispatch(saveDeck(data));
+				this.props.dispatch(saveDeckSuccess(data.unique_url));
 			})
 			.catch(err => this.props.dispatch(fetchCardError(err)));
 	}
@@ -60,6 +61,11 @@ export class CardList extends React.Component {
 					exact
 					path="/deck"
 					component={() => <ShowDeck cardsindeck={this.props.cardsInDeck} />}
+				/>
+				<Route
+					exact
+					path="/:uniqueurl"
+					component={() => <UniqueUrl uniqueurl={this.props.uniqueUrl} />}
 				/>
 				<div className="card-list-buttons">
 					<Link to="/deck">
@@ -96,7 +102,8 @@ export class CardList extends React.Component {
 function mapStateToProps(state) {
 	return {
 		cardList: state.cards.cardList,
-		cardsInDeck: state.cards.cardsInDeck
+		cardsInDeck: state.cards.cardsInDeck,
+		uniqueUrl: state.cards.uniqueUrl
 	};
 }
 

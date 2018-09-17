@@ -1,4 +1,8 @@
-import { FETCH_CARDS_SUCCESS, ADD_CARD_TO_DECK, SAVE_DECK } from './actions';
+import {
+	FETCH_CARDS_SUCCESS,
+	ADD_CARD_TO_DECK,
+	SAVE_DECK_SUCCESS
+} from './actions';
 
 const initialState = {
 	cardList: [],
@@ -33,7 +37,7 @@ export default (state = initialState, action) => {
 			cardsInDeck: [...state.cardsInDeck, action.cardId]
 		});
 	}
-	if (action.type === SAVE_DECK) {
+	if (action.type === SAVE_DECK_SUCCESS) {
 		console.log(action.uniqueUrl);
 		return Object.assign({}, state, {
 			uniqueUrl: action.uniqueUrl

@@ -16,8 +16,8 @@ export const addCardToDeck = cardId => ({
 	cardId
 });
 
-export const SAVE_DECK = 'SAVE_DECK';
-export const saveDeck = uniqueUrl => ({
-	type: SAVE_DECK,
+export const SAVE_DECK_SUCCESS = 'SAVE_DECK_SUCCESS';
+export const saveDeckSuccess = uniqueUrl => ({
+	type: SAVE_DECK_SUCCESS,
 	uniqueUrl
 });
