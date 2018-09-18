@@ -30,10 +30,10 @@ export default (state = initialState, action) => {
 		);
 	}
 	if (action.type === ADD_CARD_TO_DECK) {
-		// console.log(action.cardId);
-		// console.log(state.cardsInDeck);
+		let matchCard = state.cardList.filter(card => card.id === action.cardId);
+		// console.log(matchCard);
 		return Object.assign({}, state, {
-			cardsInDeck: [...state.cardsInDeck, action.cardId]
+			cardsInDeck: [...state.cardsInDeck, matchCard[0]]
 		});
 	}
 	if (action.type === SAVE_DECK_SUCCESS) {

@@ -1,0 +1,12 @@
+ShowDeck {
+	display: flex;
+	flex-direction: row;
+}
+
+div.deck {
+	min-width: 0px;
+	width: auto;
+	margin: auto;
+	padding: 10px;
+	display: inline-block;
+}

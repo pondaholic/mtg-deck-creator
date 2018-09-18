@@ -11,9 +11,8 @@ import './component-css/card-list.css';
 export class CardList extends React.Component {
 	//adds cards to deck when "Add to Card" is clicked
 	handleClick(event) {
-		console.log(event.target.value);
+		console.log('Card added to Deck');
 		let key = event.target.value;
-		// console.log(key);
 		this.props.dispatch(addCardToDeck(key));
 	}
 
@@ -28,16 +27,6 @@ export class CardList extends React.Component {
 	render() {
 		return (
 			<div className="card-list">
-				<Route
-					exact
-					path="/deck"
-					component={() => (
-						<ShowDeck
-							cardsindeck={this.props.cardsInDeck}
-							cardList={this.props.cardList}
-						/>
-					)}
-				/>
 				<Route
 					exact
 					path="/:uniqueurl"
@@ -59,6 +48,16 @@ export class CardList extends React.Component {
 					</button>
 				</div>
 				<div className="return-list">
+					<Route
+						exact
+						path="/deck"
+						component={() => (
+							<ShowDeck
+								cardsindeck={this.props.cardsInDeck}
+								// cardList={this.props.cardList}
+							/>
+						)}
+					/>
 					<Route
 						exact
 						path="/"

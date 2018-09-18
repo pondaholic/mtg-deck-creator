@@ -1,69 +1,65 @@
 import React from 'react';
-// import { showDeck } from './actions';
-// import CreateCard from './card';
-// import { connect } from 'react-redux';
-
-// component to show cards added to Deck
-// export class ShowDeck extends React.Component {
-// 	componentDidMount() {
-// 		let key = this.props.cardsInDeck.id;
-// 		const searchTerm = this.props.cardsInDeck.map(id =>
-// 			this.props.dispatch(fetchCards(key, searchTerm))
-// 		);
-// 	}
-// 	render() {
-// 		return <CreateCard cardList={this.props.cardsindeck} />;
-// 	}
-// }
-
-// ShowDeck = connect()(ShowDeck);
-
-// function mapStateToProps(state) {
-// 	return {
-// 		cardList: state.cards.cardList,
-// 		cardsInDeck: state.cards.cardsInDeck,
-// 		uniqueUrl: state.cards.uniqueUrl
-// 	};
-// }
-// const ConnectedCards = connect(mapStateToProps)(ShowDeck);
-// export default ConnectedCards;
+import './component-css/deck.css';
 
 export default function ShowDeck(props) {
-	// this.props.dispatch(showDeck());
-	// const showDeck = props.cardList.filter(
-	// 	card => card.id === props.cardsindeck.id
-	// );
-	// console.log(showDeck);
+	const creatureImage = [
+		require('./card-images/other.jpg'),
+		require('./card-images/medusa.jpg'),
+		require('./card-images/titania.jpg'),
+		require('./card-images/firebird.jpg')
+	];
+	const manaImages = [
+		require('./card-images/mountains.jpg'),
+		require('./card-images/island.jpg'),
+		require('./card-images/plains.jpg'),
+		require('./card-images/forest.JPG'),
+		require('./card-images/swamp.jpg')
+	];
+	let image;
 
-	// props.cardsindeck.map(id => {
-	// 	// console.log('ID of cards in the deck mapped', id);
-	// 	props.cardList.map(card => {
-	// 		// console.log(card.id);
-	// 		// console.log(id);
-	// 		if (card.id === id) {
-	// 			// console.log('match', card.id, id);
-	// 			return (
-	// 				<li className="deckCard" key={Math.random()}>
-	// 					<b>{id}</b>
-	// 				</li>
-	// 			);
-	// 		}
-	// 		console.log(showDeck);
-	// 	});
-	// });
-	return <div className="created-deck">Deck: {}</div>;
+	const deckCards = props.cardsindeck.map(card => {
+		if (card.type.includes('Island')) {
+			image = manaImages[1];
+		} else if (card.type.includes('Forest')) {
+			image = manaImages[3];
+		} else if (card.type.includes('Plains')) {
+			image = manaImages[2];
+		} else if (card.type.includes('Mountain')) {
+			image = manaImages[0];
+		} else if (card.type.includes('Swamp')) {
+			image = manaImages[4];
+		} else if (card.name.includes('A' || 'B' || 'C')) {
+			image = creatureImage[1];
+		} else if (card.name.includes('D' || 'E' || 'F' || 'G' || 'H')) {
+			image = creatureImage[2];
+		} else if (card.name.includes('I' || 'J' || 'K' || 'L' || 'M')) {
+			image = creatureImage[3];
+		} else {
+			image = creatureImage[0];
+		}
+		return (
+			<div className="deck" key={Math.random()}>
+				<div className={`card ${card.color}`}>
+					<h3>{card.name}</h3>
+					{card.castingcost}
+					<img src={image} alt="placeholder paintings for cards" />
+					<br />
+					<i>{card.type}</i>
+					<p>{card.text}</p>
+				</div>
+				<button value={card.id} onClick={event => props.handleRemove(event)}>
+					Remove from Deck
+				</button>
+			</div>
+		);
+	});
+	return (
+		<div className="created-deck">
+			<h4>Deck:</h4>
+			{deckCards}
+		</div>
+	);
 }
-// 	(
-// 	<li className="deckCard" key={Math.random()}>
-// 		<b>{id}</b>
-// 	</li>
-// ));
-// return (
-// 	<div>
-// 	<ul>Deck: {showDeck}</ul>
-// </div>
-// );
-// }
 
 /* 'POST',
 	{username(users): anonymous,
