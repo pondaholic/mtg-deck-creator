@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import CreateCard from './card';
 import ShowDeck from './deck';
 import UniqueUrl from './unique-url';
-import { saveDeckSuccess, fetchCardError, addCardToDeck } from './actions';
+import { saveDeck, addCardToDeck } from './actions';
 import { Link, Route } from 'react-router-dom';
 
 import './component-css/card-list.css';
 
 export class CardList extends React.Component {
+	//adds cards to deck when "Add to Card" is clicked
 	handleClick(event) {
 		console.log(event.target.value);
 		let key = event.target.value;
@@ -16,42 +17,12 @@ export class CardList extends React.Component {
 		this.props.dispatch(addCardToDeck(key));
 	}
 
+	// POSTS the cards added to Deck to backend and returns unique URL
 	handleSave(value) {
 		console.log('trying to post');
-		let saveToDeck = JSON.stringify(this.props.cardsInDeck);
-		console.log(saveToDeck);
-		return fetch('http://localhost:8080/api/cards', {
-			method: 'POST',
-			body: JSON.stringify({
-				mtg_cards_id: saveToDeck,
-				unique_url: Math.random()
-					.toString(30)
-					.substring(2, 5)
-			}),
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		})
-			.then(res => {
-				if (!res.ok) {
-					if (
-						res.headers.has('content-type') &&
-						res.headers.get('content-type').startsWith('application/json')
-					) {
-						return res.json().then(err => Promise.reject(err));
-					}
-					return Promise.reject({
-						code: res.status,
-						message: res.statusText
-					});
-				}
-				return res.json();
-			})
-			.then(data => {
-				console.log('Something was posted', data);
-				this.props.dispatch(saveDeckSuccess(data.unique_url));
-			})
-			.catch(err => this.props.dispatch(fetchCardError(err)));
+		let newDeck = JSON.stringify(this.props.cardsInDeck);
+		// console.log(saveToDeck);
+		this.props.dispatch(saveDeck(newDeck));
 	}
 
 	render() {
@@ -60,7 +31,12 @@ export class CardList extends React.Component {
 				<Route
 					exact
 					path="/deck"
-					component={() => <ShowDeck cardsindeck={this.props.cardsInDeck} />}
+					component={() => (
+						<ShowDeck
+							cardsindeck={this.props.cardsInDeck}
+							cardList={this.props.cardList}
+						/>
+					)}
 				/>
 				<Route
 					exact
@@ -99,6 +75,8 @@ export class CardList extends React.Component {
 	}
 }
 
+CardList = connect()(CardList);
+
 function mapStateToProps(state) {
 	return {
 		cardList: state.cards.cardList,
@@ -106,7 +84,5 @@ function mapStateToProps(state) {
 		uniqueUrl: state.cards.uniqueUrl
 	};
 }
-
 const ConnectedCards = connect(mapStateToProps)(CardList);
-
 export default ConnectedCards;

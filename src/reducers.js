@@ -1,5 +1,6 @@
 import {
 	FETCH_CARDS_SUCCESS,
+	FETCH_CARDS_ERROR,
 	ADD_CARD_TO_DECK,
 	SAVE_DECK_SUCCESS
 } from './actions';
@@ -7,7 +8,6 @@ import {
 const initialState = {
 	cardList: [],
 	error: '',
-	showCardList: false,
 	cardsInDeck: [],
 	uniqueUrl: ''
 };
@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
 			showCardList: true
 		});
 	}
-	if (action.type === FETCH_CARDS_SUCCESS) {
+	if (action.type === FETCH_CARDS_ERROR) {
 		return (
 			Object.assign({}),
 			state,
@@ -29,7 +29,6 @@ export default (state = initialState, action) => {
 			}
 		);
 	}
-
 	if (action.type === ADD_CARD_TO_DECK) {
 		// console.log(action.cardId);
 		// console.log(state.cardsInDeck);
