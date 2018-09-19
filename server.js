@@ -21,10 +21,19 @@ app.use(cors({ origin: CLIENT_ORIGIN }));
 app.use(express.json());
 
 //create route handler
+app.get('/api/cards/:uniqueUrl', function(req, res, next) {
+	const unique_url = req.params.uniqueUrl;
+	knex
+		.first('mtg_cards_id')
+		.from('cards')
+		.where('unique_url', unique_url)
+		.then(card => res.json(card))
+		.catch(err => next(err));
+});
+
 app.get('/api/cards', function(req, res, next) {
 	knex('cards')
 		.select('mtg_cards_id', 'unique_url')
-		// .from('cards')
 		.then(results => {
 			res.json(results);
 		})

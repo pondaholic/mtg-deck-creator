@@ -2,6 +2,9 @@ import React from 'react';
 import './component-css/card.css';
 
 export default function CreateCard(props) {
+	//produceGradient(colors) takes the array and returns the gradient style
+	//<Card style= {produceGradient(card.color)} />
+
 	//creates an array of images to be randomized when cards are created.
 	const creatureImage = [
 		require('./card-images/other.jpg'),

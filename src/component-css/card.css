@@ -47,12 +47,8 @@ CreateCard .main {
 	background-color: rgb(153, 132, 127);
 }
 
-.card.Black.Red {
-	background-image: linear-gradient(
-		to right,
-		rgb(176, 80, 62),
-		rgb(42, 36, 34)
-	);
+.card.Black {
+	background-color: rgb(42, 36, 34);
 }
 
 button {

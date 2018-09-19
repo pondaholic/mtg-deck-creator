@@ -3,12 +3,18 @@ import { connect } from 'react-redux';
 import CreateCard from './card';
 import ShowDeck from './deck';
 import UniqueUrl from './unique-url';
-import { saveDeck, addCardToDeck } from './actions';
+import { saveDeck, addCardToDeck, returnSavedDeck } from './actions';
 import { Link, Route } from 'react-router-dom';
 
 import './component-css/card-list.css';
 
 export class CardList extends React.Component {
+	//return saved Deck
+	handleSavedDeck(value) {
+		console.log('This is a saved Deck');
+		this.props.dispatch(returnSavedDeck(value));
+	}
+
 	//adds cards to deck when "Add to Card" is clicked
 	handleClick(event) {
 		console.log('Card added to Deck');
@@ -30,7 +36,12 @@ export class CardList extends React.Component {
 				<Route
 					exact
 					path="/:uniqueurl"
-					component={() => <UniqueUrl uniqueurl={this.props.uniqueUrl} />}
+					component={() => (
+						<UniqueUrl
+							value={this.props.uniqueUrl}
+							onClick={value => this.handleSavedDeck(value)}
+						/>
+					)}
 				/>
 				<div className="card-list-buttons">
 					<Link to="/deck">

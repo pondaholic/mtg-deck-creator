@@ -24,7 +24,6 @@ export const saveDeckSuccess = uniqueUrl => ({
 
 export const SHOW_DECK = 'SHOW_DECK';
 
-
 const BASE_URL = `https://api.magicthegathering.io/v1/cards`;
 export const fetchCards = (key, searchTerm) => dispatch => {
 	return fetch(`${BASE_URL}/?${key}=${searchTerm}`, {
@@ -97,4 +96,43 @@ export const saveDeck = newDeck => dispatch => {
 			dispatch(saveDeckSuccess(data.unique_url));
 		})
 		.catch(err => dispatch(fetchCardError(err)));
+};
+
+//when ""
+export const returnSavedDeck = uniqueUrl => dispatch => {
+	return fetch(`'http://localhost:8080/api/cards'/${uniqueUrl}`, {
+		method: 'GET',
+		headers: { 'Content-Type': 'application/json' }
+	})
+		.then(res => {
+			if (!res.ok) {
+				if (
+					res.headers.has('content-type') &&
+					res.headers.get('content-type').startsWith('application/json')
+				) {
+					console.log(res.json());
+					return res.json().then(err => Promise.reject(err));
+				}
+				return Promise.reject({
+					code: res.status,
+					message: res.statusText
+				});
+			}
+			return res.json();
+		})
+		.then(res => {
+			let newRes = res.cards.map(card => {
+				return {
+					name: card.name,
+					castingcost: card.manaCost,
+					color: card.colors,
+					type: card.type,
+					id: card.id,
+					text: card.text
+				};
+			});
+			console.log(newRes);
+			dispatch(fetchCardSuccess(newRes));
+		})
+		.catch(error => dispatch(fetchCardError(error)));
 };
