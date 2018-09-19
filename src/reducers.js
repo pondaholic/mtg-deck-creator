@@ -2,13 +2,15 @@ import {
 	FETCH_CARDS_SUCCESS,
 	FETCH_CARDS_ERROR,
 	ADD_CARD_TO_DECK,
-	SAVE_DECK_SUCCESS
+	SAVE_DECK_SUCCESS,
+	FETCH_SAVED_DECK_SUCCESS
 } from './actions';
 
 const initialState = {
 	cardList: [],
 	error: '',
 	cardsInDeck: [],
+	returnedDeck: [],
 	uniqueUrl: ''
 };
 
@@ -40,6 +42,11 @@ export default (state = initialState, action) => {
 		console.log(action.uniqueUrl);
 		return Object.assign({}, state, {
 			uniqueUrl: action.uniqueUrl
+		});
+	}
+	if (action.type === FETCH_SAVED_DECK_SUCCESS) {
+		return Object.assign({}, state, {
+			returnedDeck: action.deck
 		});
 	}
 	return state;

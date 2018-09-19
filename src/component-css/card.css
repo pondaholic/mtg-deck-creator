@@ -47,7 +47,7 @@ CreateCard .main {
 	background-color: rgb(153, 132, 127);
 }
 
-.card.Black {
+.card.Black.Red {
 	background-color: rgb(42, 36, 34);
 }
 

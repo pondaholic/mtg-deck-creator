@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import CreateCard from './card';
 import ShowDeck from './deck';
+import SavedDeck from './saved-deck.js';
 import UniqueUrl from './unique-url';
 import { saveDeck, addCardToDeck, returnSavedDeck } from './actions';
 import { Link, Route } from 'react-router-dom';
@@ -10,9 +11,9 @@ import './component-css/card-list.css';
 
 export class CardList extends React.Component {
 	//return saved Deck
-	handleSavedDeck(value) {
-		console.log('This is a saved Deck');
-		this.props.dispatch(returnSavedDeck(value));
+	handleSavedDeck(event) {
+		console.log('This is a saved Deck', event);
+		this.props.dispatch(returnSavedDeck(this.props.uniqueUrl));
 	}
 
 	//adds cards to deck when "Add to Card" is clicked
@@ -24,20 +25,28 @@ export class CardList extends React.Component {
 
 	// POSTS the cards added to Deck to backend and returns unique URL
 	handleSave(value) {
-		console.log('trying to post');
+		console.log('trying to post', value);
 		let newDeck = JSON.stringify(this.props.cardsInDeck);
-		// console.log(saveToDeck);
-		this.props.dispatch(saveDeck(newDeck));
+		// console.log(newDeck);
+		let key = Math.random()
+			.toString(30)
+			.substring(2, 5);
+		this.props.dispatch(saveDeck(newDeck, key));
 	}
 
 	render() {
 		return (
 			<div className="card-list">
 				<Route
+					path={this.props.match.params.uniqueurl}
+					component={() => <SavedDeck cardlist={this.props.returnedDeck} />}
+				/>
+				<Route
 					exact
-					path="/:uniqueurl"
+					path="/deck"
 					component={() => (
 						<UniqueUrl
+							uniqueurl={this.props.uniqueUrl}
 							value={this.props.uniqueUrl}
 							onClick={value => this.handleSavedDeck(value)}
 						/>
@@ -49,25 +58,20 @@ export class CardList extends React.Component {
 							Deck(
 							{this.props.cardsInDeck.length})
 						</button>
+						<button
+							className="save-deck"
+							value={this.props.cardsInDeck}
+							onClick={value => this.handleSave(value)}
+						>
+							Save
+						</button>
 					</Link>
-					<button
-						className="save-deck"
-						value={this.props.cardsInDeck}
-						onClick={value => this.handleSave(value)}
-					>
-						Save
-					</button>
 				</div>
 				<div className="return-list">
 					<Route
 						exact
 						path="/deck"
-						component={() => (
-							<ShowDeck
-								cardsindeck={this.props.cardsInDeck}
-								// cardList={this.props.cardList}
-							/>
-						)}
+						component={() => <ShowDeck cardsindeck={this.props.cardsInDeck} />}
 					/>
 					<Route
 						exact
@@ -91,7 +95,8 @@ function mapStateToProps(state) {
 	return {
 		cardList: state.cards.cardList,
 		cardsInDeck: state.cards.cardsInDeck,
-		uniqueUrl: state.cards.uniqueUrl
+		uniqueUrl: state.cards.uniqueUrl,
+		returnedDeck: state.cards.returnedDeck
 	};
 }
 const ConnectedCards = connect(mapStateToProps)(CardList);

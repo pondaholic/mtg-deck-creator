@@ -27,7 +27,7 @@ app.get('/api/cards/:uniqueUrl', function(req, res, next) {
 		.first('mtg_cards_id')
 		.from('cards')
 		.where('unique_url', unique_url)
-		.then(card => res.json(card))
+		.then(result => res.json(result))
 		.catch(err => next(err));
 });
 

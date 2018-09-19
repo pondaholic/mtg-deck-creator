@@ -1,11 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+// import { connect } from 'react-redux';
 
 export default function UniqueUrl(props) {
 	return (
-		<ul>
+		<div className="return-deck-link">
 			Your deck can be found here:
-			<Link to="/{props.uniqueurl}">{props.uniqueurl}</Link>
-		</ul>
+			<p>
+				<Link
+					to={props.uniqueurl}
+					uniqueurl={props.uniqueurl}
+					onClick={event => props.onClick(event)}
+				>
+					{props.uniqueurl}
+				</Link>
+			</p>
+		</div>
 	);
 }
+
+// const mapStateToProps = props => {
+// 	return { uniqueurl : props.match.params.uniqueurl };
+// };
+// export default connect(mapStateToProps)(UniqueUrl);

@@ -38,7 +38,12 @@ export default function ShowDeck(props) {
 			image = creatureImage[0];
 		}
 		return (
-			<div className="deck" key={Math.random()}>
+			<div
+				className="deck"
+				key={Math.random()
+					.toString(30)
+					.substring(2, 5)}
+			>
 				<div className={`card ${card.color}`}>
 					<h3>{card.name}</h3>
 					{card.castingcost}

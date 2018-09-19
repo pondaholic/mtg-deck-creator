@@ -22,7 +22,11 @@ export const saveDeckSuccess = uniqueUrl => ({
 	uniqueUrl
 });
 
-export const SHOW_DECK = 'SHOW_DECK';
+export const FETCH_SAVED_DECK_SUCCESS = 'FETCH_SAVED_DECK_SUCCESS';
+export const fetchSavedDeckSuccess = deck => ({
+	type: FETCH_SAVED_DECK_SUCCESS,
+	deck
+});
 
 const BASE_URL = `https://api.magicthegathering.io/v1/cards`;
 export const fetchCards = (key, searchTerm) => dispatch => {
@@ -63,14 +67,12 @@ export const fetchCards = (key, searchTerm) => dispatch => {
 		.catch(error => dispatch(fetchCardError(error)));
 };
 
-export const saveDeck = newDeck => dispatch => {
+export const saveDeck = (newDeck, key) => dispatch => {
 	return fetch('http://localhost:8080/api/cards', {
 		method: 'POST',
 		body: JSON.stringify({
 			mtg_cards_id: newDeck,
-			unique_url: Math.random()
-				.toString(30)
-				.substring(2, 5)
+			unique_url: key
 		}),
 		headers: {
 			'Content-Type': 'application/json'
@@ -95,14 +97,16 @@ export const saveDeck = newDeck => dispatch => {
 			console.log('Something was posted', data);
 			dispatch(saveDeckSuccess(data.unique_url));
 		})
-		.catch(err => dispatch(fetchCardError(err)));
+		.catch(err => console.log(err));
 };
 
-//when ""
 export const returnSavedDeck = uniqueUrl => dispatch => {
-	return fetch(`'http://localhost:8080/api/cards'/${uniqueUrl}`, {
+	console.log(uniqueUrl);
+	return fetch(`http://localhost:8080/api/cards/${uniqueUrl}`, {
 		method: 'GET',
-		headers: { 'Content-Type': 'application/json' }
+		headers: {
+			'Content-Type': 'application/json'
+		}
 	})
 		.then(res => {
 			if (!res.ok) {
@@ -121,18 +125,16 @@ export const returnSavedDeck = uniqueUrl => dispatch => {
 			return res.json();
 		})
 		.then(res => {
-			let newRes = res.cards.map(card => {
-				return {
-					name: card.name,
-					castingcost: card.manaCost,
-					color: card.colors,
-					type: card.type,
-					id: card.id,
-					text: card.text
-				};
+			console.log(res);
+			console.log(
+				Object.assign({}, res, {
+					mtg_cards_id: JSON.parse(res.mtg_cards_id)
+				})
+			);
+			let newRes = Object.assign({}, res, {
+				mtg_cards_id: JSON.parse(res.mtg_cards_id)
 			});
-			console.log(newRes);
-			dispatch(fetchCardSuccess(newRes));
+			dispatch(fetchSavedDeckSuccess(newRes.mtg_cards_id));
 		})
-		.catch(error => dispatch(fetchCardError(error)));
+		.catch(error => console.log(error));
 };
