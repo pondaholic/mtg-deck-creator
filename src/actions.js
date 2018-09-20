@@ -1,5 +1,5 @@
 import { SubmissionError } from 'redux-form';
-import { API_URL } from './config';
+import { REACT_APP_API_BASE_URL } from './config';
 
 export const FETCH_CARDS_SUCCESS = 'FETCH_CARDS_SUCCESS';
 export const fetchCardSuccess = cards => ({
@@ -97,7 +97,7 @@ export const fetchCardsFromMtgApi = (key, searchTerm) => dispatch => {
 };
 
 export const saveDeck = (newDeck, key) => dispatch => {
-	return fetch(API_URL, {
+	return fetch(REACT_APP_API_BASE_URL, {
 		method: 'POST',
 		body: JSON.stringify({
 			mtg_cards_id: newDeck,
@@ -134,7 +134,7 @@ export const saveDeck = (newDeck, key) => dispatch => {
 
 export const returnSavedDeck = uniqueUrl => dispatch => {
 	console.log(uniqueUrl);
-	return fetch(`${API_URL}/${uniqueUrl}`, {
+	return fetch(`${REACT_APP_API_BASE_URL}/${uniqueUrl}`, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'
