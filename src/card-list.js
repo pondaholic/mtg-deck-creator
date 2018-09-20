@@ -46,7 +46,11 @@ export class CardList extends React.Component {
 			Math.random()
 				.toString(30)
 				.substring(2, 5);
-		this.props.dispatch(saveDeck(newDeck, key));
+		this.props.dispatch(saveDeck(newDeck, key)).then(() => {
+			if (this.props.uniqueUrl) {
+				this.props.history.push('/deck');
+			}
+		});
 	}
 
 	render() {
@@ -78,14 +82,14 @@ export class CardList extends React.Component {
 							Deck(
 							{this.props.cardsInDeck.length})
 						</button>
-						<button
-							className="save-deck"
-							value={this.props.cardsInDeck}
-							onClick={value => this.handleSave(value)}
-						>
-							Save
-						</button>
 					</Link>
+					<button
+						className="save-deck"
+						value={this.props.cardsInDeck}
+						onClick={value => this.handleSave(value)}
+					>
+						Save
+					</button>
 				</div>
 				<div className="return-list">
 					<Route
@@ -117,6 +121,7 @@ export class CardList extends React.Component {
 CardList = connect()(CardList);
 
 function mapStateToProps(state) {
+	console.log(state);
 	return {
 		cardList: state.cards.cardList,
 		cardsInDeck: state.cards.cardsInDeck,

@@ -130,7 +130,7 @@ export const saveDeck = (newDeck, key) => dispatch => {
 		})
 		.catch(err => {
 			console.log(err.message);
-			saveDeckError(err.message);
+			dispatch(saveDeckError(err.message));
 		});
 };
 

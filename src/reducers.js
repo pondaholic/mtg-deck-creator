@@ -17,7 +17,7 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-	// console.log(action.cards);
+	console.log(action);
 	if (action.type === FETCH_CARDS_SUCCESS) {
 		return Object.assign({}, state, {
 			cardList: action.cards,
@@ -34,19 +34,16 @@ export default (state = initialState, action) => {
 		);
 	}
 	if (action.type === SAVE_DECK_ERROR) {
-		return (
-			Object.assign({}),
-			state,
-			{
-				error: action.error
-			}
-		);
+		return Object.assign({}, state, {
+			error: action.error
+		});
 	}
 	if (action.type === ADD_CARD_TO_DECK) {
 		let matchCard = state.cardList.filter(card => card.id === action.cardId);
 		// console.log(matchCard);
 		return Object.assign({}, state, {
-			cardsInDeck: [...state.cardsInDeck, matchCard[0]]
+			cardsInDeck: [...state.cardsInDeck, matchCard[0]],
+			error: ''
 		});
 	}
 	if (action.type === REMOVE_CARD_FROM_DECK) {
