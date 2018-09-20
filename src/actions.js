@@ -1,5 +1,5 @@
 import { SubmissionError } from 'redux-form';
-import { DATABASE_URL } from './config';
+import { DATABASE_URL } from '../config';
 
 export const FETCH_CARDS_SUCCESS = 'FETCH_CARDS_SUCCESS';
 export const fetchCardSuccess = cards => ({
