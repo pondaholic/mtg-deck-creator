@@ -97,7 +97,7 @@ export const fetchCardsFromMtgApi = (key, searchTerm) => dispatch => {
 };
 
 export const saveDeck = (newDeck, key) => dispatch => {
-	return fetch('DATABASE_URL', {
+	return fetch(DATABASE_URL, {
 		method: 'POST',
 		body: JSON.stringify({
 			mtg_cards_id: newDeck,
