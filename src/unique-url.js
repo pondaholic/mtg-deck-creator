@@ -6,7 +6,7 @@ export default function UniqueUrl(props) {
 	return (
 		<div className="return-deck-link">
 			Your deck can be found here:
-			<p>
+			<ul>
 				<Link
 					to={props.uniqueurl}
 					uniqueurl={props.uniqueurl}
@@ -14,7 +14,7 @@ export default function UniqueUrl(props) {
 				>
 					{props.uniqueurl}
 				</Link>
-			</p>
+			</ul>
 		</div>
 	);
 }

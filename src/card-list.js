@@ -4,7 +4,12 @@ import CreateCard from './card';
 import ShowDeck from './deck';
 import SavedDeck from './saved-deck.js';
 import UniqueUrl from './unique-url';
-import { saveDeck, addCardToDeck, returnSavedDeck } from './actions';
+import {
+	saveDeck,
+	addCardToDeck,
+	returnSavedDeck,
+	removeCardFromDeck
+} from './actions';
 import { Link, Route } from 'react-router-dom';
 
 import './component-css/card-list.css';
@@ -12,8 +17,14 @@ import './component-css/card-list.css';
 export class CardList extends React.Component {
 	//return saved Deck
 	handleSavedDeck(event) {
-		console.log('This is a saved Deck', event);
+		console.log('This is a saved Deck');
 		this.props.dispatch(returnSavedDeck(this.props.uniqueUrl));
+	}
+
+	handleRemove(event) {
+		console.log('A card has been removed from deck.');
+		let key = event.target.value;
+		this.props.dispatch(removeCardFromDeck(key));
 	}
 
 	//adds cards to deck when "Add to Card" is clicked
@@ -71,7 +82,12 @@ export class CardList extends React.Component {
 					<Route
 						exact
 						path="/deck"
-						component={() => <ShowDeck cardsindeck={this.props.cardsInDeck} />}
+						component={() => (
+							<ShowDeck
+								cardsindeck={this.props.cardsInDeck}
+								handleRemove={event => this.handleRemove(event)}
+							/>
+						)}
 					/>
 					<Route
 						exact

@@ -24,25 +24,38 @@ export class CardSearch extends React.Component {
 	render() {
 		return (
 			<Router>
-				<div className="search-form">
-					<form
-						onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
-					>
-						<label htmlFor="name">Name of Card:</label>
-						<Field name="name" id="name" type="text" component={Input} />
-						<label htmlFor="type">Color:</label>
-						<Field
-							name="cardColor"
-							id="cardColor"
-							type="text"
-							component={Input}
-						/>
-						<label htmlFor="Type">Type of Card:</label>
-						<Field name="type" id="type" type="text" component={Input} />
-						<button type="submit">Submit</button>
-					</form>
+				<main>
+					<div className="how-to-use">
+						<header>
+							<h1>Magic the Gathering Deck Creator</h1>
+							<h2>How to Search:</h2>
+							Choose ONE of the three search parameters: Creature, Color, or
+							Type and look for the cards you want. Then add to your deck and
+							save to a URL only you have!
+						</header>
+						<div className="search-form">
+							<form
+								onSubmit={this.props.handleSubmit(values =>
+									this.onSubmit(values)
+								)}
+							>
+								<label htmlFor="name">Name of Card:</label>
+								<Field name="name" id="name" type="text" component={Input} />
+								<label htmlFor="type">Color:</label>
+								<Field
+									name="cardColor"
+									id="cardColor"
+									type="text"
+									component={Input}
+								/>
+								<label htmlFor="Type">Type of Card:</label>
+								<Field name="type" id="type" type="text" component={Input} />
+								<button type="submit">Submit</button>
+							</form>
+						</div>
+					</div>
 					<Route path="/" component={CardList} />
-				</div>
+				</main>
 			</Router>
 		);
 	}

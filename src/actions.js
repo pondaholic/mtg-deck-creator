@@ -16,6 +16,12 @@ export const addCardToDeck = cardId => ({
 	cardId
 });
 
+export const REMOVE_CARD_FROM_DECK = 'REMOVE_CARD_FROM_DECK';
+export const removeCardFromDeck = cardId => ({
+	type: REMOVE_CARD_FROM_DECK,
+	cardId
+});
+
 export const SAVE_DECK_SUCCESS = 'SAVE_DECK_SUCCESS';
 export const saveDeckSuccess = uniqueUrl => ({
 	type: SAVE_DECK_SUCCESS,
