@@ -34,31 +34,31 @@ CreateCard .main {
 	background-color: rgb(176, 80, 62);
 }
 
-..Blue {
+.Blue {
 	background-color: rgb(7, 164, 203);
 }
 
-..Green {
+.Green {
 	background-color: rgb(42, 81, 35);
 }
 
-..Colorless {
+.Colorless {
 	background-color: rgb(142, 114, 96);
 }
 
-..White {
+.White {
 	background-color: rgb(153, 132, 127);
 }
 
-..Black {
+.Black {
 	background-color: rgb(42, 36, 34);
 }
 
-..White {
+.White {
 	background-color: rgb(224, 209, 189);
 }
 
-..Black.Red {
+.Black.Red {
 	background-image: linear-gradient(
 		to right,
 		rgb(42, 36, 34),
@@ -85,7 +85,7 @@ CreateCard .main {
 	background-image: linear-gradient(to right, rgb(42, 36, 34), rgb(42, 81, 35));
 }
 
-..Green.Red {
+.Green.Red {
 	background-image: linear-gradient(
 		to right,
 		rgb(42, 81, 35),

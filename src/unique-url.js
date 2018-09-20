@@ -11,6 +11,7 @@ export default function UniqueUrl(props) {
 					to={props.uniqueurl}
 					uniqueurl={props.uniqueurl}
 					onClick={event => props.onClick(event)}
+					className="deck-link"
 				>
 					{props.uniqueurl}
 				</Link>

@@ -1,3 +1,5 @@
+import { SubmissionError } from 'redux-form';
+
 export const FETCH_CARDS_SUCCESS = 'FETCH_CARDS_SUCCESS';
 export const fetchCardSuccess = cards => ({
 	type: FETCH_CARDS_SUCCESS,
@@ -28,6 +30,12 @@ export const saveDeckSuccess = uniqueUrl => ({
 	uniqueUrl
 });
 
+export const SAVE_DECK_ERROR = 'SAVE_DECK_ERROR';
+export const saveDeckError = error => ({
+	type: SAVE_DECK_ERROR,
+	error
+});
+
 export const FETCH_SAVED_DECK_SUCCESS = 'FETCH_SAVED_DECK_SUCCESS';
 export const fetchSavedDeckSuccess = deck => ({
 	type: FETCH_SAVED_DECK_SUCCESS,
@@ -35,7 +43,7 @@ export const fetchSavedDeckSuccess = deck => ({
 });
 
 const BASE_URL = `https://api.magicthegathering.io/v1/cards`;
-export const fetchCards = (key, searchTerm) => dispatch => {
+export const fetchCardsFromMtgApi = (key, searchTerm) => dispatch => {
 	return fetch(`${BASE_URL}/?${key}=${searchTerm}`, {
 		method: 'GET',
 		headers: { 'Content-Type': 'application/json' }
@@ -67,13 +75,30 @@ export const fetchCards = (key, searchTerm) => dispatch => {
 					text: card.text
 				};
 			});
-			console.log(newRes);
+			// console.log(newRes);
 			dispatch(fetchCardSuccess(newRes));
 		})
-		.catch(error => dispatch(fetchCardError(error)));
+		.catch(err => {
+			const { reason, message, location } = err;
+			if (reason === 'ValidationError') {
+				return Promise.reject(
+					new SubmissionError({
+						[location]: message
+					})
+				);
+			}
+			return Promise.reject(
+				new SubmissionError({
+					_error: 'Error submitting message'
+				})
+			);
+		});
 };
 
 export const saveDeck = (newDeck, key) => dispatch => {
+	if (newDeck === '[]') {
+		dispatch(saveDeckError('Oops, you need some cards in the deck!'));
+	}
 	return fetch('http://localhost:8080/api/cards', {
 		method: 'POST',
 		body: JSON.stringify({
@@ -103,7 +128,10 @@ export const saveDeck = (newDeck, key) => dispatch => {
 			console.log('Something was posted', data);
 			dispatch(saveDeckSuccess(data.unique_url));
 		})
-		.catch(err => console.log(err));
+		.catch(err => {
+			console.log(err.message);
+			saveDeckError(err.message);
+		});
 };
 
 export const returnSavedDeck = uniqueUrl => dispatch => {
@@ -142,5 +170,5 @@ export const returnSavedDeck = uniqueUrl => dispatch => {
 			});
 			dispatch(fetchSavedDeckSuccess(newRes.mtg_cards_id));
 		})
-		.catch(error => console.log(error));
+		.catch(error => dispatch(fetchCardError(error)));
 };

@@ -47,8 +47,8 @@ app.post('/api/cards', function(req, res, next) {
 		unique_url: unique_url,
 		decks_id: 1
 	};
-	console.info(newCard);
-	if (!newCard.mtg_cards_id) {
+	// console.info(newCard);
+	if (newCard.mtg_cards_id === '[]') {
 		const err = new Error('Please add a card');
 		err.status = 400;
 		return next(err);

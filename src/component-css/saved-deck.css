@@ -21,3 +21,8 @@ div.saved-deck {
 	height: 50%;
 	border: gray;
 }
+
+a.deck-link {
+	background-color: rgba(245, 245, 245);
+	font-size: 20px;
+}

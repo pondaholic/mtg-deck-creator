@@ -1,8 +1,8 @@
 import React from 'react';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, focus } from 'redux-form';
 import { connect } from 'react-redux';
 import Input from './input';
-import { fetchCards } from './actions';
+import { fetchCardsFromMtgApi } from './actions';
 import CardList from './card-list';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './component-css/card-search.css';
@@ -18,7 +18,7 @@ export class CardSearch extends React.Component {
 			}
 		}
 		//using fetch request that will then only take the Name, Mana Cost, Color, Type, unique card ID, and text from the success
-		this.props.dispatch(fetchCards(key, searchTerm));
+		this.props.dispatch(fetchCardsFromMtgApi(key, searchTerm));
 	}
 
 	render() {
@@ -30,8 +30,8 @@ export class CardSearch extends React.Component {
 							<h1>Magic the Gathering Deck Creator</h1>
 							<h2>How to Search:</h2>
 							Choose ONE of the three search parameters: Creature, Color, or
-							Type and look for the cards you want. Then add to your deck and
-							save to a URL only you have!
+							Type and look for the cards you want. <br />
+							Then add to your deck and save to a URL only you have!
 						</header>
 						<div className="search-form">
 							<form
@@ -50,7 +50,12 @@ export class CardSearch extends React.Component {
 								/>
 								<label htmlFor="Type">Type of Card:</label>
 								<Field name="type" id="type" type="text" component={Input} />
-								<button type="submit">Submit</button>
+								<button
+									type="submit"
+									disabled={this.props.pristine || this.props.submitting}
+								>
+									Submit
+								</button>
 							</form>
 						</div>
 					</div>
@@ -64,5 +69,7 @@ export class CardSearch extends React.Component {
 CardSearch = connect()(CardSearch);
 
 export default reduxForm({
-	form: 'search'
+	form: 'search',
+	onSubmitFail: (errors, dispatch) =>
+		dispatch(focus('search', Object.keys(errors)[0]))
 })(CardSearch);

@@ -15,7 +15,7 @@ import { Link, Route } from 'react-router-dom';
 import './component-css/card-list.css';
 
 export class CardList extends React.Component {
-	//return saved Deck
+	//return the saved Deck in app store, not from backend
 	handleSavedDeck(event) {
 		console.log('This is a saved Deck');
 		this.props.dispatch(returnSavedDeck(this.props.uniqueUrl));
@@ -34,20 +34,29 @@ export class CardList extends React.Component {
 		this.props.dispatch(addCardToDeck(key));
 	}
 
-	// POSTS the cards added to Deck to backend and returns unique URL
+	// POSTS the cards added to Deck in app's store to backend and returns unique URL
 	handleSave(value) {
 		console.log('trying to post', value);
 		let newDeck = JSON.stringify(this.props.cardsInDeck);
-		// console.log(newDeck);
-		let key = Math.random()
-			.toString(30)
-			.substring(2, 5);
+		// creates string to send to backend as uniqueUrl
+		let key =
+			Math.random()
+				.toString(30)
+				.substring(2, 5) +
+			Math.random()
+				.toString(30)
+				.substring(2, 5);
 		this.props.dispatch(saveDeck(newDeck, key));
 	}
 
 	render() {
+		let errorMessage;
+		if (this.props.error) {
+			errorMessage = <div className="error-message">{this.props.error}</div>;
+		}
 		return (
 			<div className="card-list">
+				{errorMessage}
 				<Route
 					path={this.props.match.params.uniqueurl}
 					component={() => <SavedDeck cardlist={this.props.returnedDeck} />}
@@ -112,7 +121,8 @@ function mapStateToProps(state) {
 		cardList: state.cards.cardList,
 		cardsInDeck: state.cards.cardsInDeck,
 		uniqueUrl: state.cards.uniqueUrl,
-		returnedDeck: state.cards.returnedDeck
+		returnedDeck: state.cards.returnedDeck,
+		error: state.cards.error
 	};
 }
 const ConnectedCards = connect(mapStateToProps)(CardList);

@@ -4,7 +4,8 @@ import {
 	ADD_CARD_TO_DECK,
 	REMOVE_CARD_FROM_DECK,
 	SAVE_DECK_SUCCESS,
-	FETCH_SAVED_DECK_SUCCESS
+	FETCH_SAVED_DECK_SUCCESS,
+	SAVE_DECK_ERROR
 } from './actions';
 
 const initialState = {
@@ -24,6 +25,15 @@ export default (state = initialState, action) => {
 		});
 	}
 	if (action.type === FETCH_CARDS_ERROR) {
+		return (
+			Object.assign({}),
+			state,
+			{
+				error: action.error
+			}
+		);
+	}
+	if (action.type === SAVE_DECK_ERROR) {
 		return (
 			Object.assign({}),
 			state,

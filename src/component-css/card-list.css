@@ -1,4 +1,4 @@
-.results {
-	display: flex;
-	flex-direction: row;
+.card-list {
+	padding: 10px;
+	color: white;
 }
