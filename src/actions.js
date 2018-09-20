@@ -97,6 +97,7 @@ export const fetchCardsFromMtgApi = (key, searchTerm) => dispatch => {
 };
 
 export const saveDeck = (newDeck, key) => dispatch => {
+	console.log('right before fetch')
 	return fetch(REACT_APP_API_BASE_URL, {
 		method: 'POST',
 		body: JSON.stringify({
@@ -127,7 +128,7 @@ export const saveDeck = (newDeck, key) => dispatch => {
 			dispatch(saveDeckSuccess(data.unique_url));
 		})
 		.catch(err => {
-			console.log(err.message);
+			// console.log(err.message);
 			dispatch(saveDeckError(err.message));
 		});
 };
