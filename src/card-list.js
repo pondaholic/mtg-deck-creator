@@ -121,7 +121,6 @@ export class CardList extends React.Component {
 CardList = connect()(CardList);
 
 function mapStateToProps(state) {
-	console.log(state);
 	return {
 		cardList: state.cards.cardList,
 		cardsInDeck: state.cards.cardsInDeck,

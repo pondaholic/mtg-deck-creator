@@ -17,7 +17,7 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-	console.log(action);
+	// console.log(action);
 	if (action.type === FETCH_CARDS_SUCCESS) {
 		return Object.assign({}, state, {
 			cardList: action.cards,

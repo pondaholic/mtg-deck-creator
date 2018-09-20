@@ -96,9 +96,9 @@ export const fetchCardsFromMtgApi = (key, searchTerm) => dispatch => {
 };
 
 export const saveDeck = (newDeck, key) => dispatch => {
-	if (newDeck === '[]') {
-		dispatch(saveDeckError('Oops, you need some cards in the deck!'));
-	}
+	// if (newDeck === '[]') {
+	// 	dispatch(saveDeckError('Oops, you need some cards in the deck!'));
+	// }
 	return fetch('http://localhost:8080/api/cards', {
 		method: 'POST',
 		body: JSON.stringify({
