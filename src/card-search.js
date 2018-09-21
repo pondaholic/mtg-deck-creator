@@ -10,14 +10,26 @@ import './component-css/card-search.css';
 export class CardSearch extends React.Component {
 	onSubmit(values) {
 		// when user inputs search parameters into the form, the value in that input will be used to perform a GET request from the MTG API
+		console.log(values);
 		let searchTerm;
 		let key;
 		for (key in values) {
 			if (values[key]) {
-				searchTerm = encodeURIComponent(`%${values[key]}%`);
+				if (
+					values[key].toLowerCase() === 'blue' ||
+					'red' ||
+					'white' ||
+					'black' ||
+					'green'
+				) {
+					searchTerm = values[key];
+				} else {
+					searchTerm = encodeURIComponent(`%${values[key]}%`);
+				}
 			}
 		}
 		//using fetch request that will then only take the Name, Mana Cost, Color, Type, unique card ID, and text from the success
+		console.log(key, searchTerm);
 		this.props.dispatch(fetchCardsFromMtgApi(key, searchTerm));
 	}
 
@@ -39,17 +51,27 @@ export class CardSearch extends React.Component {
 									this.onSubmit(values)
 								)}
 							>
-								<label htmlFor="name">Name of Card:</label>
-								<Field name="name" id="name" type="text" component={Input} />
-								<label htmlFor="type">Color:</label>
 								<Field
-									name="cardColor"
-									id="cardColor"
+									label="Name of Card"
+									name="name"
+									id="name"
 									type="text"
 									component={Input}
 								/>
-								<label htmlFor="Type">Type of Card:</label>
-								<Field name="type" id="type" type="text" component={Input} />
+								<Field
+									label="Color of Card"
+									name="colors"
+									id="colors"
+									type="text"
+									component={Input}
+								/>
+								<Field
+									label="Type of Card"
+									name="type"
+									id="type"
+									type="text"
+									component={Input}
+								/>
 								<button
 									type="submit"
 									disabled={this.props.pristine || this.props.submitting}

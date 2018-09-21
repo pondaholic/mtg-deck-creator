@@ -76,7 +76,6 @@ export const fetchCardsFromMtgApi = (key, searchTerm) => dispatch => {
 					text: card.text
 				};
 			});
-			// console.log(newRes);
 			dispatch(fetchCardSuccess(newRes));
 		})
 		.catch(err => {
@@ -97,7 +96,6 @@ export const fetchCardsFromMtgApi = (key, searchTerm) => dispatch => {
 };
 
 export const saveDeck = (newDeck, key) => dispatch => {
-	console.log('right before fetch')
 	return fetch(REACT_APP_API_BASE_URL, {
 		method: 'POST',
 		body: JSON.stringify({
