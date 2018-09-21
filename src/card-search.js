@@ -1,5 +1,5 @@
 import React from 'react';
-import { reduxForm, Field, focus } from 'redux-form';
+import { reduxForm, Field, focus, reset } from 'redux-form';
 import { connect } from 'react-redux';
 import Input from './input';
 import { fetchCardsFromMtgApi } from './actions';
@@ -10,7 +10,7 @@ import './component-css/card-search.css';
 export class CardSearch extends React.Component {
 	onSubmit(values) {
 		// when user inputs search parameters into the form, the value in that input will be used to perform a GET request from the MTG API
-		console.log(values);
+		// console.log(values);
 		let searchTerm;
 		let key;
 		for (key in values) {
@@ -30,13 +30,15 @@ export class CardSearch extends React.Component {
 		}
 		//using fetch request that will then only take the Name, Mana Cost, Color, Type, unique card ID, and text from the success
 		console.log(key, searchTerm);
-		this.props.dispatch(fetchCardsFromMtgApi(key, searchTerm));
+		this.props
+			.dispatch(fetchCardsFromMtgApi(key, searchTerm))
+			.then(() => this.props.dispatch(reset('search')));
 	}
 
 	render() {
 		return (
 			<Router>
-				<main>
+				<div role="main">
 					<div className="how-to-use">
 						<header>
 							<h1>Magic the Gathering Deck Creator</h1>
@@ -82,7 +84,7 @@ export class CardSearch extends React.Component {
 						</div>
 					</div>
 					<Route path="/" component={CardList} />
-				</main>
+				</div>
 			</Router>
 		);
 	}
