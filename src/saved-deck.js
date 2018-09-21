@@ -38,7 +38,12 @@ export default function SavedDeck(props) {
 			image = creatureImage[0];
 		}
 		return (
-			<div key={card.id} className={`saved-deck ${card.color}`}>
+			<div
+				key={card.id}
+				className={`saved-deck ${
+					card.color ? card.color.join(' ') : 'Colorless'
+				}`}
+			>
 				<h3>{card.name}</h3>
 				{card.castingcost}
 				<img src={image} alt="placeholder paintings for cards" />

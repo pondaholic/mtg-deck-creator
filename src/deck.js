@@ -44,7 +44,9 @@ export default function ShowDeck(props) {
 					.toString(30)
 					.substring(2, 5)}
 			>
-				<div className={`card ${card.color}`}>
+				<div
+					className={`card ${card.color ? card.color.join(' ') : 'Colorless'}`}
+				>
 					<h3>{card.name}</h3>
 					{card.castingcost}
 					<img src={image} alt="placeholder paintings for cards" />
