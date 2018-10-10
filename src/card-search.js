@@ -30,15 +30,16 @@ export class CardSearch extends React.Component {
 		}
 		//using fetch request that will then only take the Name, Mana Cost, Color, Type, unique card ID, and text from the success
 		console.log(key, searchTerm);
-		this.props
-			.dispatch(fetchCardsFromMtgApi(key, searchTerm))
-			.then(() => this.props.dispatch(reset('search')));
+		this.props.dispatch(fetchCardsFromMtgApi(key, searchTerm)).then(() => {
+			this.props.dispatch(reset('search'));
+
+		});
 	}
 
 	render() {
 		return (
 			<Router>
-				<div role="main">
+				<main role="main">
 					<div className="how-to-use">
 						<header>
 							<h1>Magic the Gathering Deck Creator</h1>
@@ -84,7 +85,7 @@ export class CardSearch extends React.Component {
 						</div>
 					</div>
 					<Route path="/" component={CardList} />
-				</div>
+				</main>
 			</Router>
 		);
 	}
