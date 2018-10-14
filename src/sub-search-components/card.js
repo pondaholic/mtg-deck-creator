@@ -1,5 +1,5 @@
 import React from 'react';
-import './component-css/card.css';
+import '../component-css/card.css';
 
 export default function CreateCard(props) {
 	//produceGradient(colors) takes the array and returns the gradient style
@@ -7,17 +7,17 @@ export default function CreateCard(props) {
 
 	//creates an array of images to be randomized when cards are created.
 	const creatureImage = [
-		require('./card-images/other.jpg'),
-		require('./card-images/medusa.jpg'),
-		require('./card-images/titania.jpg'),
-		require('./card-images/firebird.jpg')
+		require('../card-images/other.jpg'),
+		require('../card-images/medusa.jpg'),
+		require('../card-images/titania.jpg'),
+		require('../card-images/firebird.jpg')
 	];
 	const manaImages = [
-		require('./card-images/mountains.jpg'),
-		require('./card-images/island.jpg'),
-		require('./card-images/plains.jpg'),
-		require('./card-images/forest.JPG'),
-		require('./card-images/swamp.jpg')
+		require('../card-images/mountains.jpg'),
+		require('../card-images/island.jpg'),
+		require('../card-images/plains.jpg'),
+		require('../card-images/forest.JPG'),
+		require('../card-images/swamp.jpg')
 	];
 	let image;
 	//creates each instance of a card if the card has description text to prevent partial-cards from being created.

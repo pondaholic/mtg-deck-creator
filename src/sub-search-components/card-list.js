@@ -1,18 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import CreateCard from './card';
-import ShowDeck from './deck';
-import SavedDeck from './saved-deck.js';
-import UniqueUrl from './unique-url';
+import ShowDeck from '../deck';
+import SavedDeck from '../saved-deck.js';
+import UniqueUrl from '../unique-url';
 import {
 	saveDeck,
 	addCardToDeck,
 	returnSavedDeck,
 	removeCardFromDeck
-} from './actions';
+} from '../actions';
 import { Link, Route } from 'react-router-dom';
 
-import './component-css/card-list.css';
+import '../component-css/card-list.css';
 
 export class CardList extends React.Component {
 	//return the saved Deck in app store, not from backend
