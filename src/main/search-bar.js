@@ -1,55 +1,40 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 //search "bar" should only be responsible for sending GET request
-export default function Searchbar(props) {
+export default function Searchbar() {
 	return (
 		<Formik
-			initialValues={{ email: '', password: '' }}
-			validate={values => {
-				let errors = {};
-				if (!values.email) {
-					errors.email = 'Required';
-				} else if (
-					!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-				) {
-					errors.email = 'Invalid email address';
-				}
-				return errors;
-			}}
-			onSubmit={(values, { setSubmitting }) => {
-				setTimeout(() => {
-					alert(JSON.stringify(values, null, 2));
-					setSubmitting(false);
-				}, 400);
+			initialValues={{ name: '', type: '', color: '' }}
+			onSubmit={values => {
+				console.log(values);
 			}}
 		>
-			{({
-				values,
-				errors,
-				touched,
-				handleChange,
-				handleBlur,
-				handleSubmit,
-				isSubmitting
-			}) => (
+			{({ values, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
 				<form onSubmit={handleSubmit}>
 					<input
-						type="email"
-						name="email"
+						type="name"
+						name="name"
 						onChange={handleChange}
 						onBlur={handleBlur}
-						value={values.email}
+						value={values.name}
 					/>
-					{errors.email && touched.email && errors.email}
+					{/* {errors.email && touched.email && errors.email} */}
 					<input
-						type="password"
-						name="password"
+						type="type"
+						name="type"
 						onChange={handleChange}
 						onBlur={handleBlur}
-						value={values.password}
+						value={values.type}
 					/>
-					{errors.password && touched.password && errors.password}
+					{/* {errors.password && touched.password && errors.password} */}
+					<input
+						type="text"
+						name="color"
+						onChange={handleChange}
+						onBlur={handleBlur}
+						value={values.color}
+					/>
 					<button type="submit" disabled={isSubmitting}>
 						Submit
 					</button>
