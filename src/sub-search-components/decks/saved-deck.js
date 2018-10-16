@@ -1,19 +1,19 @@
 import React from 'react';
-import './component-css/saved-deck.css';
+import '.../component-css/saved-deck.css';
 
 export default function SavedDeck(props) {
 	const creatureImage = [
-		require('./card-images/other.jpg'),
-		require('./card-images/medusa.jpg'),
-		require('./card-images/titania.jpg'),
-		require('./card-images/firebird.jpg')
+		require('.../card-images/other.jpg'),
+		require('.../card-images/medusa.jpg'),
+		require('.../card-images/titania.jpg'),
+		require('.../card-images/firebird.jpg')
 	];
 	const manaImages = [
-		require('./card-images/mountains.jpg'),
-		require('./card-images/island.jpg'),
-		require('./card-images/plains.jpg'),
-		require('./card-images/forest.JPG'),
-		require('./card-images/swamp.jpg')
+		require('.../card-images/mountains.jpg'),
+		require('.../card-images/island.jpg'),
+		require('.../card-images/plains.jpg'),
+		require('.../card-images/forest.JPG'),
+		require('.../card-images/swamp.jpg')
 	];
 	let image;
 

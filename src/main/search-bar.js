@@ -1,5 +1,5 @@
 import React from 'react';
-import Input from '../input';
+import Input from './input';
 import { Field, reduxForm, focus, reset } from 'redux-form';
 import { connect } from 'react-redux';
 

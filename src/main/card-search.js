@@ -10,6 +10,7 @@ import '../component-css/card-search.css';
 //add nav bar for "Save" & to link to "Deck"
 export default class CardSearch extends React.Component {
 	render() {
+		console.log(this.props.state);
 		return (
 			<Router>
 				<main role="main">
