@@ -4,7 +4,7 @@ import React from 'react';
 // import { reduxForm, focus, reset } from 'redux-form';
 
 import Searchbar from './search-bar';
-import { fetchCardsFromMtgApi } from '../actions';
+import { fetchCardsFromMtgApi } from '../actions/search-mtg';
 import CardList from '../sub-search-components/card-list';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import '../component-css/card-search.css';
@@ -13,6 +13,10 @@ import '../component-css/card-search.css';
 //component should only do 1 thing !== search; remove search bar to component to a separate component that renders
 //add nav bar for "Save" & to link to "Deck"
 export default class CardSearch extends React.Component {
+	handleSearch(values) {
+		this.props.dispatch(fetchCardsFromMtgApi(values));
+	}
+
 	render() {
 		return (
 			<Router>
@@ -25,7 +29,7 @@ export default class CardSearch extends React.Component {
 							Type and look for the cards you want. <br />
 							Then add to your deck and save to a URL only you have!
 						</header>
-						<Searchbar onSubmit={values => this.onSubmit(values)} />
+						<Searchbar onSubmit={values => this.handleSearch(values)} />
 					</div>
 					{/* <Route path="/" component={CardList} /> */}
 				</main>
@@ -33,11 +37,3 @@ export default class CardSearch extends React.Component {
 		);
 	}
 }
-
-// SearchForm = connect()(SearchForm);
-
-// export default reduxForm({
-// 	form: 'search',
-// 	onSubmitFail: (errors, dispatch) =>
-// 		dispatch(focus('search', Object.keys(errors)[0]))
-// })(SearchForm);

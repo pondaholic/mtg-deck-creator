@@ -1,8 +1,8 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 
-//search "bar" should only be responsible for sending GET request
-export default function Searchbar() {
+//search "bar" should only be responsible for sending values to parent
+export default function Searchbar(props) {
 	return (
 		<Formik
 			initialValues={{ name: '', type: '', color: '' }}

@@ -18,21 +18,6 @@ const initialState = {
 
 export default (state = initialState, action) => {
 	// console.log(action);
-	if (action.type === FETCH_CARDS_SUCCESS) {
-		return Object.assign({}, state, {
-			cardList: action.cards,
-			showCardList: true
-		});
-	}
-	if (action.type === FETCH_CARDS_ERROR) {
-		return (
-			Object.assign({}),
-			state,
-			{
-				error: action.error
-			}
-		);
-	}
 	if (action.type === SAVE_DECK_ERROR) {
 		return Object.assign({}, state, {
 			error: action.error
