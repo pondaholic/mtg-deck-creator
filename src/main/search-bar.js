@@ -8,12 +8,13 @@ export default function Searchbar(props) {
 			initialValues={{ name: '', type: '', color: '' }}
 			onSubmit={values => {
 				console.log(values);
+				props.handleSearch(values);
 			}}
 		>
 			{({ values, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
 				<form onSubmit={handleSubmit}>
 					<input
-						type="name"
+						type="text"
 						name="name"
 						onChange={handleChange}
 						onBlur={handleBlur}
@@ -21,7 +22,7 @@ export default function Searchbar(props) {
 					/>
 					{/* {errors.email && touched.email && errors.email} */}
 					<input
-						type="type"
+						type="text"
 						name="type"
 						onChange={handleChange}
 						onBlur={handleBlur}

@@ -35,6 +35,7 @@ export const fetchCardsFromMtgApi = (key, searchTerm) => dispatch => {
 			return res.json();
 		})
 		.then(res => {
+			console.log(res);
 			let newRes = res.cards.map(card => {
 				return {
 					name: card.name,
