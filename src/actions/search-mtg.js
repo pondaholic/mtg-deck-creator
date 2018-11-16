@@ -1,5 +1,6 @@
 import { MTG_URL } from '../config';
 import { SubmissionError } from 'redux-form';
+
 export const FETCH_CARDS_SUCCESS = 'FETCH_CARDS_SUCCESS';
 export const fetchCardSuccess = cards => ({
 	type: FETCH_CARDS_SUCCESS,
@@ -12,7 +13,6 @@ export const fetchCardError = error => ({
 	error
 });
 
-// const BASE_URL = `https://api.magicthegathering.io/v1/cards`;
 export const fetchCardsFromMtgApi = (key, searchTerm) => dispatch => {
 	return fetch(`${MTG_URL}/?${key}=${searchTerm}`, {
 		method: 'GET',
@@ -24,7 +24,7 @@ export const fetchCardsFromMtgApi = (key, searchTerm) => dispatch => {
 					res.headers.has('content-type') &&
 					res.headers.get('content-type').startsWith('application/json')
 				) {
-					console.log(res.json());
+					// console.log(res.json());
 					return res.json().then(err => Promise.reject(err));
 				}
 				return Promise.reject({
@@ -35,7 +35,7 @@ export const fetchCardsFromMtgApi = (key, searchTerm) => dispatch => {
 			return res.json();
 		})
 		.then(res => {
-			console.log(res);
+			// console.log(res);
 			let newRes = res.cards.map(card => {
 				return {
 					name: card.name,
@@ -46,6 +46,7 @@ export const fetchCardsFromMtgApi = (key, searchTerm) => dispatch => {
 					text: card.text
 				};
 			});
+			// console.log(newRes);
 			dispatch(fetchCardSuccess(newRes));
 		})
 		.catch(err => {

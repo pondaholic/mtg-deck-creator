@@ -54,6 +54,7 @@ export class CardList extends React.Component {
 	}
 
 	render() {
+		console.log('returned cards', this.props.cardList);
 		let errorMessage;
 		if (this.props.error) {
 			errorMessage = <div className="error-message">{this.props.error}</div>;
@@ -122,7 +123,7 @@ CardList = connect()(CardList);
 
 function mapStateToProps(state) {
 	return {
-		cardList: state.cards.cardList,
+		cardList: state.mtg.cardList,
 		cardsInDeck: state.cards.cardsInDeck,
 		uniqueUrl: state.cards.uniqueUrl,
 		returnedDeck: state.cards.returnedDeck,

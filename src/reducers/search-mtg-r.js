@@ -8,6 +8,7 @@ const initialState = {
 
 export default function mtgReducer(state = initialState, action) {
 	if (action.type === FETCH_CARDS_SUCCESS) {
+		// console.log('passing cards', action.cards);
 		return Object.assign({}, state, {
 			cardList: action.cards,
 			loading: false

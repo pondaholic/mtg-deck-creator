@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 
 const composeEnhancers =
 	window.__REDUX_DEVTOOLS_EXTENSION__COMPOSE__ || compose;
-export default createStore(
+const store = createStore(
 	combineReducers({
 		mtg: mtgReducer,
 		form: formReducer,
@@ -14,3 +14,5 @@ export default createStore(
 	}),
 	composeEnhancers(applyMiddleware(thunk))
 );
+
+export default store;

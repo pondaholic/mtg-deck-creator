@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Searchbar from './search-bar';
 import { fetchCardsFromMtgApi } from '../actions/search-mtg';
-import CardList from '../sub-search-components/card-list';
+import CardList from '../response-component/mtg-cards';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import '../component-css/card-search.css';
 
@@ -24,6 +24,7 @@ class CardSearch extends React.Component {
 	}
 
 	render() {
+		// console.log(this.props.cardList);
 		return (
 			<Router>
 				<main role="main">
@@ -37,6 +38,9 @@ class CardSearch extends React.Component {
 						</header>
 						<Searchbar handleSearch={values => this.handleSearch(values)} />
 					</div>
+					<div className="search-return">
+						<CardList />
+					</div>
 					{/* <Route path="/" component={CardList} /> */}
 				</main>
 			</Router>
@@ -46,7 +50,7 @@ class CardSearch extends React.Component {
 
 const mapStateToProps = state => {
 	return {
-		cardList: state.cards.cardList
+		cardList: state.mtg.cardList
 	};
 };
 

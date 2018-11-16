@@ -7,7 +7,7 @@ export default function Searchbar(props) {
 		<Formik
 			initialValues={{ name: '', type: '', color: '' }}
 			onSubmit={values => {
-				console.log(values);
+				// console.log(values);
 				props.handleSearch(values);
 			}}
 		>
@@ -19,6 +19,7 @@ export default function Searchbar(props) {
 						onChange={handleChange}
 						onBlur={handleBlur}
 						value={values.name}
+						placeholder="Name"
 					/>
 					{/* {errors.email && touched.email && errors.email} */}
 					<input
@@ -27,6 +28,7 @@ export default function Searchbar(props) {
 						onChange={handleChange}
 						onBlur={handleBlur}
 						value={values.type}
+						placeholder="Type"
 					/>
 					{/* {errors.password && touched.password && errors.password} */}
 					<input
@@ -35,6 +37,7 @@ export default function Searchbar(props) {
 						onChange={handleChange}
 						onBlur={handleBlur}
 						value={values.color}
+						placeholder="Color"
 					/>
 					<button type="submit" disabled={isSubmitting}>
 						Submit
