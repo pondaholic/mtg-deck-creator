@@ -12,14 +12,14 @@ import '../component-css/card-search.css';
 //add nav bar for "Save" & to link to "Deck"
 class CardSearch extends React.Component {
 	handleSearch(values) {
-		console.log(values);
-		let searchTerm;
-		let key;
-		for (key in values) {
-			searchTerm = encodeURIComponent(`%${values[key]}%`);
+		// console.log(values.name, values.type, values.color);
+		for (let key in values) {
+			if (values.key) {
+				let searchTerm = encodeURIComponent(`%${values[key]}%`);
+				this.props.dispatch(fetchCardsFromMtgApi(key, searchTerm));
+			}
 		}
 		// console.log(key, searchTerm);
-		this.props.dispatch(fetchCardsFromMtgApi(key, searchTerm));
 	}
 
 	render() {
