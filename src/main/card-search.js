@@ -14,7 +14,8 @@ class CardSearch extends React.Component {
 	handleSearch(values) {
 		// console.log(values.name, values.type, values.color);
 		for (let key in values) {
-			if (values.key) {
+			if (values[key]) {
+				// console.log(values[key]);
 				let searchTerm = encodeURIComponent(`%${values[key]}%`);
 				this.props.dispatch(fetchCardsFromMtgApi(key, searchTerm));
 			}
