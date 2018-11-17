@@ -1,5 +1,5 @@
 import { SubmissionError } from 'redux-form';
-import { REACT_APP_API_BASE_URL } from './config';
+import { REACT_APP_API_BASE_URL } from '../config';
 
 export const ADD_CARD_TO_DECK = 'ADD_CARD_TO_DECK';
 export const addCardToDeck = cardId => ({

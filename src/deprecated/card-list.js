@@ -9,7 +9,7 @@ import {
 	addCardToDeck,
 	returnSavedDeck,
 	removeCardFromDeck
-} from '../actions';
+} from '../actions/create-deck-actions';
 import { Link, Route } from 'react-router-dom';
 
 import '../component-css/card-list.css';

@@ -14,7 +14,7 @@ export default function CardsNav(props) {
 				>
 					<Link to="/save">Save</Link>
 				</li>
-				<li>
+				<li className="deck">
 					<Link to="/thisDeck">Deck</Link>
 				</li>
 			</ul>

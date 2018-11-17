@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, Route } from 'react-router-dom';
+// import { Link, Route } from 'react-router-dom';
 
 import CreateCard from './card';
+import { addCardToDeck } from '../actions/create-deck-actions';
 
 import CardsNav from './cards-nav';
 
@@ -26,6 +27,12 @@ class CardList extends React.Component {
 		// });
 	}
 
+	handleClick(event) {
+		console.log('Card added to Deck');
+		let key = event.target.value;
+		this.props.dispatch(addCardToDeck(key));
+	}
+
 	render() {
 		// console.log('inside CardList', this.props.cardList);
 		return (
@@ -34,7 +41,7 @@ class CardList extends React.Component {
 				<div className="cards">
 					<CreateCard
 						cardList={this.props.cardList}
-						// handleClick={event => this.handleClick(event)}
+						handleClick={event => this.handleClick(event)}
 					/>
 				</div>
 			</div>

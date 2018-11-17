@@ -1,12 +1,10 @@
 import {
-	FETCH_CARDS_SUCCESS,
-	FETCH_CARDS_ERROR,
 	ADD_CARD_TO_DECK,
 	REMOVE_CARD_FROM_DECK,
 	SAVE_DECK_SUCCESS,
 	FETCH_SAVED_DECK_SUCCESS,
 	SAVE_DECK_ERROR
-} from './actions';
+} from '../actions/create-deck-actions';
 
 const initialState = {
 	cardList: [],
@@ -16,7 +14,7 @@ const initialState = {
 	uniqueUrl: ''
 };
 
-export default (state = initialState, action) => {
+export default function deckReducer(state = initialState, action) {
 	// console.log(action);
 	if (action.type === SAVE_DECK_ERROR) {
 		return Object.assign({}, state, {
@@ -48,4 +46,4 @@ export default (state = initialState, action) => {
 		});
 	}
 	return state;
-};
+}
