@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import CreateCard from './card';
+
 import CardsNav from './cards-nav';
 
 class CardList extends React.Component {
@@ -9,7 +11,12 @@ class CardList extends React.Component {
 		return (
 			<div className="mtg-response">
 				<CardsNav />
-				<div className="cards">Something</div>
+				<div className="cards">
+					<CreateCard
+						cardList={this.props.cardList}
+						// handleClick={event => this.handleClick(event)}
+					/>
+				</div>
 			</div>
 		);
 	}
