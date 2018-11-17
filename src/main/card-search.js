@@ -1,10 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Searchbar from './search-bar';
-import { fetchCardsFromMtgApi } from '../actions/search-mtg';
 import CardList from '../response-component/mtg-cards';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Navbar from './navbar';
+
+import { fetchCardsFromMtgApi } from '../actions/search-mtg';
+
 import '../component-css/card-search.css';
 
 //this is the main component that renders
@@ -28,6 +31,7 @@ class CardSearch extends React.Component {
 		return (
 			<Router>
 				<main role="main">
+					<Navbar />
 					<div className="how-to-use">
 						<header>
 							<h1>Magic the Gathering Deck Creator</h1>
@@ -41,7 +45,6 @@ class CardSearch extends React.Component {
 					<div className="search-return">
 						<CardList />
 					</div>
-					{/* <Route path="/" component={CardList} /> */}
 				</main>
 			</Router>
 		);

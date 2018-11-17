@@ -1,6 +1,8 @@
 import React from 'react';
 import { Formik } from 'formik';
 
+import '../component-css/search-bar.css';
+
 //search "bar" should only be responsible for sending values to parent
 export default function Searchbar(props) {
 	return (
@@ -9,11 +11,13 @@ export default function Searchbar(props) {
 			onSubmit={values => {
 				// console.log(values);
 				props.handleSearch(values);
+				// <Link to="/search" />
 			}}
 		>
 			{({ values, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
 				<form onSubmit={handleSubmit}>
 					<input
+						className="name"
 						type="text"
 						name="name"
 						onChange={handleChange}
@@ -23,6 +27,7 @@ export default function Searchbar(props) {
 					/>
 					{/* {errors.email && touched.email && errors.email} */}
 					<input
+						className="type"
 						type="text"
 						name="type"
 						onChange={handleChange}
@@ -32,6 +37,7 @@ export default function Searchbar(props) {
 					/>
 					{/* {errors.password && touched.password && errors.password} */}
 					<input
+						className="colors"
 						type="text"
 						name="color"
 						onChange={handleChange}
