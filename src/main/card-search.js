@@ -33,14 +33,16 @@ class CardSearch extends React.Component {
 				<main role="main">
 					<Navbar />
 					<div className="how-to-use">
-						<header>
-							<h1>Magic the Gathering Deck Creator</h1>
-							<h2>How to Search:</h2>
-							Choose ONE of the three search parameters: Creature, Color, or
-							Type and look for the cards you want. <br />
-							Then add to your deck and save to a URL only you have!
-						</header>
-						<Searchbar handleSearch={values => this.handleSearch(values)} />
+						<div className="header">
+							<header>
+								<h1>Magic the Gathering Deck Creator</h1>
+								<h2>How to Search:</h2>
+								Choose ONE of the three search parameters: Creature, Color, or
+								Type and look for the cards you want. <br />
+								Then add to your deck and save to a URL only you have!
+							</header>
+							<Searchbar handleSearch={values => this.handleSearch(values)} />
+						</div>
 					</div>
 					<div className="search-return">
 						<CardList />

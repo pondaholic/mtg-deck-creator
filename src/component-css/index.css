@@ -2,6 +2,7 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: sans-serif;
+	background-color: rgba(33, 33, 33, 0.5);
 	/* background-image: url('../card-images/blue-pattern-background.jpg'); */
 }
 

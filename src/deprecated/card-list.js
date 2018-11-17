@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import CreateCard from './card';
+import CreateCard from '../response-component/card';
 import ShowDeck from '../deck';
 import SavedDeck from '../saved-deck.js';
 import UniqueUrl from '../unique-url';
