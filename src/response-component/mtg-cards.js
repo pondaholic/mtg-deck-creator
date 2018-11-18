@@ -30,7 +30,9 @@ class CardList extends React.Component {
 	handleClick(event) {
 		console.log('Card added to Deck');
 		let key = event.target.value;
+		console.log(key);
 		this.props.dispatch(addCardToDeck(key));
+		console.log('added to deck', this.props.cardsInDeck);
 	}
 
 	render() {
@@ -51,7 +53,8 @@ class CardList extends React.Component {
 
 const mapStateToProps = state => {
 	return {
-		cardList: state.mtg.cardList
+		cardList: state.mtg.cardList,
+		cardsInDeck: state.mtg.cardsInDeck
 	};
 };
 

@@ -23,7 +23,9 @@ export default function deckReducer(state = initialState, action) {
 	}
 	if (action.type === ADD_CARD_TO_DECK) {
 		let matchCard = state.cardList.filter(card => card.id === action.cardId);
-		// console.log(matchCard);
+
+		console.log(state.cardList, action.cardId);
+		console.log(matchCard);
 		return Object.assign({}, state, {
 			cardsInDeck: [...state.cardsInDeck, matchCard[0]],
 			error: ''

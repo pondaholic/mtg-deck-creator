@@ -1,18 +1,20 @@
+//libraries
 import React from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+//import components
 import Searchbar from './search-bar';
 import CardList from '../response-component/mtg-cards';
 import Navbar from './navbar';
+import ThisDeck from '../response-component/deck';
 
+//import actions for dispatches
 import { fetchCardsFromMtgApi } from '../actions/search-mtg';
 
+//import CSS
 import '../component-css/card-search.css';
 
-//this is the main component that renders
-//component should only do 1 thing !== search; remove search bar to component to a separate component that renders
-//add nav bar for "Save" & to link to "Deck"
 class CardSearch extends React.Component {
 	handleSearch(values) {
 		// console.log(values.name, values.type, values.color);
@@ -45,7 +47,17 @@ class CardSearch extends React.Component {
 						</div>
 					</div>
 					<div className="search-return">
-						<CardList />
+						<Route exact path="/search" component={() => <CardList />} />
+						<Route
+							exact
+							path="/thisDeck"
+							component={() => (
+								<ThisDeck
+									cardsInDeck={this.props.cardsInDeck}
+									handleRemove={event => this.handleRemove(event)}
+								/>
+							)}
+						/>
 					</div>
 				</main>
 			</Router>
@@ -55,7 +67,8 @@ class CardSearch extends React.Component {
 
 const mapStateToProps = state => {
 	return {
-		cardList: state.mtg.cardList
+		cardList: state.mtg.cardList,
+		cardsInDeck: state.mtg.cardsInDeck
 	};
 };
 

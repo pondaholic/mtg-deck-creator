@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import deckReducer from './reducers/deck-reducers';
+import deckReducer from './reducers/create-deck-reducers';
 import mtgReducer from './reducers/search-mtg-r';
 import thunk from 'redux-thunk';
 

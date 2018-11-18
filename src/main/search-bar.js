@@ -9,7 +9,7 @@ export default function Searchbar(props) {
 		<Formik
 			initialValues={{ name: '', type: '', color: '' }}
 			onSubmit={(values, { setSubmitting }) => {
-				console.log(values);
+				// console.log(values);
 				props.handleSearch(values);
 				setSubmitting(false);
 			}}
