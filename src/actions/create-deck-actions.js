@@ -2,9 +2,9 @@ import { SubmissionError } from 'redux-form';
 import { REACT_APP_API_BASE_URL } from '../config';
 
 export const ADD_CARD_TO_DECK = 'ADD_CARD_TO_DECK';
-export const addCardToDeck = cardId => ({
+export const addCardToDeck = card => ({
 	type: ADD_CARD_TO_DECK,
-	cardId
+	card
 });
 
 export const REMOVE_CARD_FROM_DECK = 'REMOVE_CARD_FROM_DECK';

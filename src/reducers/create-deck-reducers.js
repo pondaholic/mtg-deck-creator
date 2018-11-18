@@ -7,7 +7,6 @@ import {
 } from '../actions/create-deck-actions';
 
 const initialState = {
-	cardList: [],
 	error: '',
 	cardsInDeck: [],
 	returnedDeck: [],
@@ -22,12 +21,9 @@ export default function deckReducer(state = initialState, action) {
 		});
 	}
 	if (action.type === ADD_CARD_TO_DECK) {
-		let matchCard = state.cardList.filter(card => card.id === action.cardId);
-
-		console.log(state.cardList, action.cardId);
-		console.log(matchCard);
+		// console.log(action.card);
 		return Object.assign({}, state, {
-			cardsInDeck: [...state.cardsInDeck, matchCard[0]],
+			cardsInDeck: [...state.cardsInDeck, action.card[0]],
 			error: ''
 		});
 	}

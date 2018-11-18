@@ -68,7 +68,7 @@ class CardSearch extends React.Component {
 const mapStateToProps = state => {
 	return {
 		cardList: state.mtg.cardList,
-		cardsInDeck: state.mtg.cardsInDeck
+		cardsInDeck: state.deck.cardsInDeck
 	};
 };
 

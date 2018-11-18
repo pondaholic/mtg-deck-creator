@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { reducer as formReducer } from 'redux-form';
+// import { reducer as formReducer } from 'redux-form';
 import deckReducer from './reducers/create-deck-reducers';
 import mtgReducer from './reducers/search-mtg-r';
 import thunk from 'redux-thunk';
@@ -9,7 +9,6 @@ const composeEnhancers =
 const store = createStore(
 	combineReducers({
 		mtg: mtgReducer,
-		form: formReducer,
 		deck: deckReducer
 	}),
 	composeEnhancers(applyMiddleware(thunk))
