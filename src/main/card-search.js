@@ -1,13 +1,11 @@
 //libraries
 import React from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Redirect } from 'react-router';
 
 //import components
 import Searchbar from './search-bar';
-import CardList from '../response-component/mtg-cards';
 import Navbar from './navbar';
-import ThisDeck from '../response-component/deck';
 
 //import actions for dispatches
 import { fetchCardsFromMtgApi } from '../actions/search-mtg';
@@ -16,7 +14,17 @@ import { fetchCardsFromMtgApi } from '../actions/search-mtg';
 import '../component-css/card-search.css';
 
 class CardSearch extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			search: false
+		};
+	}
+
 	handleSearch(values) {
+		this.setState({
+			search: true
+		});
 		// console.log(values.name, values.type, values.color);
 		for (let key in values) {
 			if (values[key]) {
@@ -30,37 +38,28 @@ class CardSearch extends React.Component {
 
 	render() {
 		// console.log(this.props.cardList);
+		if (this.state.search) {
+			return <Redirect push to="/search" />;
+		}
 		return (
-			<Router>
-				<main role="main">
-					<Navbar />
-					<div className="how-to-use">
-						<div className="header">
-							<header>
-								<h1>Magic the Gathering Deck Creator</h1>
-								<h2>How to Search:</h2>
-								Choose ONE of the three search parameters: Creature, Color, or
-								Type and look for the cards you want. <br />
-								Then add to your deck and save to a URL only you have!
-							</header>
-							<Searchbar handleSearch={values => this.handleSearch(values)} />
-						</div>
-					</div>
-					<div className="search-return">
-						<Route exact path="/search" component={() => <CardList />} />
-						<Route
-							exact
-							path="/thisDeck"
-							component={() => (
-								<ThisDeck
-									cardsInDeck={this.props.cardsInDeck}
-									handleRemove={event => this.handleRemove(event)}
-								/>
-							)}
+			<main role="main">
+				<Navbar />
+				<div className="how-to-use">
+					<div className="header">
+						<header>
+							<h1>Magic the Gathering Deck Creator</h1>
+							<h2>How to Search:</h2>
+							Choose ONE of the three search parameters: Creature, Color, or
+							Type and look for the cards you want. <br />
+							Then add to your deck and save to a URL only you have!
+						</header>
+						<Searchbar
+							handleClick={e => this.handleClick(e)}
+							handleSearch={values => this.handleSearch(values)}
 						/>
 					</div>
-				</main>
-			</Router>
+				</div>
+			</main>
 		);
 	}
 }
