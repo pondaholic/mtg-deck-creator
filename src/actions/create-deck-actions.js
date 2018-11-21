@@ -75,7 +75,7 @@ export const saveDeck = (newDeck, key) => dispatch => {
 
 export const returnSavedDeck = uniqueUrl => dispatch => {
 	console.log(uniqueUrl);
-	return fetch(`${REACT_APP_API_BASE_URL}/${uniqueUrl}`, {
+	return fetch(`${REACT_APP_API_BASE_URL}/api/cards/${uniqueUrl}`, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'
