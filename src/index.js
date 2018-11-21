@@ -1,14 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './component-css/index.css';
-import CardSearch from './card-search';
-import registerServiceWorker from './registerServiceWorker';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
+
+import registerServiceWorker from './registerServiceWorker';
+import App from './app';
 import store from './store';
+
+import './component-css/index.css';
 
 ReactDOM.render(
 	<Provider store={store}>
-		<CardSearch />
+		<Router>
+			<App />
+		</Router>
 	</Provider>,
 	document.getElementById('root')
 );

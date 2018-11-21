@@ -1,48 +1,29 @@
 import {
-	FETCH_CARDS_SUCCESS,
-	FETCH_CARDS_ERROR,
 	ADD_CARD_TO_DECK,
 	REMOVE_CARD_FROM_DECK,
 	SAVE_DECK_SUCCESS,
 	FETCH_SAVED_DECK_SUCCESS,
 	SAVE_DECK_ERROR
-} from './actions';
+} from '../actions/create-deck-actions';
 
 const initialState = {
-	cardList: [],
 	error: '',
 	cardsInDeck: [],
 	returnedDeck: [],
 	uniqueUrl: ''
 };
 
-export default (state = initialState, action) => {
+export default function deckReducer(state = initialState, action) {
 	// console.log(action);
-	if (action.type === FETCH_CARDS_SUCCESS) {
-		return Object.assign({}, state, {
-			cardList: action.cards,
-			showCardList: true
-		});
-	}
-	if (action.type === FETCH_CARDS_ERROR) {
-		return (
-			Object.assign({}),
-			state,
-			{
-				error: action.error
-			}
-		);
-	}
 	if (action.type === SAVE_DECK_ERROR) {
 		return Object.assign({}, state, {
 			error: action.error
 		});
 	}
 	if (action.type === ADD_CARD_TO_DECK) {
-		let matchCard = state.cardList.filter(card => card.id === action.cardId);
-		// console.log(matchCard);
+		// console.log(action.card);
 		return Object.assign({}, state, {
-			cardsInDeck: [...state.cardsInDeck, matchCard[0]],
+			cardsInDeck: [...state.cardsInDeck, action.card[0]],
 			error: ''
 		});
 	}
@@ -63,4 +44,4 @@ export default (state = initialState, action) => {
 		});
 	}
 	return state;
-};
+}

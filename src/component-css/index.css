@@ -2,7 +2,8 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: sans-serif;
-	background-image: url('../card-images/blue-pattern-background.jpg');
+	background-color: rgba(231, 231, 231);
+	/* background-image: url('../card-images/blue-pattern-background.jpg'); */
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 648px) {

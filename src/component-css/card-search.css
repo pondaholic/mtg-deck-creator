@@ -1,15 +1,25 @@
 .how-to-use {
+	/* display: flex;
+	flex-direction: row; */
+	background-image: url('../header.jpg');
+	border-top: 5px solid rgb(200, 55, 26);
+	border-bottom: 5px solid rgb(200, 55, 26);
+}
+
+.header {
 	display: flex;
 	flex-direction: row;
-	background-image: linear-gradient(to left, black, rgb(51, 51, 51));
-	border-bottom: 2px white dashed;
+	background-color: rgba(51, 51, 51, 0.5);
 }
+
 header {
 	width: 65%;
 	text-align: center;
 	color: white;
 	font-size: 15px;
 	text-shadow: black 2px 1px;
+	/* background-color: rgba(51, 51, 51, 0.5); */
+	padding: 0px 0px 0px 50px;
 }
 
 h2 {
@@ -30,7 +40,9 @@ input {
 }
 
 button {
-	background-color: white;
+	background-color: rgb(200, 55, 26);
+	border: none;
+	color: white;
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 648px) {

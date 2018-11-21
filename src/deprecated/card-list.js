@@ -1,18 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import CreateCard from './card';
-import ShowDeck from './deck';
-import SavedDeck from './saved-deck.js';
-import UniqueUrl from './unique-url';
+import CreateCard from '../response-component/card';
+import ShowDeck from '../deck';
+import SavedDeck from '../saved-deck.js';
+import UniqueUrl from '../unique-url';
 import {
 	saveDeck,
 	addCardToDeck,
 	returnSavedDeck,
 	removeCardFromDeck
-} from './actions';
+} from '../actions/create-deck-actions';
 import { Link, Route } from 'react-router-dom';
 
-import './component-css/card-list.css';
+import '../component-css/card-list.css';
 
 export class CardList extends React.Component {
 	//return the saved Deck in app store, not from backend
@@ -54,6 +54,7 @@ export class CardList extends React.Component {
 	}
 
 	render() {
+		console.log('returned cards', this.props.cardList);
 		let errorMessage;
 		if (this.props.error) {
 			errorMessage = <div className="error-message">{this.props.error}</div>;
@@ -122,7 +123,7 @@ CardList = connect()(CardList);
 
 function mapStateToProps(state) {
 	return {
-		cardList: state.cards.cardList,
+		cardList: state.mtg.cardList,
 		cardsInDeck: state.cards.cardsInDeck,
 		uniqueUrl: state.cards.uniqueUrl,
 		returnedDeck: state.cards.returnedDeck,

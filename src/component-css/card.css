@@ -1,18 +1,3 @@
-CreateCard .main {
-	display: flex;
-	flex-direction: row;
-}
-
-.wrap {
-	min-width: 0px;
-	width: auto;
-	margin: auto;
-	padding: 10px;
-	display: inline-block;
-	color: white;
-	text-shadow: black 1px 1px;
-}
-
 .card {
 	box-shadow: 0 4px 8px 0 gray;
 	width: 320px;
@@ -142,8 +127,31 @@ p {
 	border-style: inset;
 }
 
-h3 {
-	height: 5px;
+ul.title {
+	/* list-style-type: none; */
+	overflow: hidden;
+	display: grid;
+	justify-self: center;
+	grid-template-columns: 1fr 1fr;
+	grid-template-areas: 'card-name cost';
+	/* grid  */
+}
+
+li.card-name {
+	padding: 0px 0px 0px 3px;
+	width: 157px;
+	text-align: left;
+	float: left;
+	grid-area: card-name;
+}
+
+li.card-cost {
+	width: 160px;
+	margin: 0;
+	padding: 0px 5px 0px 0px;
+	text-align: right;
+	float: right;
+	grid-area: cost;
 }
 
 button {
