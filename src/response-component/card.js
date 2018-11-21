@@ -41,8 +41,10 @@ export default function CreateCard(props) {
 	}
 	return (
 		<div className={`card ${card.color ? card.color.join(' ') : 'Colorless'}`}>
-			<h3>{card.name}</h3>
-			{card.castingcost}
+			<ul className="title">
+				<li className="card-name">{card.name}</li>
+				<li className="card-cost">{card.castingcost}</li>
+			</ul>
 			<img src={image} alt="placeholder paintings for cards" />
 			<br />
 			<i>{card.type}</i>
