@@ -5,7 +5,8 @@ import CreateCard from './card';
 
 class ThisDeck extends React.Component {
 	render() {
-		console.log(this.props.cardsInDeck);
+		// console.log(this.props.cardsInDeck);
+		// let cards = this.props.cardsInDeck
 		return (
 			<div className="deck">
 				<button className="back">Back</button>

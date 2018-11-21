@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { Link, Route } from 'react-router-dom';
 
 import CreateCard from './card';
-import { addCardToDeck } from '../actions/create-deck-actions';
-
 import CardsNav from './cards-nav';
+
+import { addCardToDeck } from '../actions/create-deck-actions';
 
 class CardList extends React.Component {
 	handleSave(value) {
@@ -27,26 +26,36 @@ class CardList extends React.Component {
 		// });
 	}
 
-	handleClick(event) {
+	handleClick(e) {
 		console.log('Card added to Deck');
-		let key = event.target.value;
+		let key = e.target.value;
 		let card = this.props.cardList.filter(card => card.id === key);
-		// console.log(card);
+		// console.log(key);
 		this.props.dispatch(addCardToDeck(card));
 		console.log('added to deck', this.props.cardsInDeck);
 	}
 
 	render() {
 		// console.log('inside CardList', this.props.cardList);
+		let cards;
+		if (this.props.cardList) {
+			cards = this.props.cardList;
+		}
 		return (
 			<div className="mtg-response">
 				<CardsNav handleSave={value => this.handleSave(value)} />
-				<div className="cards">
-					<CreateCard
-						cardList={this.props.cardList}
-						handleClick={event => this.handleClick(event)}
-					/>
-				</div>
+				{cards
+					? cards.map(card => {
+							return (
+								<div className="cards" key={card.id}>
+									<CreateCard cards={card} key={card.id} />
+									<button value={card.id} onClick={e => this.handleClick(e)}>
+										Add to Deck{' '}
+									</button>
+								</div>
+							);
+					  })
+					: ''}
 			</div>
 		);
 	}

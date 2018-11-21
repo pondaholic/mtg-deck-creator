@@ -3,16 +3,6 @@ CreateCard .main {
 	flex-direction: row;
 }
 
-.wrap {
-	min-width: 0px;
-	width: auto;
-	margin: auto;
-	padding: 10px;
-	display: inline-block;
-	color: white;
-	text-shadow: black 1px 1px;
-}
-
 .card {
 	box-shadow: 0 4px 8px 0 gray;
 	width: 320px;

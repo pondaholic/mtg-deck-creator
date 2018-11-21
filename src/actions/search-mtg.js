@@ -36,16 +36,18 @@ export const fetchCardsFromMtgApi = (key, searchTerm) => dispatch => {
 		})
 		.then(res => {
 			// console.log(res);
-			let newRes = res.cards.map(card => {
-				return {
-					name: card.name,
-					castingcost: card.manaCost,
-					color: card.colors,
-					type: card.type,
-					id: card.id,
-					text: card.text
-				};
-			});
+			let newRes = res.cards
+				.filter(card => card.text)
+				.map(card => {
+					return {
+						name: card.name,
+						castingcost: card.manaCost,
+						color: card.colors,
+						type: card.type,
+						id: card.id,
+						text: card.text
+					};
+				});
 			// console.log(newRes);
 			dispatch(fetchCardSuccess(newRes));
 		})
