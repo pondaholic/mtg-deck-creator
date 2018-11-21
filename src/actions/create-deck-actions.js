@@ -38,10 +38,10 @@ export const fetchCardError = error => ({
 });
 
 export const saveDeck = (newDeck, key) => dispatch => {
-	return fetch(REACT_APP_API_BASE_URL, {
+	return fetch(`${REACT_APP_API_BASE_URL}/api/cards`, {
 		method: 'POST',
 		body: JSON.stringify({
-			mtg_cards_id: newDeck,
+			mtg_cards: newDeck,
 			unique_url: key
 		}),
 		headers: {

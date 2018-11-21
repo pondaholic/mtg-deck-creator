@@ -7,24 +7,24 @@ import CardsNav from './cards-nav';
 import { addCardToDeck } from '../actions/create-deck-actions';
 
 class CardList extends React.Component {
-	handleSave(value) {
-		console.log('trying to post', value);
-		let newDeck = JSON.stringify(this.props.cardsInDeck);
-		// creates string to send to backend as uniqueUrl
-		let key =
-			Math.random()
-				.toString(30)
-				.substring(2, 5) +
-			Math.random()
-				.toString(30)
-				.substring(2, 5);
-		console.log('newDeck & key', newDeck, key);
-		// this.props.dispatch(saveDeck(newDeck, key)).then(() => {
-		// 	if (this.props.uniqueUrl) {
-		// 		this.props.history.push('/deck');
-		// 	}
-		// });
-	}
+	// handleSave(value) {
+	// 	console.log('trying to post', value);
+	// 	let newDeck = JSON.stringify(this.props.cardsInDeck);
+	// 	// creates string to send to backend as uniqueUrl
+	// 	let key =
+	// 		Math.random()
+	// 			.toString(30)
+	// 			.substring(2, 5) +
+	// 		Math.random()
+	// 			.toString(30)
+	// 			.substring(2, 5);
+	// 	console.log('newDeck & key', newDeck, key);
+	// 	// this.props.dispatch(saveDeck(newDeck, key)).then(() => {
+	// 	// 	if (this.props.uniqueUrl) {
+	// 	// 		this.props.history.push('/deck');
+	// 	// 	}
+	// 	// });
+	// }
 
 	handleClick(e) {
 		console.log('Card added to Deck');

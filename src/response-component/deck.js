@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import CreateCard from './card';
+import CardNav from './cards-nav';
 
 import { removeCardFromDeck } from '../actions/create-deck-actions';
 
@@ -16,6 +17,7 @@ class ThisDeck extends React.Component {
 		let cards = this.props.cardsInDeck;
 		return (
 			<div className="deck">
+				<CardNav />
 				<button className="back">Back</button>
 				Creation of decks
 				{cards
