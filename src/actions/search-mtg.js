@@ -1,5 +1,5 @@
 import { MTG_URL } from '../config';
-import { SubmissionError } from 'redux-form';
+// import { SubmissionError } from 'redux-form';
 
 export const FETCH_CARDS_SUCCESS = 'FETCH_CARDS_SUCCESS';
 export const fetchCardSuccess = cards => ({
