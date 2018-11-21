@@ -3,15 +3,33 @@ import { connect } from 'react-redux';
 
 import CreateCard from './card';
 
+import { removeCardFromDeck } from '../actions/create-deck-actions';
+
 class ThisDeck extends React.Component {
+	handleRemove(e) {
+		console.log('A card has been removed from deck.');
+		let key = e.target.value;
+		this.props.dispatch(removeCardFromDeck(key));
+	}
 	render() {
 		// console.log(this.props.cardsInDeck);
-		// let cards = this.props.cardsInDeck
+		let cards = this.props.cardsInDeck;
 		return (
 			<div className="deck">
 				<button className="back">Back</button>
 				Creation of decks
-				<CreateCard cardList={this.props.cardsInDeck} />
+				{cards
+					? cards.map(card => {
+							return (
+								<div className="cards" key={card.id}>
+									<CreateCard cards={card} key={card.id} />
+									<button value={card.id} onClick={e => this.handleRemove(e)}>
+										Remove
+									</button>
+								</div>
+							);
+					  })
+					: ''}{' '}
 			</div>
 		);
 	}
