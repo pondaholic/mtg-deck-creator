@@ -27,10 +27,10 @@ class CardsNav extends React.Component {
 	}
 
 	render() {
-		let url;
-		if (this.props.uniqueUrl) {
-			url = this.props.uniqueUrl.toString();
-		}
+		// let url;
+		// if (this.props.uniqueUrl) {
+		// 	url = this.props.uniqueUrl.toString();
+		// }
 		return (
 			<div className="cards-nav">
 				<ul className="cards-ul">
@@ -39,7 +39,7 @@ class CardsNav extends React.Component {
 						value="value"
 						onClick={value => this.handleSave(value)}
 					>
-						<Link to={'/save/' + url}>Save</Link>
+						<Link to={`/save/${this.props.uniqueUrl}`}>Save</Link>
 					</li>
 					<li className="deck">
 						<Link to="/thisDeck">Deck</Link>

@@ -1,5 +1,4 @@
 import { MTG_URL } from '../config';
-// import { SubmissionError } from 'redux-form';
 
 export const FETCH_CARDS_SUCCESS = 'FETCH_CARDS_SUCCESS';
 export const fetchCardSuccess = cards => ({
@@ -52,18 +51,6 @@ export const fetchCardsFromMtgApi = (key, searchTerm) => dispatch => {
 			dispatch(fetchCardSuccess(newRes));
 		})
 		.catch(err => {
-			const { reason, message, location } = err;
-			if (reason === 'ValidationError') {
-				return Promise.reject(
-					new SubmissionError({
-						[location]: message
-					})
-				);
-			}
-			return Promise.reject(
-				new SubmissionError({
-					_error: 'Error submitting message'
-				})
-			);
+			dispatch(fetchCardError(err));
 		});
 };
