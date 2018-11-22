@@ -33,7 +33,7 @@ export default function deckReducer(state = initialState, action) {
 		});
 	}
 	if (action.type === SAVE_DECK_SUCCESS) {
-		console.log(action.uniqueUrl);
+		// console.log(action.uniqueUrl);
 		return Object.assign({}, state, {
 			uniqueUrl: action.uniqueUrl
 		});

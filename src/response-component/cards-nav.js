@@ -48,8 +48,7 @@ class CardsNav extends React.Component {
 const mapStateToProps = state => {
 	console.log('state is', state);
 	return {
-		cardsInDeck: state.deck.cardsInDeck,
-		deckUrl: state.deck.uniqueUrl
+		cardsInDeck: state.deck.cardsInDeck
 	};
 };
 
