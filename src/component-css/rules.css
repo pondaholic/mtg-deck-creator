@@ -1,0 +1,15 @@
+.rules {
+	margin: 30px;
+	padding: 10px;
+	width: 700px;
+}
+
+.rules p {
+	border: none;
+	margin: 0px;
+	padding: 0px;
+	background-color: transparent;
+	color: black;
+	height: auto;
+	width: auto;
+}

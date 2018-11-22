@@ -10,6 +10,7 @@ import Login from './user-components/login';
 import MyDecks from './user-components/my-decks';
 import Rules from './info/rules';
 
+import './component-css/app.css';
 export default class App extends React.Component {
 	render() {
 		return (
