@@ -5,6 +5,7 @@ import CardSearch from './main/card-search';
 import CardList from './response-component/mtg-cards';
 import ThisDeck from './response-component/deck';
 import UserDeck from './user-components/save';
+import Register from './user-components/register';
 
 export default class App extends React.Component {
 	render() {
@@ -16,6 +17,7 @@ export default class App extends React.Component {
 						<Route exact path="/search" component={() => <CardList />} />
 						<Route exact path="/thisDeck" component={() => <ThisDeck />} />
 						<Route exact path="/save" component={() => <UserDeck />} />
+						<Route exact path="/register" component={() => <Register />} />
 					</Switch>
 				</main>
 			</div>
