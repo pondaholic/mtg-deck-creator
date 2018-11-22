@@ -19,18 +19,13 @@ class CardsNav extends React.Component {
 			Math.random()
 				.toString(30)
 				.substring(2, 5);
-		this.props.dispatch(saveDeck(newDeck, key)).then(() => {
-			if (this.props.uniqueUrl) {
-				console.log(this.props.uniqueUrl);
-			}
-		});
+		this.props.dispatch(saveDeck(newDeck, key));
 	}
 
 	render() {
-		// let url;
-		// if (this.props.uniqueUrl) {
-		// 	url = this.props.uniqueUrl.toString();
-		// }
+		if (this.props.deckUrl) {
+			console.log(this.props.deckUrl);
+		}
 		return (
 			<div className="cards-nav">
 				<ul className="cards-ul">
@@ -39,7 +34,7 @@ class CardsNav extends React.Component {
 						value="value"
 						onClick={value => this.handleSave(value)}
 					>
-						<Link to={`/save/${this.props.uniqueUrl}`}>Save</Link>
+						<Link to="/save">Save</Link>
 					</li>
 					<li className="deck">
 						<Link to="/thisDeck">Deck</Link>
@@ -51,8 +46,10 @@ class CardsNav extends React.Component {
 }
 
 const mapStateToProps = state => {
+	console.log('state is', state);
 	return {
-		cardsInDeck: state.deck.cardsInDeck
+		cardsInDeck: state.deck.cardsInDeck,
+		deckUrl: state.deck.uniqueUrl
 	};
 };
 
