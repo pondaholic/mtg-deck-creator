@@ -8,6 +8,7 @@ import SaveUserDeck from './user-components/save';
 import Register from './user-components/register';
 import Login from './user-components/login';
 import MyDecks from './user-components/my-decks';
+import Rules from './info/rules';
 
 export default class App extends React.Component {
 	render() {
@@ -22,6 +23,7 @@ export default class App extends React.Component {
 						<Route exact path="/register" component={() => <Register />} />
 						<Route exact path="/login" component={() => <Login />} />
 						<Route exact path="/myDecks" component={() => <MyDecks />} />
+						<Route exact path="/rules" component={() => <Rules />} />
 					</Switch>
 				</main>
 			</div>
