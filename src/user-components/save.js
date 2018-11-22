@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-class UserDeck extends React.Component {
+class SaveUserDeck extends React.Component {
 	render() {
 		if (this.props.url) {
 			console.log(this.props.url);
@@ -25,4 +25,4 @@ const mapStateToProps = state => {
 	};
 };
 
-export default connect(mapStateToProps)(UserDeck);
+export default connect(mapStateToProps)(SaveUserDeck);

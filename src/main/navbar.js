@@ -8,7 +8,7 @@ export default function Navbar() {
 		<div className="navbar">
 			<ul>
 				<li>
-					<Link to="/deck">Build New Deck</Link>
+					<Link to="/search">Build New Deck</Link>
 				</li>
 				<li>
 					<Link to="/rules">Rules</Link>
