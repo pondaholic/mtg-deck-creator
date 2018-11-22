@@ -1,0 +1,30 @@
+.login {
+	width: 700px;
+	padding: 30px 0px;
+	margin: 0px;
+}
+
+h2.login-user {
+	padding: 10px 0px 0px 224px;
+	margin: 10px auto;
+	width: 300px;
+}
+
+.login form {
+	width: 700px;
+	height: auto;
+	display: flex;
+	flex-direction: column;
+	color: black;
+	text-align: center;
+}
+
+.login input {
+	margin: 5px auto;
+	padding: 3px;
+	width: 300px;
+}
+
+.login button {
+	margin: 10px auto;
+}
