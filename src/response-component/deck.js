@@ -5,6 +5,7 @@ import CreateCard from './card';
 import CardNav from './cards-nav';
 
 import { removeCardFromDeck } from '../actions/create-deck-actions';
+import '../component-css/deck.css';
 
 class ThisDeck extends React.Component {
 	handleRemove(e) {
@@ -18,20 +19,23 @@ class ThisDeck extends React.Component {
 		return (
 			<div className="deck">
 				<CardNav />
-				<button className="back">Back</button>
-				Creation of decks
-				{cards
-					? cards.map(card => {
-							return (
-								<div className="cards" key={card.id}>
-									<CreateCard cards={card} key={card.id} />
-									<button value={card.id} onClick={e => this.handleRemove(e)}>
-										Remove
-									</button>
-								</div>
-							);
-					  })
-					: ''}{' '}
+				<div className="page-title">
+					<h3>Your Current Deck:</h3>
+				</div>
+				<div className="deck-cards">
+					{cards
+						? cards.map(card => {
+								return (
+									<div className="cards" key={card.id}>
+										<CreateCard cards={card} key={card.id} />
+										<button value={card.id} onClick={e => this.handleRemove(e)}>
+											Remove
+										</button>
+									</div>
+								);
+						  })
+						: ''}{' '}
+				</div>
 			</div>
 		);
 	}

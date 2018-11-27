@@ -1,5 +1,6 @@
 import React from 'react';
 import '../component-css/card.css';
+import '../component-css/card-colors.css';
 
 export default function CreateCard(props) {
 	let card = props.cards;

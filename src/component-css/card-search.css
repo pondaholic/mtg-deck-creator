@@ -37,6 +37,8 @@ form {
 
 input {
 	margin: 5px;
+	width: 220px;
+	padding: 0 5px;
 }
 
 button {

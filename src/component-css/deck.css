@@ -1,12 +1,6 @@
-ShowDeck {
-	display: flex;
-	flex-direction: row;
-}
-
-div.deck {
-	min-width: 0px;
-	width: auto;
-	margin: auto;
-	padding: 10px;
-	display: inline-block;
+.page-title h3 {
+	width: 300px;
+	margin: 5px auto;
+	padding: 0;
+	text-align: center;
 }
