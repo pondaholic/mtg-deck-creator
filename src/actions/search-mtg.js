@@ -1,5 +1,10 @@
 import { MTG_URL } from '../config';
 
+export const START_SEARCH = 'START_SEARCH';
+export const startSearch = () => ({
+	type: START_SEARCH
+});
+
 export const FETCH_CARDS_SUCCESS = 'FETCH_CARDS_SUCCESS';
 export const fetchCardSuccess = cards => ({
 	type: FETCH_CARDS_SUCCESS,
@@ -13,6 +18,7 @@ export const fetchCardError = error => ({
 });
 
 export const fetchCardsFromMtgApi = (key, searchTerm) => dispatch => {
+	dispatch(startSearch());
 	return fetch(`${MTG_URL}/?${key}=${searchTerm}`, {
 		method: 'GET',
 		headers: { 'Content-Type': 'application/json' }

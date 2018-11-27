@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import CreateCard from './card';
 import CardsNav from './cards-nav';
+import Spinner from './spinner';
 
 import { addCardToDeck } from '../actions/create-deck-actions';
 
@@ -20,14 +21,23 @@ class CardList extends React.Component {
 	render() {
 		// console.log('inside CardList', this.props.cardList);
 		let cards;
+		let response = false;
 		if (this.props.cardList) {
 			cards = this.props.cardList;
+		}
+		if (this.props.loading) {
+			response = (
+				<React.Fragment>
+					<Spinner />
+				</React.Fragment>
+			);
 		}
 		return (
 			<div className="mtg-response">
 				<CardsNav handleSave={value => this.handleSave(value)} />
+				{response}
 				<div className="mtg-cards">
-					{cards
+					{cards && !response
 						? cards.map(card => {
 								return (
 									<div className="cards" key={card.id}>
@@ -48,7 +58,8 @@ class CardList extends React.Component {
 const mapStateToProps = state => {
 	return {
 		cardList: state.mtg.cardList,
-		cardsInDeck: state.deck.cardsInDeck
+		cardsInDeck: state.deck.cardsInDeck,
+		loading: state.mtg.loading
 	};
 };
 
