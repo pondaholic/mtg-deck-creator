@@ -1,22 +1,24 @@
 .register {
-	width: 700px;
-	padding: 30px 0px;
-	margin: 0px;
+	width: auto;
+	padding: 0px;
+	margin: auto;
 }
 
 h2.welcome-user {
-	padding: 10px 0px 0px 126px;
-	margin: 10px auto;
-	width: 300px;
+	padding: 0;
+	margin: 20px auto;
+	text-align: center;
 }
 
 .register form {
-	width: 700px;
+	width: auto;
 	height: auto;
 	display: flex;
 	flex-direction: column;
 	color: black;
 	text-align: center;
+	margin: auto;
+	padding: 0;
 }
 
 .register input {
@@ -27,4 +29,14 @@ h2.welcome-user {
 
 .register button {
 	margin: 10px auto;
+}
+
+.register p {
+	border: none;
+	width: auto;
+	margin: 10px;
+	padding: 0;
+	background: transparent;
+	text-align: center;
+	color: black;
 }

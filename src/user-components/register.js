@@ -1,5 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
+import { Link } from 'react-router-dom';
 
 import '../component-css/register.css';
 
@@ -74,6 +75,9 @@ export default function Register() {
 					</form>
 				)}
 			</Formik>
+			<p>
+				Already have an account? <Link to="/login">Log In!</Link>
+			</p>
 		</div>
 	);
 }
