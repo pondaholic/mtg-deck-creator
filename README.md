@@ -6,7 +6,7 @@ The app searches one of three parameters: "Card Name," "Card Color," or "Card Ty
 
 **The app is deployed here:** https://mtg-deck-creator.herokuapp.com/
 
-![App Homepage](deck-creator-homepage.png)
+![App Homepage](mtg.png)
 ![When a card is searched](searched.png)
 ![After user saves their deck and a unique URL is provided](returned-link.png)
 
