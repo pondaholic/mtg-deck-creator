@@ -47,16 +47,36 @@ button {
 	color: white;
 }
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 648px) {
+@media only screen and (min-width: 320px) and (max-width: 648px) {
 	.how-to-use {
 		flex-direction: column;
-	}
-	header {
-		width: 100%;
-		font-size: 12px;
+		height: auto;
 	}
 
-	form {
-		flex-grow: 1;
+	header {
+		width: auto;
+		text-align: center;
+		color: white;
+		font-size: 12px;
+		padding: 0 10px;
+		margin: 0;
+	}
+
+	.header {
+		flex-direction: column;
+	}
+	input {
+		margin: 10px auto;
+		width: 280px;
+		padding: 0 5px;
+		height: 30px;
+		font-size: 14px;
+	}
+
+	button {
+		margin: 11px auto;
+		height: 35px;
+		width: 108px;
+		font-size: 14px;
 	}
 }
