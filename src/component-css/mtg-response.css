@@ -1,0 +1,16 @@
+.mtg-cards {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.cards {
+	margin: 20px 20px 8px 20px;
+	padding: 0;
+	width: auto;
+	display: inline-block;
+}
+
+.cards button {
+	margin: 10px 33%;
+}

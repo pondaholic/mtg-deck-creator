@@ -6,6 +6,7 @@ import CardsNav from './cards-nav';
 
 import { addCardToDeck } from '../actions/create-deck-actions';
 
+import '../component-css/mtg-response.css';
 class CardList extends React.Component {
 	handleClick(e) {
 		console.log('Card added to Deck');
@@ -25,18 +26,20 @@ class CardList extends React.Component {
 		return (
 			<div className="mtg-response">
 				<CardsNav handleSave={value => this.handleSave(value)} />
-				{cards
-					? cards.map(card => {
-							return (
-								<div className="cards" key={card.id}>
-									<CreateCard cards={card} key={card.id} />
-									<button value={card.id} onClick={e => this.handleClick(e)}>
-										Add to Deck{' '}
-									</button>
-								</div>
-							);
-					  })
-					: ''}
+				<div className="mtg-cards">
+					{cards
+						? cards.map(card => {
+								return (
+									<div className="cards" key={card.id}>
+										<CreateCard cards={card} key={card.id} />
+										<button value={card.id} onClick={e => this.handleClick(e)}>
+											Add to Deck{' '}
+										</button>
+									</div>
+								);
+						  })
+						: ''}
+				</div>
 			</div>
 		);
 	}
