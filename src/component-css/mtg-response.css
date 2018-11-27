@@ -14,3 +14,17 @@
 .cards button {
 	margin: 10px 33%;
 }
+
+@media screen and (max-width: 414px) {
+	.cards {
+		margin: 8px auto;
+	}
+
+	.cards-nav {
+		margin-bottom: 10px;
+	}
+
+	.cards button {
+		margin: 10px 30%;
+	}
+}

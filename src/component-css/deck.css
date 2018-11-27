@@ -4,3 +4,10 @@
 	padding: 0;
 	text-align: center;
 }
+
+@media screen and (max-width: 414px) {
+	.cards {
+		margin: 8px 16%;
+		display: inline-block;
+	}
+}
