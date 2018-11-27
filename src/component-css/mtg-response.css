@@ -28,3 +28,12 @@
 		margin: 10px 30%;
 	}
 }
+
+@media screen and (max-width: 320px) {
+	.cards {
+		margin: auto;
+	}
+	.cards button {
+		margin: 5px 30% 15px;
+	}
+}

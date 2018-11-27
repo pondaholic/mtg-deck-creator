@@ -80,3 +80,9 @@ button {
 		font-size: 14px;
 	}
 }
+
+@media screen and (max-width: 340px) {
+	input {
+		padding: 0;
+	}
+}
