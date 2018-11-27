@@ -13,9 +13,9 @@ export default function Navbar() {
 				<li>
 					<Link to="/rules">Rules</Link>
 				</li>
-				<li>
+				{/* <li>
 					<Link to="/faq">FAQ</Link>
-				</li>
+				</li> */}
 				<li>
 					<Link to="/myDecks">My Decks</Link>
 				</li>
