@@ -1,22 +1,24 @@
 .login {
-	width: 700px;
-	padding: 30px 0px;
-	margin: 0px;
+	width: auto;
+	padding: 20px;
+	margin: auto;
 }
 
-h2.login-user {
-	padding: 10px 0px 0px 224px;
+.login h2 {
+	padding: 0;
 	margin: 10px auto;
-	width: 300px;
+	/* width: 300px; */
+	text-align: center;
 }
 
 .login form {
-	width: 700px;
+	width: auto;
 	height: auto;
 	display: flex;
 	flex-direction: column;
 	color: black;
 	text-align: center;
+	padding: 0;
 }
 
 .login input {
@@ -27,4 +29,5 @@ h2.login-user {
 
 .login button {
 	margin: 10px auto;
+	width: 80px;
 }
