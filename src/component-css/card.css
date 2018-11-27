@@ -16,7 +16,7 @@
 	margin-top: 2px;
 }
 
-p {
+.card p {
 	height: 130px;
 	background-color: rgba(245, 245, 245, 0.8);
 	border: solid rgb(56, 43, 43) 3px;

@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import '../component-css/save.css';
+
 class SaveUserDeck extends React.Component {
 	render() {
 		if (this.props.url) {
@@ -9,10 +11,14 @@ class SaveUserDeck extends React.Component {
 		}
 		return (
 			<div className="save-user-deck">
-				Want to save your deck and come back to edit it?{' '}
-				<Link to="/register">Create an account!</Link>
-				Already have an account? <Link to="/login">Log in</Link> and save your
-				deck!
+				<p>
+					Want to save your deck and come back to edit it?{' '}
+					<Link to="/register">Create an account! </Link>
+				</p>
+				<p>
+					Already have an account? <Link to="/login">Log in</Link> and save your
+					deck!
+				</p>
 			</div>
 		);
 	}
