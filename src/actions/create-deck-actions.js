@@ -1,4 +1,5 @@
 import { REACT_APP_API_BASE_URL } from '../config';
+import { normalizeResponseErrors } from './utils';
 
 export const ADD_CARD_TO_DECK = 'ADD_CARD_TO_DECK';
 export const addCardToDeck = card => ({
@@ -47,21 +48,8 @@ export const saveDeck = (newDeck, key) => dispatch => {
 			'Content-Type': 'application/json'
 		}
 	})
-		.then(res => {
-			if (!res.ok) {
-				if (
-					res.headers.has('content-type') &&
-					res.headers.get('content-type').startsWith('application/json')
-				) {
-					return res.json().then(err => Promise.reject(err));
-				}
-				return Promise.reject({
-					code: res.status,
-					message: res.statusText
-				});
-			}
-			return res.json();
-		})
+		.then(res => normalizeResponseErrors(res))
+		.then(res => res.json())
 		.then(data => {
 			console.log('Something was posted', data);
 			dispatch(saveDeckSuccess(data.unique_url));
@@ -80,22 +68,8 @@ export const returnSavedDeck = uniqueUrl => dispatch => {
 			'Content-Type': 'application/json'
 		}
 	})
-		.then(res => {
-			if (!res.ok) {
-				if (
-					res.headers.has('content-type') &&
-					res.headers.get('content-type').startsWith('application/json')
-				) {
-					console.log(res.json());
-					return res.json().then(err => Promise.reject(err));
-				}
-				return Promise.reject({
-					code: res.status,
-					message: res.statusText
-				});
-			}
-			return res.json();
-		})
+		.then(res => normalizeResponseErrors(res))
+		.then(res => res.json())
 		.then(res => {
 			console.log(res);
 			console.log(

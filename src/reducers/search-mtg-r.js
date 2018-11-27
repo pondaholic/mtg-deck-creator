@@ -25,9 +25,11 @@ export default function mtgReducer(state = initialState, action) {
 		});
 	}
 	if (action.type === FETCH_CARDS_ERROR) {
+		// console.log(action.error);
 		return Object.assign({}, state, {
 			error: action.error,
-			loading: false
+			loading: false,
+			cardList: []
 		});
 	}
 	return state;

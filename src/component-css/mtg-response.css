@@ -19,6 +19,11 @@ Spinner {
 	margin: auto;
 }
 
+.error {
+	text-align: center;
+	margin-top: 20px;
+}
+
 @media screen and (max-width: 414px) {
 	.cards {
 		margin: 8px auto;

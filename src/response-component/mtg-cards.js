@@ -22,6 +22,7 @@ class CardList extends React.Component {
 		// console.log('inside CardList', this.props.cardList);
 		let cards;
 		let response = false;
+		let error;
 		if (this.props.cardList) {
 			cards = this.props.cardList;
 		}
@@ -32,10 +33,15 @@ class CardList extends React.Component {
 				</React.Fragment>
 			);
 		}
+		if (this.props.error) {
+			error = <p className="error">{this.props.error}</p>;
+			// console.log(error);
+		}
 		return (
 			<div className="mtg-response">
 				<CardsNav handleSave={value => this.handleSave(value)} />
 				{response}
+				{error}
 				<div className="mtg-cards">
 					{cards && !response
 						? cards.map(card => {
@@ -59,7 +65,8 @@ const mapStateToProps = state => {
 	return {
 		cardList: state.mtg.cardList,
 		cardsInDeck: state.deck.cardsInDeck,
-		loading: state.mtg.loading
+		loading: state.mtg.loading,
+		error: state.mtg.error
 	};
 };
 

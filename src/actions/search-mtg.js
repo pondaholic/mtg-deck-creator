@@ -1,4 +1,5 @@
 import { MTG_URL } from '../config';
+import { normalizeResponseErrors } from './utils';
 
 export const START_SEARCH = 'START_SEARCH';
 export const startSearch = () => ({
@@ -23,24 +24,9 @@ export const fetchCardsFromMtgApi = (key, searchTerm) => dispatch => {
 		method: 'GET',
 		headers: { 'Content-Type': 'application/json' }
 	})
+		.then(res => normalizeResponseErrors(res))
+		.then(res => res.json())
 		.then(res => {
-			if (!res.ok) {
-				if (
-					res.headers.has('content-type') &&
-					res.headers.get('content-type').startsWith('application/json')
-				) {
-					// console.log(res.json());
-					return res.json().then(err => Promise.reject(err));
-				}
-				return Promise.reject({
-					code: res.status,
-					message: res.statusText
-				});
-			}
-			return res.json();
-		})
-		.then(res => {
-			// console.log(res);
 			let newRes = res.cards
 				.filter(card => card.text)
 				.map(card => {
@@ -53,8 +39,14 @@ export const fetchCardsFromMtgApi = (key, searchTerm) => dispatch => {
 						text: card.text
 					};
 				});
+			if (newRes.length === 0) {
+				newRes = 'Your search has yielded no cards. Care to try again?';
+				dispatch(fetchCardError(newRes));
+			}
 			// console.log(newRes);
-			dispatch(fetchCardSuccess(newRes));
+			else {
+				dispatch(fetchCardSuccess(newRes));
+			}
 		})
 		.catch(err => {
 			dispatch(fetchCardError(err));
