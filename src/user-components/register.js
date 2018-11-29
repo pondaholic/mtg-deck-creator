@@ -1,13 +1,19 @@
 import React from 'react';
 import { Formik } from 'formik';
-import { Link } from 'react-router-dom';
 
 import '../component-css/register.css';
 
-export default function Register() {
+export default function Register(props) {
 	return (
 		<div className="register">
 			<h2 className="welcome-user">Welcome to our MTG World!</h2>
+			<p>
+				Don't want to sign up just yet? Try out our{' '}
+				<a href="#" onClick={e => props.handleDemo(e)}>
+					<b>demo account</b>
+				</a>
+				.
+			</p>
 			<Formik
 				initialValues={{ email: '', username: '', password: '' }}
 				validate={values => {
@@ -75,9 +81,6 @@ export default function Register() {
 					</form>
 				)}
 			</Formik>
-			<p>
-				Already have an account? <Link to="/login">Log In!</Link>
-			</p>
 		</div>
 	);
 }

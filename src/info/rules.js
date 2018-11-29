@@ -9,14 +9,22 @@ export default class Rules extends React.Component {
 				<h2>Newbies!</h2>
 				<p>
 					If you're completely new to MTG, there's a great way to start{' '}
-					<a href="https://magic.wizards.com/en/new-to-magic" target="_blank">
+					<a
+						href="https://magic.wizards.com/en/new-to-magic"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
 						here.
 					</a>
 				</p>
 				<h2>Basic Rules</h2>
 				<p>
 					You can download the Basic Rules as a PDF from the official MTG site{' '}
-					<a href="https://magic.wizards.com/en/magic-gameplay" target="_blank">
+					<a
+						href="https://magic.wizards.com/en/magic-gameplay"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
 						here.
 					</a>
 				</p>
@@ -27,6 +35,7 @@ export default class Rules extends React.Component {
 					<a
 						href="http://media.wizards.com/2018/downloads/MagicCompRules%2020181005.pdf"
 						target="_blank"
+						rel="noopener noreferrer"
 					>
 						here.
 					</a>
@@ -43,6 +52,7 @@ export default class Rules extends React.Component {
 					<a
 						href="https://magic.wizards.com/en/game-info/gameplay/rules-and-formats/banned-restricted"
 						target="_blank"
+						rel="noopener noreferrer"
 					>
 						here.
 					</a>

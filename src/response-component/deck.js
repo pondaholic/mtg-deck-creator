@@ -43,7 +43,8 @@ class ThisDeck extends React.Component {
 
 const mapStateToProps = state => {
 	return {
-		cardsInDeck: state.deck.cardsInDeck
+		cardsInDeck: state.deck.cardsInDeck,
+		loggedIn: state.auth.currentUser
 	};
 };
 

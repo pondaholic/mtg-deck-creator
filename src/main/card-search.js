@@ -23,7 +23,8 @@ class CardSearch extends React.Component {
 
 	handleSearch(values) {
 		this.setState({
-			search: true
+			search: true,
+			image: ''
 		});
 		// console.log(values.name, values.type, values.color);
 		for (let key in values) {
