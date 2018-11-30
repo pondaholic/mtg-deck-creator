@@ -23,7 +23,7 @@ export default function Searchbar(props) {
 						onChange={handleChange}
 						onBlur={handleBlur}
 						value={values.name}
-						placeholder="Name"
+						placeholder="Name i.e. 'human,' 'elf,' 'minotaur,' etc... "
 					/>
 					{/* {errors.email && touched.email && errors.email} */}
 					<input
@@ -33,7 +33,7 @@ export default function Searchbar(props) {
 						onChange={handleChange}
 						onBlur={handleBlur}
 						value={values.type}
-						placeholder="Type"
+						placeholder="Type such as 'land,' 'instant,' or 'creature'"
 					/>
 					{/* {errors.password && touched.password && errors.password} */}
 					<input
@@ -43,7 +43,7 @@ export default function Searchbar(props) {
 						onChange={handleChange}
 						onBlur={handleBlur}
 						value={values.color}
-						placeholder="Color"
+						placeholder="Color: 'blue,' 'black,' 'green,' 'red,'..."
 					/>
 					<button type="submit" disabled={isSubmitting}>
 						Submit
