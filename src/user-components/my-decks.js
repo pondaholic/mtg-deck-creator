@@ -1,22 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import requiresLogin from './requires-login';
-import { getMyDecks } from '../actions/myDecks';
+import { getMyDecks, getDeckCards } from '../actions/myDecks';
 import { clearAuth } from '../actions/auth';
 import { clearAuthToken } from '../local-storage';
+import CreateCard from '../response-component/card';
 
 import '../component-css/my-decks.css';
 
 class MyDecks extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			deckName: ''
+		};
+	}
 	componentWillMount() {
 		// console.log('dispatch to get decks');
 		this.props.dispatch(getMyDecks());
 	}
 
-	handleGetCards() {
-		console.log('Cards in this deck');
+	handleGetCards(e) {
+		// console.log('Cards in this deck', e.target.value);
+		this.props.dispatch(getDeckCards(e.target.value));
+		this.setState({
+			deckName: e.target.value
+		});
 	}
 
 	logOut() {
@@ -29,12 +40,17 @@ class MyDecks extends React.Component {
 
 	render() {
 		let decks;
+		let cards;
 		if (!this.props.loggedIn) {
 			return <Redirect push to="/save" />;
 		}
 		if (this.props.savedDecks) {
 			decks = this.props.savedDecks[0];
-			console.log(decks);
+			// console.log(decks);
+		}
+		if (this.props.cardsInMySavedDeck) {
+			cards = this.props.cardsInMySavedDeck[0];
+			// console.log(cards);
 		}
 		return (
 			<div className="all-user-decks">
@@ -45,21 +61,35 @@ class MyDecks extends React.Component {
 				>
 					Log out
 				</button>
-				<ul>
+				<ul className="decks-navbar">
 					{decks
 						? decks.map(deck => {
 								// console.log(deck[0]);
 								return (
-									<li className="deck-names" key={Math.random()}>
-										<Link to={deck.name} onClick={this.handleGetCards}>
-											{deck.name}
-										</Link>
-									</li>
+									<button
+										className="deck-names"
+										key={deck.id}
+										value={deck.name}
+										onClick={e => this.handleGetCards(e)}
+									>
+										{deck.name}
+									</button>
 								);
 						  })
 						: ''}
 				</ul>
-				{/* <p>A list of all decks.</p> */}
+				<h3 className="name-of-deck">{this.state.deckName}</h3>
+				<div className="mtg-cards">
+					{cards
+						? cards.mtg_cards.map(card => {
+								return (
+									<div className="cards" key={card.id}>
+										<CreateCard cards={card} key={card.id} />
+									</div>
+								);
+						  })
+						: ''}
+				</div>
 			</div>
 		);
 	}
@@ -67,10 +97,11 @@ class MyDecks extends React.Component {
 
 const mapStateToProps = state => {
 	const { currentUser } = state.auth;
-	console.log('state', state);
+	// console.log('state', state);
 	return {
 		loggedIn: state.auth.currentUser !== null,
-		savedDecks: state.savedUserDecks.myDecks
+		savedDecks: state.savedUserDecks.myDecks,
+		cardsInMySavedDeck: state.savedUserDecks.cardsInMyDeck
 		// username: state.auth.currentUser.username,
 		// name: `${currentUser.name} `
 	};
