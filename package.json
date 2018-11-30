@@ -1,6 +1,9 @@
 {
 	"name": "mtg-app",
 	"version": "0.1.0",
+	"engines": {
+		"node": "10.11.0"
+	},
 	"private": true,
 	"dependencies": {
 		"cors": "^2.8.4",
