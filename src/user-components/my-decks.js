@@ -55,6 +55,7 @@ class MyDecks extends React.Component {
 		return (
 			<div className="all-user-decks">
 				<button
+					className="logout"
 					onClick={() => {
 						this.logOut();
 					}}
