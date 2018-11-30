@@ -69,6 +69,7 @@ export const login = (username, password) => dispatch => {
 export const refreshAuthToken = () => (dispatch, getState) => {
 	dispatch(authRequest());
 	const authToken = getState().auth.authToken;
+	// console.log(getState());
 	return fetch(`${REACT_APP_API_BASE_URL}/api/auth/refresh`, {
 		method: 'POST',
 		headers: {

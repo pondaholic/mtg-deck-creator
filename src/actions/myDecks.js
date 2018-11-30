@@ -15,14 +15,21 @@ export const getDecksError = error => ({
 
 export const getMyDecks = () => (dispatch, getState) => {
 	const authToken = getState().auth.authToken;
+	// console.log(getState());
+	// const user = getState().auth.currentUser.username;
+
 	fetch(`${REACT_APP_API_BASE_URL}/api/cards`, {
 		method: 'GET',
 		headers: {
+			'Content-Type': 'application/json',
 			Authorization: `Bearer ${authToken}`
 		}
 	})
 		.then(res => normalizeResponseErrors(res))
 		.then(res => res.json())
-		.then(results => dispatch(getDecksSuccess(results)))
+		.then(results => {
+			// console.log(results);
+			dispatch(getDecksSuccess(results));
+		})
 		.catch(err => getDecksError(err));
 };

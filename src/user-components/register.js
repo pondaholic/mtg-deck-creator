@@ -1,5 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
+import { Link } from 'react-router-dom';
 
 import '../component-css/register.css';
 
@@ -9,9 +10,9 @@ export default function Register(props) {
 			<h2 className="welcome-user">Welcome to our MTG World!</h2>
 			<p>
 				Don't want to sign up just yet? Try out our{' '}
-				<a href="#" onClick={e => props.handleDemo(e)}>
+				<Link to="/myDecks" onClick={e => props.handleDemo(e)}>
 					<b>demo account</b>
-				</a>
+				</Link>
 				.
 			</p>
 			<Formik

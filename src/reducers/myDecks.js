@@ -7,6 +7,7 @@ const initialState = {
 
 export default function savedUserDecksReducer(state = initialState, action) {
 	if (action.type === GET_DECKS_SUCCESS) {
+		// console.log('decks', action.decks);
 		return Object.assign({}, state, {
 			myDecks: [action.decks, ...state.myDecks],
 			error: false

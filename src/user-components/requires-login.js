@@ -18,9 +18,9 @@ export default () => Component => {
 	RequiresLogin.displayName = `RequiresLogin(${displayName})`;
 
 	const mapStateToProps = (state, props) => ({
-		// authenticating: state.auth.loading,
-		// loggedIn: state.auth.currentUser !== null,
-		// error: state.auth.error
+		authenticating: state.auth.loading,
+		loggedIn: state.auth.currentUser !== null,
+		error: state.auth.error
 	});
 
 	return connect(mapStateToProps)(RequiresLogin);
