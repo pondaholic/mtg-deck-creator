@@ -24,7 +24,7 @@ class MyDecks extends React.Component {
 	}
 
 	handleGetCards(e) {
-		console.log('Cards in this deck', e.target.value);
+		// console.log('Cards in this deck', e.target.value);
 		this.setState({
 			deckName: e.target.value,
 			cards: this.props.myDecksTitles.filter(
@@ -53,7 +53,7 @@ class MyDecks extends React.Component {
 		}
 		if (this.state.cards) {
 			cards = this.state.cards[0].cards;
-			console.log(cards);
+			// console.log(cards);
 		}
 		return (
 			<div className="all-user-decks">
