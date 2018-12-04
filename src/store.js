@@ -4,6 +4,7 @@ import deckReducer from './reducers/create-deck-reducers';
 import mtgReducer from './reducers/search-mtg-r';
 import authReducer from './reducers/auth';
 import savedUserDecksReducer from './reducers/myDecks';
+import userReducer from './reducers/users';
 import { loadAuthToken } from './local-storage';
 import { setAuthToken, refreshAuthToken } from './actions/auth';
 import thunk from 'redux-thunk';
@@ -15,7 +16,8 @@ const store = createStore(
 		auth: authReducer,
 		mtg: mtgReducer,
 		deck: deckReducer,
-		savedUserDecks: savedUserDecksReducer
+		savedUserDecks: savedUserDecksReducer,
+		users: userReducer
 	}),
 	composeEnhancers(applyMiddleware(thunk))
 );

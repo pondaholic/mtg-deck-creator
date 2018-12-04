@@ -35,6 +35,7 @@ export default function Register(props) {
 					return errors;
 				}}
 				onSubmit={(values, { setSubmitting }) => {
+					props.handleRegister(values);
 					setSubmitting(false);
 				}}
 			>

@@ -4,6 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 
 import Register from './register';
 import { login } from '../actions/auth';
+import { createNewUser } from '../actions/users';
 
 import '../component-css/entry-page.css';
 
@@ -17,13 +18,21 @@ class UserEntryPage extends React.Component {
 		this.props.dispatch(login(demo.username, demo.password));
 	}
 
+	handleRegister(values) {
+		console.log(values);
+		this.props.dispatch(createNewUser(values));
+	}
+
 	render() {
 		if (this.props.loggedIn) {
 			return <Redirect to="/myDeck" />;
 		}
 		return (
 			<div className="user-entry-portal">
-				<Register handleDemo={e => this.handleDemo(e)} />
+				<Register
+					handleDemo={e => this.handleDemo(e)}
+					handleRegister={values => this.handleRegister(values)}
+				/>
 				<p>
 					Already have an account? <Link to="/login">Log In!</Link>
 				</p>
@@ -33,7 +42,9 @@ class UserEntryPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-	loggedIn: state.auth.currentUser !== null
+	loggedIn: state.auth.currentUser !== null,
+	loading: state.users.loading,
+	error: state.users.error
 });
 
 export default connect(mapStateToProps)(UserEntryPage);
