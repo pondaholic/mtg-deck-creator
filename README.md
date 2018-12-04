@@ -36,4 +36,6 @@ Postico is used to query and maintain the database.
 
 This app is not meant for developers but for people who want to wax nostalgic about a classic analog game. If you would like to modify the app, feel free to clone the github and **npm install**
 
+To look at server-side routes and user-authentication: https://github.com/pondaholic/mtg-server
+
 Everything is currently updated without vulnerabilities.
