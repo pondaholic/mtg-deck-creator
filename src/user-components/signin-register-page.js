@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 
 import Register from './register';
-
 import { login } from '../actions/auth';
 
 import '../component-css/entry-page.css';
@@ -12,7 +11,7 @@ class UserEntryPage extends React.Component {
 	handleDemo(e) {
 		console.log('demo clicked');
 		const demo = {
-			username: 'test-user-4',
+			username: 'demo-user',
 			password: 'password123'
 		};
 		this.props.dispatch(login(demo.username, demo.password));

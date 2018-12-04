@@ -2,9 +2,9 @@ import { REACT_APP_API_BASE_URL } from '../config';
 import { normalizeResponseErrors } from './utils';
 
 export const GET_DECKS_SUCCESS = 'GET_DECKS_SUCCESS';
-export const getDecksSuccess = decks => ({
+export const getDecksSuccess = decksTitles => ({
 	type: GET_DECKS_SUCCESS,
-	decks
+	decksTitles
 });
 
 export const GET_DECKS_ERROR = 'GET_DECKS_ERROR';
@@ -25,7 +25,7 @@ export const getDeckCardsError = error => ({
 	error
 });
 
-export const getMyDecks = () => (dispatch, getState) => {
+export const getMyDecksTitles = () => (dispatch, getState) => {
 	const authToken = getState().auth.authToken;
 
 	fetch(`${REACT_APP_API_BASE_URL}/api/decks`, {
@@ -39,32 +39,36 @@ export const getMyDecks = () => (dispatch, getState) => {
 		.then(res => res.json())
 		.then(results => {
 			// console.log(results);
-			dispatch(getDecksSuccess(results));
+			let eachDeck = results.map(deck => ({
+				deckName: deck.deck_name,
+				cards: JSON.parse(deck.mtg_cards)
+			}));
+			dispatch(getDecksSuccess(eachDeck));
 		})
 		.catch(err => getDecksError(err));
 };
 
-export const getDeckCards = deckId => (dispatch, getState) => {
-	// console.log('sending fetch request');
-	const authToken = getState().auth.authToken;
+// export const getDeckCards = deckName => (dispatch, getState) => {
+// 	// console.log('sending fetch request');
+// 	const authToken = getState().auth.authToken;
 
-	fetch(`${REACT_APP_API_BASE_URL}/api/decks/cards`, {
-		method: 'GET',
-		// body: JSON.stringify(deckId),
-		headers: {
-			'Content-Type': 'application/json',
-			Authorization: `Bearer ${authToken}`
-		}
-	})
-		.then(res => normalizeResponseErrors(res))
-		.then(res => res.json())
-		.then(results => {
-			// console.log(results[0]);
-			let newRes = Object.assign({}, results[0], {
-				mtg_cards: JSON.parse(results[0].mtg_cards)
-			});
-			// console.log('json parse', newRes);
-			dispatch(getDeckCardsSuccess(newRes));
-		})
-		.catch(err => getDeckCardsError(err));
-};
+// 	fetch(`${REACT_APP_API_BASE_URL}/api/decks/cards`, {
+// 		method: 'GET',
+// 		// body: JSON.stringify(deckName),
+// 		headers: {
+// 			'Content-Type': 'application/json',
+// 			Authorization: `Bearer ${authToken}`
+// 		}
+// 	})
+// 		.then(res => normalizeResponseErrors(res))
+// 		.then(res => res.json())
+// 		.then(results => {
+// 			// console.log(results[0]);
+// 			let newRes = Object.assign({}, results[0], {
+// 				mtg_cards: JSON.parse(results[0].mtg_cards)
+// 			});
+// 			// console.log('json parse', newRes);
+// 			dispatch(getDeckCardsSuccess(newRes));
+// 		})
+// 		.catch(err => getDeckCardsError(err));
+// };

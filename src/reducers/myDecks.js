@@ -6,16 +6,16 @@ import {
 } from '../actions/myDecks';
 
 const initialState = {
-	myDecks: [],
+	myDecksTitles: [],
 	error: false,
 	cardsInMyDeck: []
 };
 
 export default function savedUserDecksReducer(state = initialState, action) {
 	if (action.type === GET_DECKS_SUCCESS) {
-		// console.log('decks', action.decks);
+		// console.log('decks', action.decksTitles);
 		return Object.assign({}, state, {
-			myDecks: [action.decks, ...state.myDecks],
+			myDecksTitles: action.decksTitles,
 			error: false
 		});
 	}
