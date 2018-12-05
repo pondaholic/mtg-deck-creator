@@ -20,12 +20,14 @@ class UserEntryPage extends React.Component {
 
 	handleRegister(values) {
 		console.log(values);
-		this.props.dispatch(createNewUser(values));
+		this.props
+			.dispatch(createNewUser(values))
+			.then(() => this.props.dispatch(login(values.username, values.password)));
 	}
 
 	render() {
 		if (this.props.loggedIn) {
-			return <Redirect to="/myDeck" />;
+			return <Redirect to="/myDecks" />;
 		}
 		return (
 			<div className="user-entry-portal">
