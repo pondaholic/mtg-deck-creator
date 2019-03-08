@@ -44,6 +44,7 @@ class MyDecks extends React.Component {
 	render() {
 		let decks;
 		let cards;
+		let user;
 		if (!this.props.loggedIn) {
 			return <Redirect push to="/save" />;
 		}
@@ -55,8 +56,16 @@ class MyDecks extends React.Component {
 			cards = this.state.cards[0].cards;
 			// console.log(cards);
 		}
+
+		if (this.props.username) {
+			user = this.props.username;
+			// console.log(user);
+		}
 		return (
 			<div className="all-user-decks">
+				<div className="welcome-user">
+					Logged in as: <b>{user}</b>
+				</div>
 				<button
 					className="logout"
 					onClick={() => {

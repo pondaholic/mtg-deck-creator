@@ -47,6 +47,11 @@
 	font-size: 18px;
 }
 
+.welcome-user {
+	margin: 10px;
+	font-size: 14px;
+}
+
 @media screen and (max-width: 600px) {
 	.deck-navbar {
 		flex-direction: column;
