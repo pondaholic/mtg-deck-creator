@@ -14,32 +14,32 @@ import { fetchCardsFromMtgApi } from '../actions/search-mtg';
 import '../component-css/card-search.css';
 
 class CardSearch extends React.Component {
-	constructor(props) {
-		super(props);
+	constructor( props ) {
+		super( props );
 		this.state = {
 			search: false
 		};
 	}
 
-	handleSearch(values) {
-		this.setState({
+	handleSearch ( values ) {
+		this.setState( {
 			search: true,
 			image: ''
-		});
+		} );
 		// console.log(values.name, values.type, values.color);
-		for (let key in values) {
-			if (values[key]) {
+		for ( let key in values ) {
+			if ( values[key] ) {
 				// console.log(values[key]);
-				let searchTerm = encodeURIComponent(`%${values[key]}%`);
-				this.props.dispatch(fetchCardsFromMtgApi(key, searchTerm));
+				let searchTerm = encodeURIComponent( `%${values[key]}%` );
+				this.props.dispatch( fetchCardsFromMtgApi( key, searchTerm ) );
 			}
 		}
 		// console.log(key, searchTerm);
 	}
 
-	render() {
+	render () {
 		// console.log(this.props.cardList);
-		if (this.state.search) {
+		if ( this.state.search ) {
 			return <Redirect push to="/search" />;
 		}
 		return (
@@ -55,8 +55,8 @@ class CardSearch extends React.Component {
 							Then add to your deck and save to a URL only you have!
 						</header>
 						<Searchbar
-							handleClick={e => this.handleClick(e)}
-							handleSearch={values => this.handleSearch(values)}
+							handleClick={e => this.handleClick( e )}
+							handleSearch={values => this.handleSearch( values )}
 						/>
 					</div>
 				</div>
@@ -72,4 +72,4 @@ const mapStateToProps = state => {
 	};
 };
 
-export default connect(mapStateToProps)(CardSearch);
+export default connect( mapStateToProps )( CardSearch );
