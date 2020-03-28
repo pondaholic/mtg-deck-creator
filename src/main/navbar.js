@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth0 } from '../react-auth0-spa';
 
 import '../component-css/navbar.css';
 
-export default function Navbar() {
+const Navbar = () => {
+	const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+
 	return (
 		<div className="navbar">
 			<ul>
@@ -22,4 +25,6 @@ export default function Navbar() {
 			</ul>
 		</div>
 	);
-}
+};
+
+export default Navbar;
