@@ -5,7 +5,7 @@ import { useAuth0 } from '../react-auth0-spa';
 import '../component-css/navbar.css';
 
 const Navbar = () => {
-	const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+	const { isAuthenticated, loginWithRedirect } = useAuth0();
 
 	return (
 		<div className="navbar">

@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Search from './components/search';
-import Navbar from './main/navbar';
+import Navbar from './components/navbar';
 // import Background from './main/hompage-image';
 import ThisDeck from './response-component/deck';
 import UserEntryPage from './user-components/signin-register-page';

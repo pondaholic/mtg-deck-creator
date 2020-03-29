@@ -39,7 +39,9 @@ function Search() {
 							Type and look for the cards you want. <br />
 							Then add to your deck and save to a URL only you have!
 						</header>
-
+						<button onClick={() => console.log(process.env.REACT_APP_DOMAIN)}>
+							Check
+						</button>
 						<form onSubmit={handleSubmit}>
 							<input
 								className="name"
