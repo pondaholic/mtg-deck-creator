@@ -1,5 +1,6 @@
 form {
 	/* background-color: rgba(51, 51, 51, 0.5); */
+	width: 375px;
 	display: grid;
 	grid-template-rows: 1fr 1fr 1fr 1fr;
 	grid-template-columns: 1fr 3fr 1fr;
@@ -21,7 +22,7 @@ input {
 .type {
 	grid-area: type;
 }
-.color {
+.MuiFormGroup-root {
 	grid-area: colors;
 }
 

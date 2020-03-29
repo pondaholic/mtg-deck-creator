@@ -32,7 +32,7 @@ h2 {
 }
 
 form {
-	width: auto;
+	/* width: auto; */
 	height: 200px;
 	padding: 20px;
 	color: white;
@@ -48,6 +48,14 @@ input {
 .homepage-image img {
 	width: 100%;
 	background-image: rgba(225, 225, 225, 0.3);
+}
+
+.card-button {
+	background-color: rgba(17, 16, 16, 0.801);
+}
+
+.card-button:hover {
+	cursor: pointer;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 648px) {

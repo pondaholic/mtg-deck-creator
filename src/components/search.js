@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import CheckboxLabels from './colorBoxes';
 
 import '../component-css/search-bar.css';
 import '../component-css/card-search.css';
@@ -15,6 +16,7 @@ function Search() {
 	const handleSubmit = e => {
 		e.preventDefault();
 		setLoading(true);
+		setData([]);
 		console.log('handleSubmit');
 
 		const fetchData = async () => {
@@ -45,7 +47,7 @@ function Search() {
 								type="text"
 								onChange={e => (
 									// console.log(e.target.value),
-									setKey('name'), setQuery(e.target.value)
+									setKey('name'), setQuery({ name: e.target.value })
 								)}
 								placeholder="Name"
 							/>
@@ -54,20 +56,11 @@ function Search() {
 								type="text"
 								onChange={e => (
 									// console.log(e.target.value),
-									setKey('type'), setQuery(e.target.value)
+									setKey('type'), setQuery({ type: e.target.value })
 								)}
 								placeholder="Type"
 							/>
-							<input
-								className="color"
-								type="text"
-								onChange={e => (
-									console.log(e.target.value),
-									setKey('colors'),
-									setQuery(e.target.value)
-								)}
-								placeholder="Color"
-							/>
+							<CheckboxLabels />
 							<button type="submit" disabled={loading}>
 								Search
 							</button>
