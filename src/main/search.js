@@ -3,48 +3,67 @@ import axios from 'axios';
 
 function Search() {
 	const [data, setData] = useState([]);
-	const [query, setQuery] = useState('');
-	const uri = `https://api.magicthegathering.io/v1/cards/?name=${query}`;
+	const [query, setQuery] = useState({ name: '', type: '', color: '' });
+	const [loading, setLoading] = useState(false);
+	const uri = `https://api.magicthegathering.io/v1/cards/?name=${query.name}`;
 
 	const handleSubmit = e => {
 		e.preventDefault();
+		setLoading(true);
 		console.log('handleSubmit');
 
 		const fetchData = async () => {
 			console.log('search', console.log(uri));
 			const result = await axios.get(uri);
 			// console.log('result: ', result);
-			return setData(result.data.cards);
+			setData(result.data.cards);
+			return setLoading(false);
 		};
 		fetchData();
 	};
 
 	return (
-		<div>
+		<div className="search">
 			<form onSubmit={handleSubmit}>
 				<input
 					className="name"
 					type="text"
 					onChange={e => (
-						console.log(e.target.value), setQuery(e.target.value)
+						console.log(e.target.value), setQuery({ name: e.target.value })
 					)}
 					placeholder="Name"
 				/>
-				<button type="submit">Search</button>
+				<input
+					className="type"
+					type="text"
+					onChange={e => (
+						console.log(e.target.value), setQuery({ type: e.target.value })
+					)}
+					placeholder="Type"
+				/>
+				<button type="submit" disabled={loading}>
+					Search
+				</button>
 			</form>
-			{data ? (
+			{loading ? (
+				<div>Searching...</div>
+			) : (
 				(console.log(data),
 				data.map(item =>
 					item.imageUrl ? (
-						<li key={item.id}>
-							<img src={item.imageUrl}></img>
-						</li>
+						<ul>
+							<li key={item.id} className="cardImage">
+								<img src={item.imageUrl}></img>
+							</li>
+						</ul>
 					) : (
-						console.log('no image')
+						<li key={item.id} className="cardImage">
+							<div className="card">
+								<p>{item.name}</p>
+							</div>
+						</li>
 					)
 				))
-			) : (
-				<div />
 			)}
 		</div>
 	);

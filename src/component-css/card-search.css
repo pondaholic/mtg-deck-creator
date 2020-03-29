@@ -1,3 +1,7 @@
+.search ul {
+	overflow: visible;
+}
+
 .how-to-use {
 	/* display: flex;
 	flex-direction: row; */
