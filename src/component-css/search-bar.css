@@ -21,7 +21,7 @@ input {
 .type {
 	grid-area: type;
 }
-.colors {
+.color {
 	grid-area: colors;
 }
 

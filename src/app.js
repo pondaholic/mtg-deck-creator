@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import CardSearch from './main/card-search';
 import Search from './main/search';
+import Navbar from './main/navbar';
 // import Background from './main/hompage-image';
 import CardList from './response-component/mtg-cards';
 import ThisDeck from './response-component/deck';
@@ -20,6 +21,7 @@ export default class App extends React.Component {
 		return (
 			<div className="app">
 				<div className="homepage-image">
+					<Navbar />
 					{/* <Route path="/" component={() => <CardSearch />} /> */}
 					<Route path="/" component={() => <Search />} />
 					{/* <Route exact path="/" component={() => <Background />} /> */}

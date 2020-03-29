@@ -1,7 +1,7 @@
 .card {
 	box-shadow: 0 4px 8px 0 gray;
-	width: 200px;
-	height: 300px;
+	width: 180px;
+	height: 260px;
 	text-align: center;
 	padding: 5px;
 	border: solid black 15px;
@@ -9,7 +9,7 @@
 }
 
 .card img {
-	width: 100%;
+	width: 80%;
 	height: 50%;
 	border: gray;
 	padding: 0;
