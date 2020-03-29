@@ -20,7 +20,13 @@ const Navbar = () => {
 					<Link to="/faq">FAQ</Link>
 				</li> */}
 				<li>
-					<Link to="/myDecks">My Decks</Link>
+					{!isAuthenticated ? (
+						<a href onClick={() => loginWithRedirect({})}>
+							My Decks
+						</a>
+					) : (
+						<Link to="/myDecks">My Decks</Link>
+					)}
 				</li>
 			</ul>
 		</div>

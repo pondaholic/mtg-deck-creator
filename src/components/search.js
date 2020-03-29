@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 import '../component-css/search-bar.css';
+import '../component-css/card-search.css';
+import '../component-css/mtg-response.css';
 
 function Search() {
 	const [data, setData] = useState([]);
@@ -43,9 +45,8 @@ function Search() {
 								className="name"
 								type="text"
 								onChange={e => (
-									console.log(e.target.value),
-									setKey('name'),
-									setQuery(e.target.value)
+									// console.log(e.target.value),
+									setKey('name'), setQuery(e.target.value)
 								)}
 								placeholder="Name"
 							/>
@@ -53,9 +54,8 @@ function Search() {
 								className="type"
 								type="text"
 								onChange={e => (
-									console.log(e.target.value),
-									setKey('type'),
-									setQuery(e.target.value)
+									// console.log(e.target.value),
+									setKey('type'), setQuery(e.target.value)
 								)}
 								placeholder="Type"
 							/>
@@ -78,26 +78,28 @@ function Search() {
 			</main>
 			<div id="main-body">
 				<div className="mtg-response">
-					{loading ? (
-						<div>Searching...</div>
-					) : (
-						// (console.log(data),
-						data.map(item =>
-							item.imageUrl ? (
-								<ul>
+					{loading ? <div>Searching...</div> : ''}
+					{data.length !== 0 || loading
+						? // (console.log(data),
+						  data.map(item => (
+								<ul key={item.id}>
 									<li key={item.id} className="cardImage">
-										<img src={item.imageUrl}></img>
+										{item.imageUrl ? (
+											<img src={item.imageUrl}></img>
+										) : (
+											<div className="card">{item.name}</div>
+										)}
+										<button
+											className="card-button"
+											value={item.id}
+											onClick={() => console.log(item.id)}
+										>
+											Add to Deck{' '}
+										</button>
 									</li>
 								</ul>
-							) : (
-								<ul>
-									<li key={item.id} className="cardImage">
-										<div className="card">{item.name}</div>
-									</li>
-								</ul>
-							)
-						)
-					)}
+						  ))
+						: 'No Results to Show'}
 				</div>
 			</div>
 		</div>

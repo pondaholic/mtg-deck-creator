@@ -1,42 +1,11 @@
 .card {
 	box-shadow: 0 4px 8px 0 gray;
-	width: 180px;
-	height: 260px;
+	width: 280px;
+	height: 400px;
 	text-align: center;
 	padding: 5px;
 	border: solid black 15px;
 	border-radius: 10px;
-}
-
-.card img {
-	width: 80%;
-	height: 50%;
-	border: gray;
-	padding: 0;
-	margin-top: 2px;
-}
-
-.card p {
-	height: 130px;
-	background-color: rgba(245, 245, 245, 0.8);
-	border: solid rgb(56, 43, 43) 3px;
-	padding: 5px;
-	margin: 5px;
-	color: gray;
-	text-shadow: none;
-	text-align: left;
-	border-style: inset;
-	overflow: wrap;
-}
-
-.card ul {
-	margin: 0;
-	padding: 0;
-}
-
-.card li {
-	margin: 0;
-	padding: 0;
 }
 
 .cardImage {

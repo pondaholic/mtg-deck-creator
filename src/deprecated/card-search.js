@@ -5,7 +5,7 @@ import { Redirect } from 'react-router';
 
 //import components
 import Searchbar from './search-bar';
-import Navbar from './navbar';
+import Navbar from '../main/navbar';
 
 //import actions for dispatches
 import { fetchCardsFromMtgApi } from '../actions/search-mtg';

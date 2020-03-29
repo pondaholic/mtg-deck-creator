@@ -4,3 +4,11 @@ body {
 	padding: 0px;
 	width: auto;
 }
+
+button {
+	background-color: rgba(24, 105, 65, 0.644);
+	border: none;
+	color: white;
+	height: 35px;
+	width: 110px;
+}
