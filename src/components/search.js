@@ -39,9 +39,6 @@ function Search() {
 							Type and look for the cards you want. <br />
 							Then add to your deck and save to a URL only you have!
 						</header>
-						<button onClick={() => console.log(process.env.REACT_APP_DOMAIN)}>
-							Check
-						</button>
 						<form onSubmit={handleSubmit}>
 							<input
 								className="name"
@@ -66,7 +63,7 @@ function Search() {
 								type="text"
 								onChange={e => (
 									console.log(e.target.value),
-									setKey('color'),
+									setKey('colors'),
 									setQuery(e.target.value)
 								)}
 								placeholder="Color"
