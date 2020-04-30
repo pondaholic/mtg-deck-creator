@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import CreateCard from './card';
+import CreateCard from '../components/card';
 import CardNav from './cards-nav';
 
 import { removeCardFromDeck } from '../actions/create-deck-actions';
@@ -24,11 +24,14 @@ class ThisDeck extends React.Component {
 				</div>
 				<div className="deck-cards">
 					{cards
-						? cards.map(card => {
+						? cards.map((card) => {
 								return (
 									<div className="cards" key={card.id}>
 										<CreateCard cards={card} key={card.id} />
-										<button value={card.id} onClick={e => this.handleRemove(e)}>
+										<button
+											value={card.id}
+											onClick={(e) => this.handleRemove(e)}
+										>
 											Remove
 										</button>
 									</div>
@@ -41,10 +44,10 @@ class ThisDeck extends React.Component {
 	}
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
 		cardsInDeck: state.deck.cardsInDeck,
-		loggedIn: state.auth.currentUser
+		loggedIn: state.auth.currentUser,
 	};
 };
 

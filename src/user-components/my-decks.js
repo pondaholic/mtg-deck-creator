@@ -6,7 +6,7 @@ import requiresLogin from './requires-login';
 import { getMyDecksTitles } from '../actions/myDecks';
 import { clearAuth } from '../actions/auth';
 import { clearAuthToken } from '../local-storage';
-import CreateCard from '../response-component/card';
+import CreateCard from '../components/card';
 
 import '../component-css/my-decks.css';
 
@@ -15,7 +15,7 @@ class MyDecks extends React.Component {
 		super(props);
 		this.state = {
 			deckName: false,
-			cards: false
+			cards: false,
 		};
 	}
 	componentWillMount() {
@@ -28,14 +28,14 @@ class MyDecks extends React.Component {
 		this.setState({
 			deckName: e.target.value,
 			cards: this.props.myDecksTitles.filter(
-				deck => deck.deckName === e.target.value
-			)
+				(deck) => deck.deckName === e.target.value
+			),
 		});
 	}
 
 	logOut() {
 		this.setState({
-			showNavMenu: false
+			showNavMenu: false,
 		});
 		this.props.dispatch(clearAuth());
 		clearAuthToken();
@@ -76,14 +76,14 @@ class MyDecks extends React.Component {
 				</button>
 				<ul className="decks-navbar">
 					{decks
-						? decks.map(deck => {
+						? decks.map((deck) => {
 								// console.log(deck[0]);
 								return (
 									<button
 										className="deck-names"
 										key={deck.deckName}
 										value={deck.deckName}
-										onClick={e => this.handleGetCards(e)}
+										onClick={(e) => this.handleGetCards(e)}
 									>
 										{deck.deckName}
 									</button>
@@ -94,7 +94,7 @@ class MyDecks extends React.Component {
 				<h3 className="name-of-deck">{this.state.deckName}</h3>
 				<div className="mtg-cards">
 					{cards
-						? cards.map(card => {
+						? cards.map((card) => {
 								return (
 									<div className="cards" key={card.id}>
 										<CreateCard cards={card} key={card.id} />
@@ -108,13 +108,13 @@ class MyDecks extends React.Component {
 	}
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	// const { currentUser } = state.auth;
 	// console.log('state', state);
 	return {
 		loggedIn: state.auth.currentUser !== null,
 		myDecksTitles: state.savedUserDecks.myDecksTitles,
-		username: state.auth.currentUser.username
+		username: state.auth.currentUser.username,
 		// name: `${currentUser.name} `
 	};
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import CheckboxLabels from './colorBoxes';
+import CheckboxLabels from '../components/checkBoxes';
+import CreateCard from '../components/card';
 
 import '../component-css/search-bar.css';
 import '../component-css/card-search.css';
@@ -11,18 +12,16 @@ function Search() {
 	const [query, setQuery] = useState('');
 	const [key, setKey] = useState('');
 	const [loading, setLoading] = useState(false);
-	const uri = `https://api.magicthegathering.io/v1/cards/?${key}=${query}`;
+	const uri = `https://api.magicthegathering.io/v1/cards/?${key}=${query[key]}`;
 
-	const handleSubmit = e => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
 		setLoading(true);
 		setData([]);
-		console.log('handleSubmit');
 
 		const fetchData = async () => {
-			console.log('search', console.log(uri));
+			console.log('search', console.log(uri, key, query));
 			const result = await axios.get(uri);
-			// console.log('result: ', result);
 			setData(result.data.cards);
 			return setLoading(false);
 		};
@@ -45,8 +44,7 @@ function Search() {
 							<input
 								className="name"
 								type="text"
-								onChange={e => (
-									// console.log(e.target.value),
+								onChange={(e) => (
 									setKey('name'), setQuery({ name: e.target.value })
 								)}
 								placeholder="Name"
@@ -54,8 +52,7 @@ function Search() {
 							<input
 								className="type"
 								type="text"
-								onChange={e => (
-									// console.log(e.target.value),
+								onChange={(e) => (
 									setKey('type'), setQuery({ type: e.target.value })
 								)}
 								placeholder="Type"
@@ -73,24 +70,7 @@ function Search() {
 					{loading ? <div>Searching...</div> : ''}
 					{data.length !== 0 || loading
 						? // (console.log(data),
-						  data.map(item => (
-								<ul key={item.id}>
-									<li key={item.id} className="cardImage">
-										{item.imageUrl ? (
-											<img src={item.imageUrl}></img>
-										) : (
-											<div className="card">{item.name}</div>
-										)}
-										<button
-											className="card-button"
-											value={item.id}
-											onClick={() => console.log(item.id)}
-										>
-											Add to Deck{' '}
-										</button>
-									</li>
-								</ul>
-						  ))
+						  data.map((item) => CreateCard(item))
 						: 'No Results to Show'}
 				</div>
 			</div>
