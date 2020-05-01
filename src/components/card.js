@@ -31,7 +31,7 @@ export default function CreateCards(props) {
 					return item.imageUrl ? (
 						<Grid item xs={4} key={`grid ${item.id}`}>
 							<Paper className={classes.paper} key={item.id}>
-								<img src={item.imageUrl} />
+								<img src={item.imageUrl} alt={'card'} />
 								<Button className={classes.button} value={item} />
 							</Paper>
 						</Grid>

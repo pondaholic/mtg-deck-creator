@@ -1,14 +1,30 @@
 import React, { useState } from 'react';
+// import { Route, Switch } from 'react-router-dom';
 import axios from 'axios';
+
 import CheckboxLabels from '../components/checkBoxes';
+import Views from './views';
 import CreateCards from '../components/card';
 import Loading from '../components/loading';
 
 import '../component-css/search-bar.css';
 import '../component-css/card-search.css';
-import '../component-css/mtg-response.css';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+	root: {
+		flexGrow: 1,
+		alignContent: 'center',
+	},
+	response: {
+		padding: theme.spacing(1),
+		textAlign: 'center',
+		backgroundcolor: 'black',
+	},
+}));
 
 function Search() {
+	const classes = useStyles();
 	const [data, setData] = useState([]);
 	const [query, setQuery] = useState('');
 	const [key, setKey] = useState('');
@@ -28,6 +44,10 @@ function Search() {
 		};
 		fetchData();
 	};
+
+	const isRoot =
+		window.location.href.match(/search/) ||
+		!window.location.href.match(/rules/);
 
 	return (
 		<div className="search">
@@ -66,19 +86,14 @@ function Search() {
 					</div>
 				</div>
 			</main>
-			<div id="main-body">
-				<div className="mtg-response">
-					{loading ? (
-						<div>
-							Searching...
-							<Loading />
-						</div>
-					) : (
-						''
-					)}
+			{isRoot ? (
+				<div className={classes.response}>
+					{loading ? <Loading /> : ''}
 					{data.length !== 0 ? <CreateCards data={data} /> : ''}
 				</div>
-			</div>
+			) : (
+				<Views />
+			)}
 		</div>
 	);
 }
