@@ -7,7 +7,7 @@ function Button(item) {
 			value={item.value.id}
 			onClick={() => console.log(item.value.id)}
 		>
-			Add to Deck
+			Add to Deck{' '}
 		</button>
 	);
 }

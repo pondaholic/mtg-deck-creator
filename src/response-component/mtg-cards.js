@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import CreateCard from './card';
 import CardsNav from './cards-nav';
-import Spinner from './spinner';
 
 import { addCardToDeck } from '../actions/create-deck-actions';
 
@@ -12,7 +11,7 @@ class CardList extends React.Component {
 	handleClick(e) {
 		console.log('Card added to Deck');
 		let key = e.target.value;
-		let card = this.props.cardList.filter(card => card.id === key);
+		let card = this.props.cardList.filter((card) => card.id === key);
 		// console.log(key);
 		this.props.dispatch(addCardToDeck(card));
 		// console.log('added to deck', this.props.cardsInDeck);
@@ -39,16 +38,19 @@ class CardList extends React.Component {
 		}
 		return (
 			<div className="mtg-response">
-				<CardsNav handleSave={value => this.handleSave(value)} />
+				<CardsNav handleSave={(value) => this.handleSave(value)} />
 				{response}
 				{error}
 				<div className="mtg-cards">
 					{cards && !response
-						? cards.map(card => {
+						? cards.map((card) => {
 								return (
 									<div className="cards" key={card.id}>
 										<CreateCard cards={card} key={card.id} />
-										<button value={card.id} onClick={e => this.handleClick(e)}>
+										<button
+											value={card.id}
+											onClick={(e) => this.handleClick(e)}
+										>
 											Add to Deck{' '}
 										</button>
 									</div>
@@ -61,12 +63,12 @@ class CardList extends React.Component {
 	}
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
 		cardList: state.mtg.cardList,
 		cardsInDeck: state.deck.cardsInDeck,
 		loading: state.mtg.loading,
-		error: state.mtg.error
+		error: state.mtg.error,
 	};
 };
 

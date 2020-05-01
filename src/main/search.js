@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import CheckboxLabels from '../components/checkBoxes';
-import CreateCard from '../components/card';
+import CreateCards from '../components/card';
+import Loading from '../components/loading';
 
 import '../component-css/search-bar.css';
 import '../component-css/card-search.css';
@@ -67,11 +68,15 @@ function Search() {
 			</main>
 			<div id="main-body">
 				<div className="mtg-response">
-					{loading ? <div>Searching...</div> : ''}
-					{data.length !== 0 || loading
-						? // (console.log(data),
-						  data.map((item) => CreateCard(item))
-						: 'No Results to Show'}
+					{loading ? (
+						<div>
+							Searching...
+							<Loading />
+						</div>
+					) : (
+						''
+					)}
+					{data.length !== 0 ? <CreateCards data={data} /> : ''}
 				</div>
 			</div>
 		</div>
