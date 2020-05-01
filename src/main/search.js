@@ -7,8 +7,7 @@ import CreateCards from '../components/card';
 import Loading from '../components/loading';
 import Grid from '@material-ui/core/Grid';
 
-import '../component-css/search-bar.css';
-import '../component-css/card-search.css';
+import '../component-css/search.css';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({

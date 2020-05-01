@@ -27,7 +27,7 @@ export default function CreateCards(props) {
 
 	return props.data.length !== 0 ? (
 		<Grid container spacing={1}>
-			<Grid container item xs={12} spacing={3}>
+			<Grid container item xs={12} spacing={5}>
 				{props.data.map((item) => {
 					return item.imageUrl ? (
 						<Grid item xs={4} key={`grid ${item.id}`}>

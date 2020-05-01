@@ -3,8 +3,6 @@
 }
 
 .how-to-use {
-	/* display: flex;
-	flex-direction: row; */
 	background-image: url('../header.jpg');
 	border-top: 5px solid rgb(200, 55, 26);
 	border-bottom: 5px solid rgb(200, 55, 26);
@@ -37,12 +35,40 @@ form {
 	padding: 20px;
 	color: white;
 	text-align: center;
+	width: 375px;
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 3fr 1fr;
+	grid-template-areas:
+		'. name .'
+		'. type .'
+		'. colors .'
+		'. button .';
 }
 
 input {
 	margin: 5px;
+	height: 20px;
 	width: 220px;
 	padding: 0 5px;
+}
+
+.name {
+	grid-area: name;
+}
+.type {
+	grid-area: type;
+}
+.MuiFormGroup-root {
+	grid-area: colors;
+}
+
+button {
+	grid-area: button;
+	height: 20px;
+	width: 100px;
+	justify-self: center;
+	border-radius: 5px;
 }
 
 .homepage-image img {
