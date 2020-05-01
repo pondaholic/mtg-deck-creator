@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
 		padding: theme.spacing(1),
 		textAlign: 'center',
 		color: 'black',
+		'box-shadow': 'none',
 	},
 	button: {
 		padding: theme.spacing(1),
@@ -30,7 +31,11 @@ export default function CreateCards(props) {
 				{props.data.map((item) => {
 					return item.imageUrl ? (
 						<Grid item xs={4} key={`grid ${item.id}`}>
-							<Paper className={classes.paper} key={item.id}>
+							<Paper
+								className={classes.paper}
+								key={item.id}
+								style={{ boxShadow: 'none' }}
+							>
 								<img src={item.imageUrl} alt={'card'} />
 								<Button className={classes.button} value={item} />
 							</Paper>

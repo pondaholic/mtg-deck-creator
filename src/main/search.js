@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-// import { Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 
 import CheckboxLabels from '../components/checkBoxes';
 import Views from './views';
 import CreateCards from '../components/card';
 import Loading from '../components/loading';
+import Grid from '@material-ui/core/Grid';
 
 import '../component-css/search-bar.css';
 import '../component-css/card-search.css';
@@ -37,7 +37,7 @@ function Search() {
 		setData([]);
 
 		const fetchData = async () => {
-			console.log('search', console.log(uri, key, query));
+			// console.log('search', console.log(uri, key, query));
 			const result = await axios.get(uri);
 			setData(result.data.cards);
 			return setLoading(false);
@@ -87,10 +87,14 @@ function Search() {
 				</div>
 			</main>
 			{isRoot ? (
-				<div className={classes.response}>
+				<Grid
+					container
+					className={classes.root}
+					style={{ alignContent: 'center' }}
+				>
 					{loading ? <Loading /> : ''}
 					{data.length !== 0 ? <CreateCards data={data} /> : ''}
-				</div>
+				</Grid>
 			) : (
 				<Views />
 			)}
