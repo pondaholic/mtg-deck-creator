@@ -67,7 +67,7 @@ function Search() {
 								onChange={(e) => (
 									setKey('name'), setQuery({ name: e.target.value })
 								)}
-								placeholder="Name"
+								placeholder="Card Name"
 							/>
 							<input
 								className="type"
