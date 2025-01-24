@@ -1,35 +1,76 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { MTG_URL } from "./config";
+import { Loader } from "./components/Loader";
 
-import CardSearch from './main/card-search';
-import Background from './main/hompage-image';
-import CardList from './response-component/mtg-cards';
-import ThisDeck from './response-component/deck';
-import UserEntryPage from './user-components/signin-register-page';
-import Register from './user-components/register';
-import Login from './user-components/login';
-import MyDecks from './user-components/my-decks';
-import Rules from './info/rules';
+export default function App() {
+  const [cards, setCards] = useState([]);
+  const [cardId, setCardId] = useState("");
+  const [card, setPickedCard] = useState([]);
+  const [loading, setIsLoading] = useState(false);
 
-import './component-css/app.css';
-export default class App extends React.Component {
-	render() {
-		return (
-			<div className="app">
-				<Route path="/" component={() => <CardSearch />} />
-				<Route exact path="/" component={() => <Background />} />
-				<main id="main-body">
-					<Switch>
-						<Route exact path="/search" component={() => <CardList />} />
-						<Route exact path="/thisDeck" component={() => <ThisDeck />} />
-						<Route exact path="/save" component={() => <UserEntryPage />} />
-						<Route exact path="/register" component={() => <Register />} />
-						<Route exact path="/login" component={() => <Login />} />
-						<Route exact path="/myDecks" component={() => <MyDecks />} />
-						<Route exact path="/rules" component={() => <Rules />} />
-					</Switch>
-				</main>
-			</div>
-		);
-	}
+  useEffect(() => {
+    const getCards = async () => {
+      try {
+        const res = await fetch(MTG_URL);
+        const { cards } = await res.json();
+
+        const images = cards.map((item) => ({
+          name: item.name,
+          image: item.imageUrl,
+          cardId: item.id,
+        }));
+        setCards(images);
+      } catch (error) {
+        console.log("fetch error: ", error);
+      }
+    };
+    getCards();
+  }, []);
+
+  useEffect(() => {
+    const getCard = async () => {
+      try {
+        const res = await fetch(`${MTG_URL}/${cardId}`);
+        const { card } = await res.json();
+        setPickedCard(card);
+        setIsLoading(false);
+        // console.log(card);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getCard();
+  }, [cardId]);
+
+  const handleCardClick = (event) => {
+    console.log("clicked", event.target.id);
+    setIsLoading(true);
+    setCardId(event.target.id);
+  };
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", overflow: "auto" }}>
+      <div style={{ display: "flex", width: "100vw", overflow: "auto" }}>
+        {cards &&
+          cards.map(({ image, name, cardId }) => (
+            <div
+              onClick={(event) => handleCardClick(event)}
+              id={name}
+              style={{ padding: 5 }}
+            >
+              <img src={image} id={cardId} />
+            </div>
+          ))}
+      </div>
+      <div className="spacer" style={{ padding: 30 }} />
+      <div>
+        {loading && <Loader />}
+        {!loading &&
+          card &&
+          card?.foreignNames?.map((item) => (
+            <img src={item.imageUrl} style={{ padding: 5 }} />
+          ))}
+      </div>
+    </div>
+  );
 }
