@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { MTG_URL } from "./config";
 import { Loader } from "./components/Loader";
 
@@ -67,9 +68,15 @@ export default function App() {
         {loading && <Loader />}
         {!loading &&
           card &&
-          card?.foreignNames?.map((item) => (
-            <img src={item.imageUrl} style={{ padding: 5 }} />
-          ))}
+          createPortal(
+            <div>
+              <img src={card.imageUrl} />
+              {card?.foreignNames?.map((item) => (
+                <img src={item.imageUrl} style={{ padding: 5 }} />
+              ))}
+            </div>,
+            document.body
+          )}
       </div>
     </div>
   );
